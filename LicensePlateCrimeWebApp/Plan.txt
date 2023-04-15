@@ -1,1 +1,9 @@
-﻿
+﻿Ust menu:
+Anasayfa(logolu)
+Login
+Signup
+-Giris Yapildiysa:
+-Araclarim
+-Ihlallerim
+-Itirazlarim
+-Profil
