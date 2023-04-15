@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
-    public class Violations : Controller
+    public class ViolationsController : Controller
     {
         // GET: Violations
         public ActionResult Index()
