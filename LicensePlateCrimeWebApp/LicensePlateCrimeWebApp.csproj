@@ -13,4 +13,90 @@
     <None Remove="Views\Vehicles\Violations\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\css\bootstrap.css" />
+    <Content Remove="wwwroot\css\flexslider.css" />
+    <Content Remove="wwwroot\css\style.css" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.eot" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.svg" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.woff" />
+    <Content Remove="wwwroot\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Remove="wwwroot\images\1.jpg" />
+    <Content Remove="wwwroot\images\1.png" />
+    <Content Remove="wwwroot\images\10.jpg" />
+    <Content Remove="wwwroot\images\11.jpg" />
+    <Content Remove="wwwroot\images\12.jpg" />
+    <Content Remove="wwwroot\images\13.jpg" />
+    <Content Remove="wwwroot\images\2.jpg" />
+    <Content Remove="wwwroot\images\2.png" />
+    <Content Remove="wwwroot\images\3.jpg" />
+    <Content Remove="wwwroot\images\3.png" />
+    <Content Remove="wwwroot\images\4.jpg" />
+    <Content Remove="wwwroot\images\4.png" />
+    <Content Remove="wwwroot\images\5.jpg" />
+    <Content Remove="wwwroot\images\5.png" />
+    <Content Remove="wwwroot\images\6.jpg" />
+    <Content Remove="wwwroot\images\7.jpg" />
+    <Content Remove="wwwroot\images\8.jpg" />
+    <Content Remove="wwwroot\images\9.jpg" />
+    <Content Remove="wwwroot\images\banner.jpg" />
+    <Content Remove="wwwroot\images\close.png" />
+    <Content Remove="wwwroot\images\img-sp.png" />
+    <Content Remove="wwwroot\images\search-icon.png" />
+    <Content Remove="wwwroot\images\tick.png" />
+    <Content Remove="wwwroot\js\bars.js" />
+    <Content Remove="wwwroot\js\bootstrap.js" />
+    <Content Remove="wwwroot\js\counterup.min.js" />
+    <Content Remove="wwwroot\js\demo.js" />
+    <Content Remove="wwwroot\js\jquery-2.1.4.min.js" />
+    <Content Remove="wwwroot\js\jquery.flexslider.js" />
+    <Content Remove="wwwroot\js\waypoints.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="theme\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\bootstrap.css" />
+    <None Include="wwwroot\css\flexslider.css" />
+    <None Include="wwwroot\css\style.css" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.eot" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.ttf" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.woff" />
+    <None Include="wwwroot\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="wwwroot\images\1.jpg" />
+    <None Include="wwwroot\images\1.png" />
+    <None Include="wwwroot\images\10.jpg" />
+    <None Include="wwwroot\images\11.jpg" />
+    <None Include="wwwroot\images\12.jpg" />
+    <None Include="wwwroot\images\13.jpg" />
+    <None Include="wwwroot\images\2.jpg" />
+    <None Include="wwwroot\images\2.png" />
+    <None Include="wwwroot\images\3.jpg" />
+    <None Include="wwwroot\images\3.png" />
+    <None Include="wwwroot\images\4.jpg" />
+    <None Include="wwwroot\images\4.png" />
+    <None Include="wwwroot\images\5.jpg" />
+    <None Include="wwwroot\images\5.png" />
+    <None Include="wwwroot\images\6.jpg" />
+    <None Include="wwwroot\images\7.jpg" />
+    <None Include="wwwroot\images\8.jpg" />
+    <None Include="wwwroot\images\9.jpg" />
+    <None Include="wwwroot\images\banner.jpg" />
+    <None Include="wwwroot\images\close.png" />
+    <None Include="wwwroot\images\img-sp.png" />
+    <None Include="wwwroot\images\search-icon.png" />
+    <None Include="wwwroot\images\tick.png" />
+    <None Include="wwwroot\js\bars.js" />
+    <None Include="wwwroot\js\bootstrap.js" />
+    <None Include="wwwroot\js\counterup.min.js" />
+    <None Include="wwwroot\js\demo.js" />
+    <None Include="wwwroot\js\jquery-2.1.4.min.js" />
+    <None Include="wwwroot\js\jquery.flexslider.js" />
+    <None Include="wwwroot\js\waypoints.min.js" />
+  </ItemGroup>
+
 </Project>
