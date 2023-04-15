@@ -6,4 +6,11 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Views\Vehicles\Violations\**" />
+    <Content Remove="Views\Vehicles\Violations\**" />
+    <EmbeddedResource Remove="Views\Vehicles\Violations\**" />
+    <None Remove="Views\Vehicles\Violations\**" />
+  </ItemGroup>
+
 </Project>
