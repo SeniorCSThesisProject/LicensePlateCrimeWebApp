@@ -3,3 +3,30 @@
 *@
 @{
 }
+<!-- sign-up -->
+<div class="login">
+	<div class="container">
+		<h6>Sign Up</h6>
+		<h3>Welcome to our Truckage. If you have an account <a asp-area="" asp-controller="Login" asp-action="Index">Login</a> here </h3>
+
+		<form action="#" method="post">
+			<input type="text" name="Name" value="User Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User Name';}">
+			<input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+			<input type="password" name="Password" class="lock" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+			<div class="remember">
+				<label class="checkbox"><input type="checkbox" name="Checkbox" checked=""><i> </i>I Accept Terms</label>
+			</div>
+			<input type="submit" value="Sign Up">
+		</form>
+		<div class="agileits_social">
+			<h5>Sign Up with your <a href="#">Facebook</a> or <a href="#">Twitter</a></h5>
+			<a href="#" class="face">Facebook</a>
+			<a href="#" class="twitt">Twitter</a>
+			<div class="clearfix"> </div>
+		</div>
+		<div class="agile_back_home">
+			<a href="index.html">back to home</a>
+		</div>
+	</div>
+</div>
+<!-- //sign-up -->
