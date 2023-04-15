@@ -4,32 +4,112 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - LicensePlateCrimeWebApp</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <!-- yeni bootstrap -->
+    @*    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" /> *@
+    <link rel="stylesheet" href="~/css/bootstrap.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/flexslider.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/LicensePlateCrimeWebApp.styles.css" asp-append-version="true" />
+    <!-- fonts -->
+    <link href='//fonts.googleapis.com/css?family=Lato:400,100,100italic,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <!-- jquery -->
+    <script src="~/js/jquery-2.1.4.min.js" asp-append-version="true"></script>
+    <!-- ???? -->
+    <script>
+        $(document).ready(function () {
+            size_li = $("#myList li").size();
+            x = 1;
+            $('#myList li:lt(' + x + ')').show();
+            $('#loadMore').click(function () {
+                x = (x + 1 <= size_li) ? x + 1 : size_li;
+                $('#myList li:lt(' + x + ')').show();
+            });
+            $('#showLess').click(function () {
+                x = (x - 1 < 0) ? 1 : x - 1;
+                $('#myList li').not(':lt(' + x + ')').hide();
+            });
+        });
+    </script>
+
+
+
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LicensePlateCrimeWebApp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacyy</a>
-                        </li>
-                    </ul>
-                </div>
+    @*    <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+    <div class="container-fluid">
+    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LicensePlateCrimeWebApp</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+    <ul class="navbar-nav flex-grow-1">
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li class="nav-item">
+    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacyy</a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </nav>
+    </header>*@
+    <!-- header -->
+    <div class="header">
+        <div class="container">
+            <div class="w3l_header_left">
+                <ul>
+                    <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+ (123) 111 222 333</li>
+                    <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:info@example.com">info@example.com</a></li>
+                </ul>
             </div>
-        </nav>
-    </header>
+            <div class="w3l_header_right">
+                <ul>
+                    <li><a asp-area="" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>log in</a></li>
+                    <li><a asp-area="" asp-controller="Signup" asp-action="Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>sign up</a></li>
+                </ul>
+            </div>
+            <div class="clearfix"> </div>
+            <script type="text/javascript" src="~/js/demo.js"></script>
+        </div>
+    </div>
+    <div class="logo_nav">
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <div class="logo">
+                        <h1><a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Truc<span>k</span>age</a></h1>
+                    </div>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav-wil" id="bs-example-navbar-collapse-1">
+                    <nav class="link-effect-2" id="link-effect-2">
+                        <ul class="nav navbar-nav">
+                            <li><a asp-area="" asp-controller="Home" asp-action="Index"><span data-hover="Home">Home</span></a></li>
+                            <li><a asp-area="" asp-controller="Vehicles" asp-action="Index"><span data-hover="Araçlar">Araçlar</span></a></li>
+                            <li class="active"><a href="about.html"><span data-hover="About">About</span></a></li>
+                            <li><a asp-area="" asp-controller="Violations" asp-action="Index"><span data-hover="Ihlaller">Ihlaller</span></a></li>
+                            <li><a asp-area="" asp-controller="Contests" asp-action="Index"><span data-hover="Itirazlar">Itirazlar</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+        </div>
+    </div>
+    <!-- //header -->
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
@@ -41,9 +121,13 @@
             &copy; 2023 - LicensePlateCrimeWebApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+@*    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
+
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/bootstrap.js" asp-append-version="true"></script>
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
