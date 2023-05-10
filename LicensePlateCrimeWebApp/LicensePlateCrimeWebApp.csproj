@@ -100,6 +100,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Firebase.Auth" Version="1.0.0" />
     <PackageReference Include="FireSharp" Version="2.0.4" />
   </ItemGroup>
 
