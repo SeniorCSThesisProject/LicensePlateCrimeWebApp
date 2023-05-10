@@ -1,7 +1,7 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model LicensePlateCrimeWebApp.Models.LoginModel
+
 @{
+	ViewData["Title"] = "Registration";
 }
 <!-- sign-up -->
 <div class="login">
@@ -9,24 +9,32 @@
 		<h6>Sign Up</h6>
 		<h3>Welcome to our Truckage. If you have an account <a asp-area="" asp-controller="Login" asp-action="Index">Login</a> here </h3>
 
-		<form action="#" method="post">
-			<input type="text" name="Name" value="User Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'User Name';}">
-			<input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
-			<input type="password" name="Password" class="lock" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}">
+		<form asp-action="Registration" method="post">
+			<!-- validation error message -->
+			<div asp-validation-summary="All" class="text-danger"></div>
+			<!-- /validation error message -->
+
+			<input type="email" asp-for="Email">
+			<span asp-validation-for="Email" class="text-danger"></span>
+			<input type="password" asp-for="Password" class="lock">
+			<span asp-validation-for="Password" class="text-danger"></span>
+
 			<div class="remember">
 				<label class="checkbox"><input type="checkbox" name="Checkbox" checked=""><i> </i>I Accept Terms</label>
 			</div>
 			<input type="submit" value="Sign Up">
 		</form>
-		<div class="agileits_social">
-			<h5>Sign Up with your <a href="#">Facebook</a> or <a href="#">Twitter</a></h5>
-			<a href="#" class="face">Facebook</a>
-			<a href="#" class="twitt">Twitter</a>
-			<div class="clearfix"> </div>
+		<div>
+			<a asp-action="Login">Already have an account?Sign In</a>
 		</div>
-		<div class="agile_back_home">
+@*		<div class="agile_back_home">
 			<a href="index.html">back to home</a>
-		</div>
+		</div>*@
 	</div>
 </div>
 <!-- //sign-up -->
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
