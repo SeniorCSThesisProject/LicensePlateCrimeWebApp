@@ -1,37 +1,49 @@
 ﻿@model LicensePlateCrimeWebApp.Models.LoginModel
 
 @{
-	ViewData["Title"] = "Registration";
+	ViewData["Title"] = "Kayıt Ol";
 }
 <!-- sign-up -->
 <div class="login">
 	<div class="container">
-		<h6>Sign Up</h6>
-		<h3>Welcome to our Truckage. If you have an account <a asp-area="" asp-controller="Login" asp-action="Index">Login</a> here </h3>
-
+		<h6>Kayıt Ol!</h6>
+		<h3>Plaka Ceza Sistemi'ne Hoşgeldiniz.</h3> 
 		<form asp-action="Registration" method="post">
 			<!-- validation error message -->
 			<div asp-validation-summary="All" class="text-danger"></div>
 			<!-- /validation error message -->
+			<table style="width:100%">
+				<tr>
+					<td style="width:20%">Mail</td>
+					<td style="width:1%">:</td>
+					<td style="width:4%"></td>
+					<td style="width:70%">
+						<input type="email" asp-for="Email" minlength="10" placeholder="username@gmail.com">
+						<span asp-validation-for="Email" class="text-danger"></span>
+					</td>
+				</tr>
+				<tr>
+					<td>Şifre</td>
+					<td>:</td>
+					<td style="width:4%"></td>
+					<td>
+						<input type="password" asp-for="Password" class="lock" minlength="3">
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</td>
+				</tr>			
+			</table>
 
-			<input type="email" asp-for="Email">
-			<span asp-validation-for="Email" class="text-danger"></span>
-			<input type="password" asp-for="Password" class="lock">
-			<span asp-validation-for="Password" class="text-danger"></span>
-
-			<div class="remember">
-				<label class="checkbox"><input type="checkbox" name="Checkbox" checked=""><i> </i>I Accept Terms</label>
+			<div style="text-align:center" class="remember">
+				<label class="checkbox"><input type="checkbox" name="Checkbox" checked=""><i> </i>Üyelik şartlarını kabul ettiğinizi onaylıyorsunuz.</label>
+				<br /><br /><input style="border-radius:15px;width:200px;" type="submit" value="Kayıt Ol !">
+				<br /><br />
+				<h3>Zaten bir hesabınız var mı? &emsp;<a style="text-align:center" asp-controller="Login" asp-action="Index">Giriş Yap!</a></h3>
 			</div>
-			<input type="submit" value="Sign Up">
+
 		</form>
-		<div>
-			<a asp-action="Login">Already have an account?Sign In</a>
-		</div>
-@*		<div class="agile_back_home">
-			<a href="index.html">back to home</a>
-		</div>*@
 	</div>
 </div>
+<div><br /><br /><br /><br /></div>
 <!-- //sign-up -->
 @section Scripts {
 	@{
