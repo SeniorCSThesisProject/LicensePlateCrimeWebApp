@@ -1,4 +1,5 @@
 ﻿using Firebase.Auth;
+using FireSharp.Extensions;
 using LicensePlateCrimeWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -31,11 +32,12 @@ namespace LicensePlateCrimeWebApp.Controllers
 								.SignInWithEmailAndPasswordAsync(loginModel.Email, loginModel.Password);
 				string token = fbAuthLink.FirebaseToken;
 				//saving the token in a session variable
+				//if registration is successful
 				if (token != null)
 				{
 					HttpContext.Session.SetString("_UserToken", token);
-
-					return RedirectToAction("Index");
+					HttpContext.Session.SetString("FbUser", fbAuthLink.User.ToJson());
+					return RedirectToAction("Index", "Home", null);
 				}
 			}
 			catch (FirebaseAuthException ex)

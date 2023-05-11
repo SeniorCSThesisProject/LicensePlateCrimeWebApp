@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Newtonsoft.Json;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -67,12 +68,41 @@
                     <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="mailto:licancecrime@gmail.com">licancecrime@gmail.com</a></li>
                 </ul>
             </div>
+            @* if user is logged in *@
+            @if (Context.Session.GetString("_UserToken") != null)
+            {
+                <div class="w3l_header_right">
+                    <ul>
+                        <li>
+                            <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                @{
+                                    var json = Context.Session.GetString("FbUser");
+                                    Firebase.Auth.User fbUser = null;
+                                    if (json != null)
+                                    {
+                                        fbUser = JsonConvert.DeserializeObject<Firebase.Auth.User>(json);
+                                    }
+                            }
+                            @(fbUser?.Email)
+</li>
+
+                        <li><a asp-area="" asp-controller="Login" asp-action="Logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>ÇIKIŞ YAP</a></li>
+                    </ul>
+                </div>
+            }
+            else {
             <div class="w3l_header_right">
                 <ul>
                     <li><a asp-area="" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ÜYE GİRİŞİ</a></li>
                     <li><a asp-area="" asp-controller="Signup" asp-action="Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ÜYE OL</a></li>
                 </ul>
             </div>
+            }
+                
+
+            
+
+
             <div class="clearfix"> </div>
             <script type="text/javascript" src="~/js/demo.js"></script>
         </div>
