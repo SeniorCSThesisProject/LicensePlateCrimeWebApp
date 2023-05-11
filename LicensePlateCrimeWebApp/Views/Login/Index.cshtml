@@ -12,26 +12,15 @@
 			<!-- validation error message -->
 			<div asp-validation-summary="All" class="text-danger"></div>
 			<!-- /validation error message -->
-			<table style="width:100%">
-				<tr>
-					<td style="width:20%">Mail</td>
-					<td style="width:1%">:</td>
-					<td style="width:4%"></td>
-					<td style="width:70%">
-						<input type="email" asp-for="Email" minlength="10" placeholder="username@gmail.com">
-						<span asp-validation-for="Email" class="text-danger"></span>
-					</td>
-				</tr>
-				<tr>
-					<td>Şifre</td>
-					<td>:</td>
-					<td style="width:4%"></td>
-					<td>
-						<input type="password" asp-for="Password" class="lock" minlength="3">
-						<span asp-validation-for="Password" class="text-danger"></span>
-					</td>
-				</tr>
-			</table>
+			
+			<label>E-Mail :</label>
+			<input type="email" asp-for="Email" minlength="10" placeholder="username@gmail.com">
+			<span asp-validation-for="Email" class="text-danger"></span>
+			<br /><br />
+			<label>Şifre :</label>
+			<input type="password" asp-for="Password" class="lock" minlength="3" placeholder="******">
+			<span asp-validation-for="Password" class="text-danger"></span>
+			
 			<div style="text-align:center" class="remember">
 				<input style="border-radius:15px;width:200px;" type="submit" value="Giriş Yap !">
 				<br /><br />
