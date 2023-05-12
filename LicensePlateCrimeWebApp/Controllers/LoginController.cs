@@ -57,7 +57,8 @@ namespace LicensePlateCrimeWebApp.Controllers
 			{
                 var firebaseEx = JsonConvert.DeserializeObject<FirebaseError>(e.ResponseData);
                 if (firebaseEx.error != null)
-                    ModelState.AddModelError(String.Empty, firebaseEx.error.message);
+                    if (firebaseEx.error.message == "INVALID_PASSWORD" || firebaseEx.error.message == "EMAIL_NOT_FOUND")
+						ModelState.AddModelError(String.Empty, LOGIN_ERROR);
 				return View("Index", loginModel);
 			}
 

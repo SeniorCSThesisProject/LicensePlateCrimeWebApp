@@ -8,6 +8,8 @@ namespace LicensePlateCrimeWebApp.Controllers
 {
 	public class SignupController : Controller
 	{
+		private const string EMAIL_EXISTS_ERROR = "Bu e-posta adresi zaten kullanılıyor. Lütfen başka bir e-posta adresi deneyiniz.";
+
 		FirebaseAuthProvider auth;
 		public SignupController()
 		{
@@ -44,7 +46,8 @@ namespace LicensePlateCrimeWebApp.Controllers
 			{
 				var firebaseEx = JsonConvert.DeserializeObject<FirebaseError>(ex.ResponseData);
 				if (firebaseEx.error != null)
-					ModelState.AddModelError(String.Empty, firebaseEx.error.message);
+					if (firebaseEx.error.message == "EMAIL_EXISTS")
+						ModelState.AddModelError(String.Empty, EMAIL_EXISTS_ERROR);
 				return View("Index", loginModel);
 			}
 
