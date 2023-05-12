@@ -7,3 +7,24 @@ Signup
 -Ihlallerim
 -Itirazlarim
 -Profil
+
+
+Gorev Dagilimi:
+Home (Index):
+ Herkesin Ortak gorebilecegi
+ 4 Tane kare kisiye ozel (login required)
+Navbar:
+ Login yapilmis:
+	Profil (dropdown)
+		-Araclarim
+		-Ihlallerim
+		-Itirazlarim
+	Anasayfa
+	Hakkinda
+	Giris Yap/Kayit Ol
+	Iletisim
+Login Yapilmamis:
+	Anasayfa
+	Hakkinda
+	Giris Yap/Kayit Ol
+	Iletisim
