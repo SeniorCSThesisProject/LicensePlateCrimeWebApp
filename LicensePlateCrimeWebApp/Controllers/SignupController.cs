@@ -45,10 +45,10 @@ namespace LicensePlateCrimeWebApp.Controllers
 				var firebaseEx = JsonConvert.DeserializeObject<FirebaseError>(ex.ResponseData);
 				if (firebaseEx.error != null)
 					ModelState.AddModelError(String.Empty, firebaseEx.error.message);
-				return View(loginModel);
+				return View("Index", loginModel);
 			}
 
-			return View();
+			return View("Index", loginModel);
 
 		}
 

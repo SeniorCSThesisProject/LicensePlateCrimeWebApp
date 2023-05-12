@@ -8,16 +8,16 @@
 	<div class="container">
 		<h6>Kayıt Ol!</h6>
 		<h3>Plaka Ceza Sistemi'ne Hoşgeldiniz.</h3> 
-		<form asp-action="Registration" method="post">
+		<form asp-action="Registration" method="post" novalidate>
 			<!-- validation error message -->
 			<div asp-validation-summary="All" class="text-danger"></div>
 			<!-- /validation error message -->
 			<label>E-Mail :</label>
-			<input type="email" asp-for="Email" minlength="10" placeholder="username@gmail.com">
+			<input asp-for="Email" placeholder="username@gmail.com">
 			<span asp-validation-for="Email" class="text-danger"></span>
 			<br /><br />
 			<label>Şifre :</label>
-			<input type="password" asp-for="Password" class="lock" minlength="3" placeholder="******">
+			<input type="password" asp-for="Password" class="lock" placeholder="******">
 			<span asp-validation-for="Password" class="text-danger"></span>
 
 
