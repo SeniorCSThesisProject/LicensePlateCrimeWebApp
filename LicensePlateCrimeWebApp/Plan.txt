@@ -9,7 +9,6 @@ Signup
 -Profil
 
 
-Gorev Dagilimi:
 Home (Index):
  Herkesin Ortak gorebilecegi
  4 Tane kare kisiye ozel (login required)
@@ -21,10 +20,17 @@ Navbar:
 		-Itirazlarim
 	Anasayfa
 	Hakkinda
-	Giris Yap/Kayit Ol
+	Cikis yap
 	Iletisim
 Login Yapilmamis:
 	Anasayfa
 	Hakkinda
 	Giris Yap/Kayit Ol
 	Iletisim
+
+Gorev Dagilimi:
+	Raif:
+		-Home, Hakkinda, Iletisim, Layout duzenleme(footer)
+	Veysel:
+		-Profil Dropdown
+		-Araclar Ihlaller ve itirazlar
