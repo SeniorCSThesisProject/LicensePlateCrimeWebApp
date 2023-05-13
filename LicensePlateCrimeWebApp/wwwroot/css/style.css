@@ -561,11 +561,18 @@ input[type="submit"],.header_left ul li a,.agile_back_home a,.agileits_social h5
     color: #999;
 }
 .agile_text_box i{
-	background:url(../images/img-sp.png) no-repeat -12px 0px;
+	
 	display:block;
 	width:64px;
 	height:64px;
 	margin:0 auto;
+}
+i.car{
+	background: url(../images/img-sp.png) no-repeat -12px 0px;
+	display: block;
+	width: 64px;
+	height: 64px;
+	margin: 0 auto;
 }
 i.men{
 	background:url(../images/img-sp.png) no-repeat -102px -1px;

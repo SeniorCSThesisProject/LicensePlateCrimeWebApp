@@ -1,5 +1,8 @@
 $(document).ready(function() {
-	
+	$('.counter').counterUp({
+		delay: 10,
+		time: 1000
+	});
 	/* Simple Style */
 	$('.wrapper-simple input[type=submit]').toggle(function(){
 		
