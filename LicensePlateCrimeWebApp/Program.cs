@@ -1,10 +1,20 @@
+using Google.Api;
+using Google.Apis.Auth.OAuth2;
+using Google.Cloud.Firestore;
+using Google.Cloud.Storage.V1;
 using LicensePlateCrimeWebApp;
+using LicensePlateCrimeWebApp.Data;
+using LicensePlateCrimeWebApp.Interfaces;
+using LicensePlateCrimeWebApp.Repository;
 using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 
 // Add sessions
 builder.Services.AddSession(options =>
@@ -15,8 +25,21 @@ builder.Services.AddSession(options =>
 });
 
 // Get api secrets
-var firebaseConfig =
+var firebaseSettings =
 	builder.Configuration.GetSection("Firebase").Get<FirebaseSettings>();
+
+// Register FirestoreProvider
+builder.Services.AddSingleton(_ => new FirestoreProvider(
+	new FirestoreDbBuilder
+	{
+		ProjectId = firebaseSettings.ProjectId,
+		JsonCredentials = firebaseSettings.ServiceAccountJson
+	}.Build(),
+	StorageClient.Create(credential: GoogleCredential.FromJson(firebaseSettings.ServiceAccountJson)),
+	firebaseSettings,
+	UrlSigner.FromCredentialFile(firebaseSettings.ServiceAccountJsonPath)
+));
+
 
 var app = builder.Build();
 
