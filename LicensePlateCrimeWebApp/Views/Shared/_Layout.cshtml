@@ -76,32 +76,28 @@
                     <ul>
                         <li>
                             <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                @{
-                                    var json = Context.Session.GetString("FbUser");
-                                    Firebase.Auth.User fbUser = null;
-                                    if (json != null)
-                                    {
-                                        fbUser = JsonConvert.DeserializeObject<Firebase.Auth.User>(json);
-                                    }
+                            @{
+                                var fbUser = LicensePlateCrimeWebApp.Helpers.GlobalHelpers.GetCurrentUser(Context);
                             }
                             @(fbUser?.Email)
-</li>
+                        </li>
 
                         <li><a asp-area="" asp-controller="Login" asp-action="Logout"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>ÇIKIŞ YAP</a></li>
                     </ul>
                 </div>
             }
-            else {
-            <div class="w3l_header_right">
-                <ul>
-                    <li><a asp-area="" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ÜYE GİRİŞİ</a></li>
-                    <li><a asp-area="" asp-controller="Signup" asp-action="Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ÜYE OL</a></li>
-                </ul>
-            </div>
+            else
+            {
+                <div class="w3l_header_right">
+                    <ul>
+                        <li><a asp-area="" asp-controller="Login" asp-action="Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ÜYE GİRİŞİ</a></li>
+                        <li><a asp-area="" asp-controller="Signup" asp-action="Index"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>ÜYE OL</a></li>
+                    </ul>
+                </div>
             }
-                
 
-            
+
+
 
 
             <div class="clearfix"> </div>
@@ -129,10 +125,10 @@
                     <nav class="link-effect-2" id="link-effect-2">
                         <ul class="nav navbar-nav">
                             <li><a asp-area="" asp-controller="Home" asp-action="Index"><span data-hover="ANASAYFA">ANASAYFA</span></a></li>
-                            <li><a asp-area="" asp-controller="Vehicles" asp-action="Index"><span data-hover="ARAÇLAR">ARAÇLAR</span></a></li>
+                            <li><a asp-area="" asp-controller="Vehicle" asp-action="Index"><span data-hover="ARAÇLAR">ARAÇLAR</span></a></li>
                             <li class="active"><a href="about.html"><span data-hover="HAKKINDA">HAKKINDA</span></a></li>
-                            <li><a asp-area="" asp-controller="Violations" asp-action="Index"><span data-hover="İHLALLER">İHLALLER</span></a></li>
-                            <li><a asp-area="" asp-controller="Contests" asp-action="Index"><span data-hover="İTİRAZLAR">İTİRAZLAR</span></a></li>
+                            <li><a asp-area="" asp-controller="Violation" asp-action="Index"><span data-hover="İHLALLER">İHLALLER</span></a></li>
+                            <li><a asp-area="" asp-controller="Contest" asp-action="Index"><span data-hover="İTİRAZLAR">İTİRAZLAR</span></a></li>
                         </ul>
                     </nav>
                 </div>
@@ -152,7 +148,7 @@
             &copy; 2023 - Plaka Ceza Sistemi,&nbsp; Her Hakkı Saklıdır. &nbsp;&nbsp;<a asp-area="" asp-controller="Home" asp-action="Privacy">Gizlilik Sözleşmesi</a>
         </div>
     </footer>
-@*    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    @*    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
 
     <script src="~/js/site.js" asp-append-version="true"></script>
