@@ -1,5 +1,4 @@
 ﻿using Firebase.Auth;
-using FireSharp.Extensions;
 using LicensePlateCrimeWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -40,7 +39,9 @@ namespace LicensePlateCrimeWebApp.Controllers
 				if (token != null)
 				{
 					HttpContext.Session.SetString("_UserToken", token);
-					HttpContext.Session.SetString("FbUser", fbAuthLink.User.ToJson());
+					// convert fbAuthLink.User to json string
+					var jsonUser = JsonConvert.SerializeObject(fbAuthLink.User);
+					HttpContext.Session.SetString("FbUser", jsonUser);
 					return RedirectToAction("Index", "Home", null);
 				}
 			}
