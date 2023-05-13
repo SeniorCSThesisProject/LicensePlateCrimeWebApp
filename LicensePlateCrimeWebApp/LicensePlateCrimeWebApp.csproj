@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>bae494a6-4d2a-467e-8b15-3a6e0c364531</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -102,6 +103,7 @@
   <ItemGroup>
     <PackageReference Include="Firebase.Auth" Version="1.0.0" />
     <PackageReference Include="FireSharp" Version="2.0.4" />
+    <PackageReference Include="Google.Cloud.Firestore" Version="3.3.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 

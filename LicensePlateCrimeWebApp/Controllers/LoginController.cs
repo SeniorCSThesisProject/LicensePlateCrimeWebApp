@@ -4,18 +4,21 @@ using FireSharp.Extensions;
 using LicensePlateCrimeWebApp.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
     public class LoginController : Controller
     {
+        private readonly FirebaseSettings _firebaseSettings;
 		private const string LOGIN_ERROR = "Giriş yapılamadı. Tekrar deneyiniz!";
         FirebaseAuthProvider auth;
-        public LoginController()
+        public LoginController(IConfiguration configuration)
         {
+            _firebaseSettings = configuration.GetSection("Firebase").Get<FirebaseSettings>();
 			auth = new FirebaseAuthProvider(
-							new FirebaseConfig("AIzaSyB3Xey5jQHt7hjgKALgvXwKEA0g9OCw3tk"));
+							new FirebaseConfig(_firebaseSettings.WebApiKey));
 		}
 
         // GET: LoginController

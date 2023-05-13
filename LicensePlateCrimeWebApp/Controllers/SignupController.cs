@@ -2,19 +2,21 @@
 using FireSharp.Extensions;
 using LicensePlateCrimeWebApp.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
 	public class SignupController : Controller
 	{
+		private readonly FirebaseSettings _firebaseSettings;
 		private const string EMAIL_EXISTS_ERROR = "Bu e-posta adresi zaten kullanılıyor. Lütfen başka bir e-posta adresi deneyiniz.";
-
 		FirebaseAuthProvider auth;
-		public SignupController()
+		public SignupController(IConfiguration configuration)
 		{
+			_firebaseSettings = configuration.GetSection("Firebase").Get<FirebaseSettings>();
 			auth = new FirebaseAuthProvider(
-							new FirebaseConfig("AIzaSyB3Xey5jQHt7hjgKALgvXwKEA0g9OCw3tk"));
+							new FirebaseConfig(_firebaseSettings.WebApiKey));
 		}
 
 		public IActionResult Index()
