@@ -61,8 +61,14 @@ namespace LicensePlateCrimeWebApp.Data
         {
             using var stream = imageFile.OpenReadStream();
             var obj = await _storageClient.UploadObjectAsync(_firebaseSettings.StorageBucketName, imageFile.FileName, imageFile.ContentType, stream);
-            string url = await _urlSigner.SignAsync(_firebaseSettings.StorageBucketName, obj.Name, TimeSpan.FromHours(1));
-            return url;
+            //string signedUrl = await _urlSigner.SignAsync(_firebaseSettings.StorageBucketName, obj.Name, TimeSpan.FromHours(1));
+            string publicUrl = GetPublicUrl(obj.Bucket, obj.Name);
+            return publicUrl;
+        }
+
+        private string GetPublicUrl(string bucketName, string fileName)
+        {
+            return $"https://firebasestorage.googleapis.com/v0/b/{bucketName}/o/{fileName}?alt=media";
         }
     }
 }
