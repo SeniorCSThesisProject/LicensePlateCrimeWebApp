@@ -5,7 +5,7 @@ namespace LicensePlateCrimeWebApp.Helpers
 {
 	public static class GlobalHelpers
 	{
-		public static bool IsUserLoggedIn(HttpContext httpContext)
+		public static bool Authenticated(HttpContext httpContext)
 		{
 			return httpContext.Session.GetString("_UserToken") != null;
 		}
