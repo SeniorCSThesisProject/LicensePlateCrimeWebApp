@@ -27,7 +27,7 @@ body a:hover{
 	text-decoration:none;
 }
 /*-- header --*/
-input[type="submit"],.header_left ul li a,.agile_back_home a,.agileits_social h5 a,.w3l_header_left ul li a,.agileits_tags ul li a,.login h3 a,.w3agile_forgot h4 a,.reply a,.w3agile_grid_right h3 a,.w3_comments ul li a,.agileits_recent_posts_gridr h4 a,.agileits_twitter_posts ul li a,.wthree_contact_left input[type="reset"],.w3l_services_grid1 h4 a,.wthree_contact_left ul li a,.w3l_services_grid1 span,.w3ls_services_bottom_left_gridl h4 a,.services-breadcrumb ul li a,.w3agile_footer_grid ul li a,.agileinfo_copy_right_left p a,.w3l_header_right ul li a,.details a,.agileits_news_grid_left_gridr h4 a{
+input[type="submit"], .header_left ul li a, .agile_back_home a, .agileits_social h5 a, .w3l_header_left ul li a, .agileits_tags ul li a, .login h3 a, .w3agile_forgot h4 a, .reply a, .w3agile_grid_right h3 a, .w3_comments ul li a, .agileits_recent_posts_gridr h4 a, .agileits_twitter_posts ul li a, .wthree_contact_left input[type="reset"], .w3l_services_grid1 h4 a, .wthree_contact_left ul li a, .w3l_services_grid1 span, .w3ls_services_bottom_left_gridl h4 a, .services-breadcrumb ul li a, .w3agile_footer_grid ul li a, .agileinfo_copy_right_left p a, .w3l_header_right ul li a, .w3l_header_right ul li button, .details a, .agileits_news_grid_left_gridr h4 a {
 	transition: .5s ease-in;
 	-webkit-transition: .5s ease-in;
 	-moz-transition: .5s ease-in;
@@ -77,12 +77,12 @@ input[type="submit"],.header_left ul li a,.agile_back_home a,.agileits_social h5
 	display:inline-block;
 	margin-right:.5em;
 }
-.w3l_header_right ul li a{
+.w3l_header_right ul li a, .w3l_header_right ul li button {
 	text-transform: uppercase;
-    color: #fff;
-    padding: .5em 1em;
-    text-decoration: none;
-    border: 1px solid #fff;
+	color: #fff;
+	padding: .5em 1em;
+	text-decoration: none;
+	border: 1px solid #fff;
 	display: block;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -90,9 +90,9 @@ input[type="submit"],.header_left ul li a,.agile_back_home a,.agileits_social h5
 	-o-border-radius: 5px;
 	-ms-border-radius: 5px;
 }
-.w3l_header_right ul li a:hover{
-	background:#212121;
-	border-color:#212121;
+.w3l_header_right ul li a:hover, .w3l_header_right ul li button:hover{
+	background: #212121;
+	border-color: #212121;
 }
 .w3l_header_right ul li a span{
 	padding-right:1em;

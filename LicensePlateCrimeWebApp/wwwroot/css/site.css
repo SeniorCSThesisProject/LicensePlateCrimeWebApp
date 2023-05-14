@@ -1,18 +1,31 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
+}
+
+.w3l_header_right ul li button, .w3l_header_right ul li ul {
+    background-color: #ff9900;
+}
+
+.w3l_header_right ul li button:hover, .w3l_header_right ul li ul a:hover {
+    color: white;
+}
+
+.w3l_header_right ul li ul li a, .w3l_header_right ul li ul li {
+    width: 100%;
+    border: none;
 }
