@@ -7,8 +7,6 @@ namespace LicensePlateCrimeWebApp
 	public class FirebaseSettings
 	{
 		public string WebApiKey { get; set; } = "";
-
-		[JsonPropertyName("project_id")]
 		public string ProjectId { get; set; } = "";
 		public string ServiceAccountJsonFileName { get; set; } = "";
 
