@@ -60,6 +60,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="C:\Users\Veysel\source\repos\LicensePlateCrimeWebApp\LicensePlateCrimeWebApp\.editorconfig" />
     <None Include="wwwroot\css\bootstrap.css" />
     <None Include="wwwroot\css\flexslider.css" />
     <None Include="wwwroot\css\style.css" />
@@ -106,6 +107,10 @@
     <PackageReference Include="Google.Cloud.Firestore.V1" Version="3.3.0" />
     <PackageReference Include="Google.Cloud.Storage.V1" Version="4.5.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove="C:\Users\Veysel\source\repos\LicensePlateCrimeWebApp\LicensePlateCrimeWebApp\.editorconfig" />
   </ItemGroup>
 
 </Project>

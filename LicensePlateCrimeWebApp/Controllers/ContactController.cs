@@ -2,11 +2,11 @@
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
-    public class ContactController : Controller
+  public class ContactController : Controller
+  {
+    public IActionResult Index()
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+      return View();
     }
+  }
 }
