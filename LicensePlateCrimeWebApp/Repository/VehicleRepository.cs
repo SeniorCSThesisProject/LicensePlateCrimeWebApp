@@ -24,7 +24,7 @@ namespace LicensePlateCrimeWebApp.Repository
 
 		public async Task<IEnumerable<Vehicle>> GetAllAsync()
 		{
-			return await _firestoreProvider.GetAll<Vehicle>(CancellationToken.None);
+			return await _firestoreProvider.GetAll<Vehicle>();
 		}
 
 		public Task<Vehicle> GetByIdAsync(string id)

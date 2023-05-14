@@ -1,17 +1,12 @@
 ﻿using Firebase.Auth;
 using Google.Cloud.Firestore;
-using Google.Cloud.Firestore.V1;
-using LicensePlateCrimeWebApp.Interfaces;
-using System.Buffers;
+
 
 namespace LicensePlateCrimeWebApp.Models
 {
     [FirestoreData]
-    public class Vehicle : IFirebaseEntity
+    public class Vehicle
     {
-        [FirestoreProperty]
-        public string Id { get; set; }
-
         [FirestoreProperty]
         public string OwnerId { get; set; }
 

@@ -1,8 +1,6 @@
 ﻿using Google.Apis.Util;
 using Google.Cloud.Firestore;
 using Google.Cloud.Storage.V1;
-using LicensePlateCrimeWebApp.Interfaces;
-using Microsoft.Extensions.Configuration;
 
 namespace LicensePlateCrimeWebApp.Data
 {
@@ -31,30 +29,30 @@ namespace LicensePlateCrimeWebApp.Data
             return document != null;
         }
 
-        public async Task<T> Get<T>(string id, CancellationToken ct) where T : IFirebaseEntity
+        public async Task<T> Get<T>(string id)
         {
             var document = _fireStoreDb.Collection(GetCollectionName<T>()).Document(id);
-            var snapshot = await document.GetSnapshotAsync(ct);
+            var snapshot = await document.GetSnapshotAsync();
             return snapshot.ConvertTo<T>();
         }
 
-        public async Task<IReadOnlyCollection<T>> GetAll<T>(CancellationToken ct) where T : IFirebaseEntity
+        public async Task<IReadOnlyCollection<T>> GetAll<T>()
         {
             var collection = _fireStoreDb.Collection(GetCollectionName<T>());
-            var snapshot = await collection.GetSnapshotAsync(ct);
+            var snapshot = await collection.GetSnapshotAsync();
             return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
         }
 
-        public async Task<IReadOnlyCollection<T>> WhereEqualTo<T>(string fieldPath, object value, CancellationToken ct) where T : IFirebaseEntity
+        public async Task<IReadOnlyCollection<T>> WhereEqualTo<T>(string fieldPath, object value)
         {
-            return await GetList<T>(_fireStoreDb.Collection(GetCollectionName<T>()).WhereEqualTo(fieldPath, value), ct);
+            return await GetList<T>(_fireStoreDb.Collection(GetCollectionName<T>()).WhereEqualTo(fieldPath, value));
         }
 
         // just add here any method you need here WhereGreaterThan, WhereIn etc ...
 
-        private static async Task<IReadOnlyCollection<T>> GetList<T>(Query query, CancellationToken ct) where T : IFirebaseEntity
+        private static async Task<IReadOnlyCollection<T>> GetList<T>(Query query)
         {
-            var snapshot = await query.GetSnapshotAsync(ct);
+            var snapshot = await query.GetSnapshotAsync();
             return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
         }
 
@@ -66,6 +64,5 @@ namespace LicensePlateCrimeWebApp.Data
             string url = await _urlSigner.SignAsync(_firebaseSettings.StorageBucketName, obj.Name, TimeSpan.FromHours(1));
             return url;
         }
-
     }
 }
