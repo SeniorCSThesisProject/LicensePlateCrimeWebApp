@@ -1,4 +1,9 @@
 ﻿@model LicensePlateCrimeWebApp.Models.Contact
+
+@{
+	ViewData["Title"] = "İletişim";
+}
+
 <!-- mail -->
 <div class="mail">
 	<div class="container">
@@ -22,19 +27,28 @@
 		</div>
 		<div class="col-md-8 wthree_contact_left">
 			<h4>İletişim Formu</h4>
-			<form method="POST" asp-action="Create" enctype="multipart/form-data">
+			<form method="POST" asp-action="Create" enctype="multipart/form-data" novalidate>
+				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 				<div class="col-md-6 wthree_contact_left_grid">
-					<input asp-for="Name" type="text" class="form-control" value="Ad Soyad">
-					<input asp-for="Email" type="text" class="form-control" value="E-Mail">
+					<input asp-for="Name" type="text" class="form-control" placeholder="Ad Soyad">
+					<span asp-validation-for="Name" class="text-danger"></span><br>
+					<input asp-for="Email" type="text" class="form-control" placeholder="E-Mail">
+					<span asp-validation-for="Email" class="text-danger"></span><br>
 				</div>
 				<div class="col-md-6 wthree_contact_left_grid">
-					<input asp-for="Telephone" type="text" class="form-control" value="Telefon">
-					<input asp-for="Subject" type="text" class="form-control" value="Konu">
+					<input asp-for="Telephone" type="text" class="form-control" placeholder="Telefon">
+					<span asp-validation-for="Telephone" class="text-danger"></span><br>
+					<input asp-for="Subject" type="text" class="form-control" placeholder="Konu">
+					<span asp-validation-for="Subject" class="text-danger"></span><br>
 				</div>
-				<div class="clearfix"> </div>
-				<textarea asp-for="Message" type="text">Mesaj...</textarea>
-				<input type="submit" value="Gönder">
-				<input type="reset" value="Temizle">
+				<div>
+					<textarea asp-for="Message" type="text" placeholder="Mesaj..."></textarea>
+					&emsp;<span asp-validation-for="Message" class="text-danger"></span>
+				</div><br>
+				<input type="submit" value="GÖNDER">
+				<input type="reset" value="TEMİZLE">
+
+				
 			</form>
 		</div>
 		<div class="clearfix"> </div>
@@ -44,3 +58,8 @@
 <br />
 <br />
 <div><br /><br /><br /></div>
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}

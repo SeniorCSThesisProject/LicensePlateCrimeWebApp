@@ -5,6 +5,7 @@ using LicensePlateCrimeWebApp.Repository;
 using LicensePlateCrimeWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
+using System.Xml.Linq;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
@@ -51,8 +52,8 @@ namespace LicensePlateCrimeWebApp.Controllers
 			}
 			else
 			{
-				ModelState.AddModelError("", "Mesaj gönderme sırasında hata!!!");
-				return View(createcontactModel);
+				ModelState.AddModelError("", "Mesaj gönderme sırasında hata!!! Tekrar deneyiniz.");
+				return View("Index", createcontactModel);
 			}
 		}
 
