@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using static LicensePlateCrimeWebApp.Helpers.GlobalHelpers;
+@using Newtonsoft.Json;
+@{
+    ViewData["Title"] = "Ana Sayfa";
 }
 <!-- banner -->
 <div class="banner">
@@ -24,15 +26,24 @@
 				detayları görüntüleyebilir, Eğer ihlaleriniz mevcut ise ihlal bilgilerini görüntüleyip ilgili birimlere itirazlarda bulunabilirsiniz.
 			</p>
 			<div class="wthree_more wthree_more1">
-				<a asp-area="" asp-controller="Login" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE GİRİŞİ</a>
-				<br /><a asp-area="" asp-controller="Signup" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE OL</a>
+				@if (Authenticated(Context)){}
+				else
+				{
+					<a asp-area="" asp-controller="Login" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE GİRİŞİ</a>
+					<br />
+					<a asp-area="" asp-controller="Signup" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE OL</a>
+				}
 			</div>
 		</div>
 
 		<!-- logine göre değişecek -->
 		<div class="col-md-6 banner_bottom_right">
+			@if (Authenticated(Context))
+			{
 			<div class="wthree_banner_bottom_right_grids">
+				<a asp-area="" asp-controller="Vehicle" asp-action="Index">
 				<div class="col-md-6 banner_bottom_right_grid">
+					<a asp-area="" asp-controller="Vehicle" asp-action="Index">
 					<div class="view view-tenth">
 						<div class="agile_text_box">
 							<i class="fas fa-car-side"></i>
@@ -43,7 +54,10 @@
 							<img src="images/1.jpg" class="img-responsive" alt="" />
 						</div>
 					</div>
+				</a>
 				</div>
+				</a>
+				<a asp-area="" asp-controller="Violation" asp-action="Index">
 				<div class="col-md-6 banner_bottom_right_grid">
 					<div class="view view-tenth">
 						<div class="agile_text_box">
@@ -56,9 +70,11 @@
 						</div>
 					</div>
 				</div>
+						</a>
 				<div class="clearfix"> </div>
 			</div>
 			<div class="wthree_banner_bottom_right_grids">
+				<a asp-area="" asp-controller="Contest" asp-action="Index">
 				<div class="col-md-6 banner_bottom_right_grid">
 					<div class="view view-tenth">
 						<div class="agile_text_box">
@@ -71,6 +87,8 @@
 						</div>
 					</div>
 				</div>
+					</a>
+				<a asp-area="" asp-controller="Contact" asp-action="Index">
 				<div class="col-md-6 banner_bottom_right_grid">
 					<div class="view view-tenth">
 						<div class="agile_text_box">
@@ -83,10 +101,75 @@
 						</div>
 					</div>
 				</div>
+						</a>
 				<div class="clearfix"> </div>
 			</div>
-			<!-- logine göre değişecek -->
-
+			}
+			else
+			{
+				<div class="wthree_banner_bottom_right_grids">
+					<a asp-area="" asp-controller="Home" asp-action="Index">
+					<div class="col-md-6 banner_bottom_right_grid">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+								<i class="fas fa-car-side"></i>
+								<h3>Ana Sayfa</h3>
+								<p></p>
+							</div>
+							<div class="mask">
+								<img src="images/1.jpg" class="img-responsive" alt="" />
+							</div>
+						</div>
+					</div>
+					</a>
+					<a asp-area="" asp-controller="Home" asp-action="Privacy">
+					<div class="col-md-6 banner_bottom_right_grid">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+								<i class="fas fa-car-side"></i>
+								<h3>Gizlilik Sözleşmesi</h3>
+								<p></p>
+							</div>
+							<div class="mask">
+								<img src="images/2.jpg" class="img-responsive" alt="" />
+							</div>
+						</div>
+					</div>
+					</a>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="wthree_banner_bottom_right_grids">
+					<a asp-area="" asp-controller="About" asp-action="Index">
+					<div class="col-md-6 banner_bottom_right_grid">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+								<i class="fas fa-car-side"></i>
+								<h3>Hakkında</h3>
+								<p></p>
+							</div>
+							<div class="mask">
+								<img src="images/3.jpg" class="img-responsive" alt="" />
+							</div>
+						</div>
+					</div>
+					</a>
+					<a asp-area="" asp-controller="Contact" asp-action="Index">
+					<div class="col-md-6 banner_bottom_right_grid">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+								<i class="fas fa-car-side"></i>
+								<h3>İletişim</h3>
+								<p></p>
+							</div>
+							<div class="mask">
+								<img src="images/4.jpg" class="img-responsive" alt="" />
+							</div>
+						</div>
+					</div>
+					</a>
+					<div class="clearfix"> </div>
+				</div>
+			}
 
 		</div>
 		<div class="clearfix"> </div>
