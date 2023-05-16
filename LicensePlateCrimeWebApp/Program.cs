@@ -13,6 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IContactRepository, ContactRepository>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 

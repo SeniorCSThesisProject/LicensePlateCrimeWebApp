@@ -1,8 +1,4 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model LicensePlateCrimeWebApp.Models.Contact
 <!-- mail -->
 <div class="mail">
 	<div class="container">
@@ -26,17 +22,17 @@
 		</div>
 		<div class="col-md-8 wthree_contact_left">
 			<h4>İletişim Formu</h4>
-			<form action="#" method="post">
+			<form method="POST" asp-action="Create" enctype="multipart/form-data">
 				<div class="col-md-6 wthree_contact_left_grid">
-					<input type="text" name="Name" value="Ad Soyad" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ad Soyad';}" required="">
-					<input type="email" name="Email" value="E-Mail" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'E-Mail';}" required="">
+					<input asp-for="Name" type="text" class="form-control" value="Ad Soyad">
+					<input asp-for="Email" type="text" class="form-control" value="E-Mail">
 				</div>
 				<div class="col-md-6 wthree_contact_left_grid">
-					<input type="text" name="Telephone" value="Telefon" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Telefon';}" required="">
-					<input type="text" name="Subject" value="Konu" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Konu';}" required="">
+					<input asp-for="Telephone" type="text" class="form-control" value="Telefon">
+					<input asp-for="Subject" type="text" class="form-control" value="Konu">
 				</div>
 				<div class="clearfix"> </div>
-				<textarea name="Message" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mesaj...';}" required="">Mesaj...</textarea>
+				<textarea asp-for="Message" type="text">Mesaj...</textarea>
 				<input type="submit" value="Gönder">
 				<input type="reset" value="Temizle">
 			</form>
