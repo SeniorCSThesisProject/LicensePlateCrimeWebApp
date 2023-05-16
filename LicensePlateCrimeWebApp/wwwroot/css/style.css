@@ -412,19 +412,20 @@ input[type="submit"], .header_left ul li a, .agile_back_home a, .agileits_social
 /*-- //header --*/
 /*-- banner --*/
 .banner{
-	background:url(../images/banner2.png) no-repeat 0px 0px;
+	background:url(../images/banner3.jpg) no-repeat 0px 0px;
 	background-size:cover;
 	-webkit-background-size:cover;
 	-moz-background-size:cover;
 	-o-background-size:cover;
 	-ms-background-size:cover;
-	min-height:700px;
+	min-height:575px;
+
 }
 .w3ls_banner_info{
 	width: 60%;
-    padding: 3em;
-    background:rgba(46, 46, 46, 0.2);
-    margin: 11em auto 0;
+    padding: 2em;
+    background:rgba(36, 36, 36, 0.2);
+    margin: 9em auto 0;
     text-align: center;
 }
 .w3ls_banner_info h2{
@@ -432,8 +433,15 @@ input[type="submit"], .header_left ul li a, .agile_back_home a, .agileits_social
     color: #fff;
     text-transform: uppercase;
     font-size: 4em;
+	text-shadow: 2px 2px #5c5c5c;
     font-family: 'Open Sans', sans-serif;
     letter-spacing: 10px;
+}
+.w3ls_banner_info h3 {
+	font-weight: bold;
+	color: #fff;
+	text-shadow: 2px 2px #5c5c5c;
+	font-family: 'Open Sans', sans-serif;
 }
 .w3ls_banner_info p{
 	width:80%;
