@@ -48,9 +48,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
 		options.LoginPath = new PathString("/Login/Index");
 		options.LogoutPath = new PathString("/Login/Logout");
 		options.AccessDeniedPath = new PathString("/Login/AccessDenied");
-		options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
 		options.SlidingExpiration = true;
 		options.Cookie.HttpOnly = true;
+		options.Cookie.IsEssential = true;
+		options.ExpireTimeSpan = TimeSpan.FromSeconds(10);// here 2
 	});
 
 // Add sessions
