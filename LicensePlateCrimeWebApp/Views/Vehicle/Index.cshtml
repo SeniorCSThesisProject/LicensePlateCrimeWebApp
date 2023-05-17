@@ -16,7 +16,9 @@
                 @foreach (var vehicle in Model)
                 {
                     <div class="col-md-4 wthree_special_service_left">
-                        <img src=@vehicle.ImageUrl alt=" " class="img-responsive" />
+                        <a asp-action="Detail">
+                            <img src=@vehicle.ImageUrl alt=" " class="" />
+                        </a>
                         <h4>@vehicle.Model (@vehicle.LicensePlate)</h4>
                         <div class="row">
                             <div class="wthree_more wthree_more2 col-md-6">
@@ -31,7 +33,7 @@
                                     Delete
                                 </a>
                             </div>
-                            </div>
+                        </div>
 
                     </div>
                 }
@@ -42,3 +44,12 @@
     </div>
 </div>
 <!-- //special-services -->
+
+<style>
+    img {
+        height: 300px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+</style>
