@@ -3,12 +3,21 @@
 @{
 	ViewData["Title"] = "Giriş Yap";
 }
+
+@if (!String.IsNullOrEmpty(ViewData["ReturnUrl"]?.ToString()))
+{
+	<div class="alert alert-danger" role="alert">
+		<strong>Hata</strong> Bu sayfaya erişmek için Giriş yapmalısınız.
+	</div>
+}
+
+
 <!-- sign-up -->
 <div class="login">
 	<div class="container">
 		<h6>GİRİŞ YAP!</h6>
 		<h3>Plaka Ceza Sistemi'ne Hoşgeldiniz.</h3>
-		<form asp-action="Login" method="post" novalidate>
+		<form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" novalidate>
 			<!-- validation error message -->
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
 			<!-- /validation error message -->

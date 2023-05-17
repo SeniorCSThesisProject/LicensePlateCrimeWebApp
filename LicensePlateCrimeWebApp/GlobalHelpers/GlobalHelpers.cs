@@ -7,27 +7,26 @@ namespace LicensePlateCrimeWebApp.Helpers
   {
     public static bool Authenticated(HttpContext httpContext)
     {
-      return httpContext.Session.GetString("_UserToken") != null;
+      return httpContext.User.Identity != null && httpContext.User.Identity.IsAuthenticated;
     }
-    public static User GetCurrentUser(HttpContext httpContext)
+    public static UserInfo? GetCurrentUserInfo(HttpContext httpContext)
     {
       try
       {
-        var json = httpContext.Session.GetString("FbUser");
-
-        if (json == null)
+        // get the user claim named UserJson
+        var userJson = httpContext.User.Claims.FirstOrDefault(c => c.Type == "UserInfoJson")?.Value;
+        if (userJson == null)
         {
-          throw new NotImplementedException();
+          return null;
         }
+        // convert the userJson to a UserInfo object
+        var userInfo = JsonConvert.DeserializeObject<UserInfo>(userJson);
 
-        User? user = JsonConvert.DeserializeObject<User>(json);
-
-        if (user == null)
+        if (userInfo == null)
         {
-          throw new NotImplementedException();
+          return null;
         }
-
-        return user;
+        return userInfo;
       }
       catch (Exception e)
       {

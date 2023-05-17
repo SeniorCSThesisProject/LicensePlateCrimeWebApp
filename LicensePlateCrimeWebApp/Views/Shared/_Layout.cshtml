@@ -80,7 +80,7 @@
                                 <div class="dropdown">
                                     <button type="button" class="btn dropdown-toggle" id="profileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                                    @(GetCurrentUser(Context)?.Email)
+                                    @(GetCurrentUserInfo(Context)?.Email)
                                     </button>
                                     <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                                         <li>

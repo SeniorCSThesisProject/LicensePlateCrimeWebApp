@@ -2,10 +2,13 @@
 using LicensePlateCrimeWebApp.Interfaces;
 using LicensePlateCrimeWebApp.Models;
 using LicensePlateCrimeWebApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
+
+  [Authorize]
   public class VehicleController : Controller
   {
     private readonly IVehicleRepository _vehicleRepository;
@@ -32,8 +35,8 @@ namespace LicensePlateCrimeWebApp.Controllers
     // GET: Vehicles/Create
     public ActionResult Create()
     {
-      var currentUser = GlobalHelpers.GetCurrentUser(_httpContextAccessor.HttpContext);
-      var currentUserId = currentUser.LocalId;
+      var currentUser = GlobalHelpers.GetCurrentUserInfo(_httpContextAccessor.HttpContext);
+      var currentUserId = currentUser.Uid;
       var createVehicleViewModel = new CreateVehicleViewModel
       {
         OwnerId = currentUserId

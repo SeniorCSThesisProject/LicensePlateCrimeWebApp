@@ -7,18 +7,16 @@ namespace LicensePlateCrimeWebApp.Data
   {
     private readonly FirestoreDb _fireStoreDb = null!;
     private readonly StorageClient _storageClient = null!;
-    private readonly UrlSigner _urlSigner = null!;
     private readonly FirebaseSettings _firebaseSettings;
     private string GetCollectionName<T>()
     {
       return $"{typeof(T).Name}s";
     }
-    public FirestoreProvider(FirestoreDb fireStoreDb, StorageClient storageClient, FirebaseSettings firebaseSettings, UrlSigner urlSigner)
+    public FirestoreProvider(FirestoreDb fireStoreDb, StorageClient storageClient, FirebaseSettings firebaseSettings)
     {
       _fireStoreDb = fireStoreDb;
       _storageClient = storageClient;
       _firebaseSettings = firebaseSettings;
-      _urlSigner = urlSigner;
     }
 
     public async Task<bool> AddOrUpdate<T>(T entity)
