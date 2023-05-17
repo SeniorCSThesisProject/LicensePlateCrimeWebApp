@@ -1,14 +1,16 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using static LicensePlateCrimeWebApp.Helpers.GlobalHelpers;
+@using Newtonsoft.Json;
+@{
+    ViewData["Title"] = "Ana Sayfa";
 }
 <!-- banner -->
 <div class="banner">
 	<div class="container">
 		<div class="w3ls_banner_info">
-			<h2 style="color:blue;">PLAKA CEZA SİSTEMİ</h2><br /><br />
+			<h2 style="color:#313131;">PLAKA CEZA SİSTEMİ</h2><br />
 			<h3 style="color:white;">
 				Plaka Ceza Sistemi Modülü ile araçlarınızı kontrol etmek artık çok kolay!
-				Araçlarınızı görüntüleyin, İhlallerinizi tespit edin, İtirazlada bulunun...
+				Araçlarınızı görüntüleyin, İhlallerinizi tespit edin, İtirazlarda bulunun...
 			</h3>
 		</div>
 	</div>
@@ -24,69 +26,123 @@
 				detayları görüntüleyebilir, Eğer ihlaleriniz mevcut ise ihlal bilgilerini görüntüleyip ilgili birimlere itirazlarda bulunabilirsiniz.
 			</p>
 			<div class="wthree_more wthree_more1">
-				<a asp-area="" asp-controller="Login" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE GİRİŞİ</a>
-				<br /><a asp-area="" asp-controller="Signup" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE OL</a>
+				@if (Authenticated(Context)){}
+				else
+				{
+					<a asp-area="" asp-controller="Login" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE GİRİŞİ</a>
+					<br />
+					<a asp-area="" asp-controller="Signup" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE OL</a>
+				}
 			</div>
 		</div>
 
-		<!-- logine göre değişecek -->
 		<div class="col-md-6 banner_bottom_right">
+			@if (Authenticated(Context))
+			{
 			<div class="wthree_banner_bottom_right_grids">
 				<div class="col-md-6 banner_bottom_right_grid">
+					<a asp-area="" asp-controller="Vehicle" asp-action="Index">
 					<div class="view view-tenth">
 						<div class="agile_text_box">
-							<i class="fas fa-car-side"></i>
+							<i class="fas fa-address-card"></i>
 							<h3>Araçlarım</h3>
 							<p></p>
 						</div>
-						<div class="mask">
-							<img src="images/1.jpg" class="img-responsive" alt="" />
-						</div>
 					</div>
+					</a>
 				</div>
 				<div class="col-md-6 banner_bottom_right_grid">
+						<a asp-area="" asp-controller="Violation" asp-action="Index">
 					<div class="view view-tenth">
 						<div class="agile_text_box">
-							<i class="fas fa-car-side"></i>
+							<i class="fas fa-clipboard"></i>
 							<h3>İhlallerim</h3>
 							<p></p>
 						</div>
-						<div class="mask">
-							<img src="images/2.jpg" class="img-responsive" alt="" />
-						</div>
 					</div>
-				</div>
+					</a>
+				</div>						
 				<div class="clearfix"> </div>
 			</div>
 			<div class="wthree_banner_bottom_right_grids">
 				<div class="col-md-6 banner_bottom_right_grid">
+						<a asp-area="" asp-controller="Contest" asp-action="Index">
 					<div class="view view-tenth">
 						<div class="agile_text_box">
-							<i class="fas fa-car-side"></i>
+							<i class="fas fa-comments"></i>
 							<h3>İtirazlarım</h3>
 							<p></p>
 						</div>
-						<div class="mask">
-							<img src="images/3.jpg" class="img-responsive" alt="" />
-						</div>
 					</div>
+					</a>
 				</div>
 				<div class="col-md-6 banner_bottom_right_grid">
+					<a asp-area="" asp-controller="Contact" asp-action="Index">
 					<div class="view view-tenth">
 						<div class="agile_text_box">
-							<i class="fas fa-car-side"></i>
+							<i class="fas fa-comment"></i>
 							<h3>İletişim</h3>
 							<p></p>
 						</div>
-						<div class="mask">
-							<img src="images/4.jpg" class="img-responsive" alt="" />
-						</div>
 					</div>
-				</div>
+					</a>
+				</div>					
 				<div class="clearfix"> </div>
 			</div>
-			<!-- logine göre değişecek -->
-
+			}
+			else
+			{
+				<div class="wthree_banner_bottom_right_grids">
+					<div class="col-md-6 banner_bottom_right_grid">
+						<a asp-area="" asp-controller="Home" asp-action="Index">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+									<i class="fa fa-align-left"></i>
+								<h3>Ana Sayfa</h3>
+								<p></p>
+							</div>
+						</div>
+						</a>
+					</div>
+					<div class="col-md-6 banner_bottom_right_grid">
+						<a asp-area="" asp-controller="Home" asp-action="Privacy">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+									<i class="fas fa-user-shield"></i>
+								<h3>Gizlilik Sözleşmesi</h3>
+								<p></p>
+							</div>
+						</div>
+						</a>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="wthree_banner_bottom_right_grids">
+					<div class="col-md-6 banner_bottom_right_grid">
+						<a asp-area="" asp-controller="About" asp-action="Index">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+									<i class="fas fa-users"></i>
+									<h3>HAKKIMIZDA</h3>
+								<p></p>
+							</div>
+						</div>
+						</a>
+					</div>
+					<div class="col-md-6 banner_bottom_right_grid">
+						<a asp-area="" asp-controller="Contact" asp-action="Index">
+						<div class="view view-tenth">
+							<div class="agile_text_box">
+									<i class="fas fa-comment"></i>
+								<h3>İletişim</h3>
+								<p></p>
+							</div>
+						</div>
+					</a>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			}
 
 		</div>
 		<div class="clearfix"> </div>
@@ -126,27 +182,27 @@
 	<div class="container">
 		<div class="w3l_about_bottom_grids">
 			<div class="col-md-6 w3l_about_bottom_grid_left">
-				<h3>cupidatat non proident, sunt in culpa qui officia</h3>
+				<h3>Plaka Ceza Sistemi</h3>
 				<p>
-					Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-					sed quia consequuntur magni dolores eos qui ratione voluptatem
-					sequi nesciunt.
+					Araç trafiğini izlemede geleneksel yöntemlerle karşılaştırıldığında Plaka Ceza Sistemi yöntemi daha kararlı ve 
+					düşük maliyetlidir. Ayrıca mevcut kamera izleme altyapısı üzerinde kurulum yada yeni bir altyapı gerektirmeden 
+					plaka tespiti kolaylıkla yapılabilmektedir. Otoyol ve karayollarında belirli sıklıkta bulunan kameralar 
+					kullanılarak plaka tespiti yapılabilir. Plakası tespit edilen araçların ceza, vergi borcu, geçmiş muayene zamanı 
+					gibi cezalı durumları varsa kolaylıkla tespit edilip gerekli adli, idari işlemlerin yapılmasını kolaylaştıracaktır. 
+					Güvenlik güçlerinin iş yükü en aza indirilerek yollardaki güven ve konfor artırılabilecektir.<br />
+					Sistemimiz, Avrupa ve Türkiye başta olmak üzere bir çok ülke de bulunan araçlar için plaka tespiti altyapısını sağlamaktadır. 
+					Bu ülkeler de otoyol, karayolu ve bölünmüş yollar gibi yerlerde kurulmuş olan kamera altyapısının yüksekliği ve açısı
+					gibi etmenleriyle uyumludur.
 				</p>
-				<ol>
-					<li>dolores eos qui ratione</li>
-					<li>aspernatur aut odit aut fugit</li>
-					<li>ipsam voluptatem quia voluptas</li>
-					<li>consequuntur magni dolores</li>
-					<li>eos qui ratione voluptatem sequi</li>
-				</ol>
 			</div>
 			<div class="col-md-6 w3l_about_bottom_grid_right">
+				<br/>
 				<div class='bar_group'>
-					<div class='bar_group__bar thin elastic' label='max Imports And exports' value='230'></div>
-					<div class='bar_group__bar thin elastic' label='free of charge' value='130'></div>
-					<div class='bar_group__bar thin elastic' label='number of dealers' value='160'></div>
-					<div class='bar_group__bar thin elastic' label='transportation' value='340'></div>
-					<div class='bar_group__bar thin elastic' label='truck capacity' value='290'></div>
+					<div class='bar_group__bar thin elastic' label='Sistem Kararlılığı Oranı : %90' value='262'></div>
+					<div class='bar_group__bar thin elastic' label='Plaka Tespİt Algorİtması Doğruluğu : %86' value='250'></div>
+					<div class='bar_group__bar thin elastic' label='Malİyettekİ Artış Oranı : %15' value='44'></div>
+					<div class='bar_group__bar thin elastic' label='Sİstem Bakımı Artış Oranı : %45' value='130'></div>
+					<div class='bar_group__bar thin elastic' label='Yollardakİ GÜven ve Konfordakİ Artış Oranı : %35' value='102'></div>
 				</div>
 				<script src="js/bars.js"></script>
 			</div>
@@ -155,4 +211,3 @@
 	</div>
 </div>
 <!-- //about-bottom -->
-<div><br /><br /><br /><br /></div>
