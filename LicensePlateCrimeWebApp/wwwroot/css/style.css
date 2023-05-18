@@ -1691,12 +1691,12 @@ h2.typoh2{
 	padding-right:.5em;
 	color:#ff9900;
 }
-.agileits_recent_posts_grid:nth-child(3) {
+/*.agileits_recent_posts_grid:nth-child(3) {
     margin: 2em 0;
 }
 .agileits_recent_posts_grid:nth-child(4) {
     margin: 0em 0 2em;
-}
+}*/
 .agileits_twitter_posts {
     margin: 3em 0;
 }
@@ -1715,7 +1715,7 @@ h2.typoh2{
 .agileits_twitter_posts ul li i{
 	display: block;
     color: #212121;
-    background: url(../images/img-sp.png) no-repeat -246px -231px;
+    background: url(../images/card-checklist.svg) no-repeat;
     padding-left: 2em;
 }
 .agileits_twitter_posts ul li span {
