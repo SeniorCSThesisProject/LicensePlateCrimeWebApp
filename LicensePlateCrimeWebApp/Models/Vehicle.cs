@@ -1,16 +1,17 @@
-﻿using Firebase.Auth;
-using Google.Cloud.Firestore;
-
+﻿using Google.Cloud.Firestore;
+using LicensePlateCrimeWebApp.Interfaces;
 
 namespace LicensePlateCrimeWebApp.Models
 {
   [FirestoreData]
-  public class Vehicle
+  public class Vehicle : IFirestoreEntity
   {
+    public string Id { get; set; } = null!;
+
     [FirestoreProperty]
     public string OwnerId { get; set; }
 
-    public Firebase.Auth.User? Owner { get; set; }
+    //public Firebase.Auth.User? Owner { get; set; }
 
     [FirestoreProperty]
     public string Model { get; set; }
@@ -21,13 +22,20 @@ namespace LicensePlateCrimeWebApp.Models
     [FirestoreProperty]
     public string ImageUrl { get; set; }
 
-    public Vehicle(User owner, string ownerId, string model, string licensePlate, string imageUrl)
+    [FirestoreProperty]
+    public DateTime? CreationDate { get; set; }
+
+    [FirestoreProperty]
+    public DateTime? LastUpdateDate { get; set; }
+
+    public Vehicle(string ownerId, string model, string licensePlate, string imageUrl)
     {
-      Owner = owner;
       OwnerId = ownerId;
       Model = model;
       LicensePlate = licensePlate;
       ImageUrl = imageUrl;
+      CreationDate = DateTime.UtcNow;
+      LastUpdateDate = DateTime.UtcNow;
     }
     public Vehicle()
     {
