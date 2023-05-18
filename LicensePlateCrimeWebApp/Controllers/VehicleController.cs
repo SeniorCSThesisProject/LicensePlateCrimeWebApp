@@ -53,8 +53,9 @@ namespace LicensePlateCrimeWebApp.Controllers
 			if (ModelState.IsValid)
 			{
 				var uploadedImgUrl = await _vehicleRepository.UploadVehicleImgAsync(createVehicleViewModel.Image);
-				var vehicle = new Vehicle(null, createVehicleViewModel.OwnerId, createVehicleViewModel.Model, createVehicleViewModel.LicensePlate, uploadedImgUrl);
-				await _vehicleRepository.AddAsync(vehicle);
+        var vehicle = new Vehicle(createVehicleViewModel.OwnerId, createVehicleViewModel.Model, createVehicleViewModel.LicensePlate, uploadedImgUrl);
+        var id = await _vehicleRepository.AddAsync(vehicle);
+        vehicle.Id = id;
 				return RedirectToAction("Index");
 			}
 			else

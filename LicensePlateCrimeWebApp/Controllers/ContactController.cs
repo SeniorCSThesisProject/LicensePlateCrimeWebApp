@@ -46,8 +46,9 @@ namespace LicensePlateCrimeWebApp.Controllers
 			if (ModelState.IsValid)
 			{
 			
-				var contact = new Contact(createcontactModel.Name, createcontactModel.Email, createcontactModel.Telephone, createcontactModel.Subject,createcontactModel.Message);
-				await _contactRepository.AddAsync(contact);
+        var contact = new Contact(createcontactModel.Name, createcontactModel.Email, createcontactModel.Telephone, createcontactModel.Subject, createcontactModel.Message);
+        var id = await _contactRepository.AddAsync(contact);
+        contact.Id = id;
 				return RedirectToAction("Index");
 			}
 			else
