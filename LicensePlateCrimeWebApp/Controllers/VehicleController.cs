@@ -96,16 +96,10 @@ namespace LicensePlateCrimeWebApp.Controllers
     // POST: Vehicles/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Delete(int id, IFormCollection collection)
+    public async Task<ActionResult> Delete(string id)
     {
-      try
-      {
-        return RedirectToAction(nameof(Index));
-      }
-      catch
-      {
-        return View();
-      }
+      var isDeleted = await _vehicleRepository.DeleteAsync(id);
+      return RedirectToAction("Index", "Vehicle");
     }
   }
 }

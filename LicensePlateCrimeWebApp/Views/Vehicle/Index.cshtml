@@ -40,10 +40,18 @@
                                 </a>
                             </div>
                             <div class="wthree_more wthree_more2 col-md-6">
-                                <a asp-controller="Vehicle" id="vehicle-delete-button" asp-action="Delete" asp-route-id="@vehicle.Id" class="button--wayra button--border-thick button--text-upper button--size-s">
+                                <form method="post" asp-controller="Vehicle" asp-action="Delete">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@vehicle.Id" />
+                                    <a id="vehicle-delete-button" href="javascript:void(0);" onclick="this.parentElement.submit();" class="button--wayra button--border-thick button--text-upper button--size-s">
+                                        <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
+                                        Delete
+                                    </a>
+                                </form>
+@*                                <a asp-controller="Vehicle" id="vehicle-delete-button" asp-action="Delete" asp-route-id="@vehicle.Id" class="button--wayra button--border-thick button--text-upper button--size-s">
                                     <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
                                     Delete
-                                </a>
+                                </a>*@
                             </div>
                         </div>
 

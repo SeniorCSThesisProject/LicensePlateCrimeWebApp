@@ -34,6 +34,13 @@ namespace LicensePlateCrimeWebApp.Data
       return snapshot.ConvertTo<T>();
     }
 
+    public async Task<bool> Delete<T>(string id) where T : IFirestoreEntity
+    {
+      var document = _fireStoreDb.Collection(GetCollectionName<T>()).Document(id);
+      var result = await document.DeleteAsync();
+      return result != null;
+    }
+
     public async Task<IEnumerable<T>> GetAll<T>() where T : IFirestoreEntity
     {
       var collection = _fireStoreDb.Collection(GetCollectionName<T>());

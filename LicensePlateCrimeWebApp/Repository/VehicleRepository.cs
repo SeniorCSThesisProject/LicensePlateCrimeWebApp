@@ -25,7 +25,7 @@ namespace LicensePlateCrimeWebApp.Repository
 
     public Task<bool> DeleteAsync(string id)
     {
-      throw new NotImplementedException();
+      return _firestoreProvider.Delete<Vehicle>(id);
     }
 
     public async Task<IEnumerable<Vehicle>> GetAllAsync()
