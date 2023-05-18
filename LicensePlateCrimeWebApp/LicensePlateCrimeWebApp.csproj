@@ -105,6 +105,7 @@
     <PackageReference Include="Google.Cloud.Firestore" Version="3.3.0" />
     <PackageReference Include="Google.Cloud.Firestore.V1" Version="3.3.0" />
     <PackageReference Include="Google.Cloud.Storage.V1" Version="4.5.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.13" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
