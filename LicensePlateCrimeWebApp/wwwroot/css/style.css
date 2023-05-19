@@ -450,7 +450,7 @@ input[type="submit"], .header_left ul li a, .agile_back_home a, .agileits_social
 	line-height:2em;
 }
 .wthree_more a {
-	width: 45% !important;
+	width: 45%;
 	padding: 10px 30px;
 	border: 1px solid;
 	font-size: 14px;
