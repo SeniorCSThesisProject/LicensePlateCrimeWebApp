@@ -1,27 +1,99 @@
 ﻿@{
 	ViewData["Title"] = "Hakkımızda";
 }
-
-<div class="about">
+<div class="special-services">
 	<div class="container">
 		<h3>HAKKIMIZDA</h3>
-	</div>
+		<div class="wthree_special_services">
+			<div class="col-md-4 wthree_special_service_left">
+				<img src="~/images/h9.jpg" alt=" " class="img-responsive" style="width:650px;height:250px;" />
+				<h4 style="text-align:center;">Hakkımızda</h4>
+				<div class="wthree_more">
+					<a href="" data-toggle="modal" data-target="#hakkımızda" class="button--wayra button--border-thick button--text-upper button--size-s">Daha Fazla</a>
+				</div>
+			</div> &emsp;
+			<div class="col-md-4 wthree_special_service_left">
+				<img src="~/images/h10.jpg" alt=" " class="img-responsive" style="width:650px;height:250px;" />
+				<h4 style="text-align:center;">Vizyonumuz</h4>
+				<div class="wthree_more">
+					<a href="" data-toggle="modal" data-target="#vizyon" class="button--wayra button--border-thick button--text-upper button--size-s">Daha Fazla</a>
+				</div>
+			</div> &emsp;
+			<div class="col-md-4 wthree_special_service_left">
+				<img src="~/images/h11.jpg" alt=" " class="img-responsive" style="width:650px;height:230px;" />
+				<h4 style="text-align:center;">Misyonumuz</h4>
+				<div class="wthree_more">
+					<a href="" data-toggle="modal" data-target="#misyon" class="button--wayra button--border-thick button--text-upper button--size-s">Daha Fazla</a>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+		<!-- modal hakkımızda -->
+		<div class="modal fade" id="hakkımızda" tabindex="-1" role="dialog" aria-labelledby="">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<h4 class="modal-title" id="myModalLabel">Hakkımızda</h4>
+					</div>
+					<form method="post" action="/home/uyeol">
+						<div class="modal-body">
+							<div class="form-group">
+								<p>
+									Plaka Ceza Sistemi, 2023'ten bu yana kendi teknoloji, tasarım ve uygulamaları ile müşterilerinin ihtiyaçlarına uygun özel çözümler sunuyor. Sakarya’da Muhammed Veysel Artuç ve Raif Akyol tarafından geliştirilen Plaka Ceza Sistemi modülü ürekli kendini geliştirmeyi amaçlıyor.
+									<br />
+									Plaka Ceza Sistemi, otoyol, karayolu gibi ulaşım yollarında bulunan kamera altyapısı sayesinde araç plakalarını okuyup ceza takibinin yapılmasını sağlıyor. Yüzde yüz Türk sermayeli global bir şirket olan Plaka Ceza Sistemi, bugün ulaşım alanında fikri mülkiyet hakları kendisine ait ürünleri ile yer alıyor.
+								</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- modal hakkımızda -->
+		<!-- modal vizyon -->
+		<div class="modal fade" id="vizyon" tabindex="-1" role="dialog" aria-labelledby="">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<h4 class="modal-title" id="myModalLabel">Vizyonumuz</h4>
+					</div>
+					<form method="post" action="/home/uyeol">
+						<div class="modal-body">
+							<div class="form-group">
+								<p>Plaka Ceza Sistemi, kendi teknolojisini geliştirerek ürünlerinde yerli ve milli kimlik özelliğini korur; topyekûn mükemmellik felsefesi ile müşterilerinin, çalışanlarının ve ortaklarının memnuniyetinde sürekliliği sağlamayı hedefler.</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- modal vizyon -->
+		<!-- modal misyon -->
+		<div class="modal fade" id="misyon" tabindex="-1" role="dialog" aria-labelledby="">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+						<h4 class="modal-title" id="myModalLabel">Misyonumuz</h4>
+					</div>
+					<form method="post" action="/home/uyeol">
+						<div class="modal-body">
+							<div class="form-group">
+								<p>Plaka Ceza Sistemi'nin ana görevi, yollardaki kameralar aracılığıyla araç plakalarının okunması ve müşteri beklentileri doğrultusunda, dünya çapında rekabet gücü olan ürünler olarak tasarlamak, üretmek ve pazarlamaktır.</p>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<!-- modal misyon -->
 
-</div>
 
-<div class="banner-bottom1">
-	<div class="col-md-6 agile_banner_bottom1_left">
-		<img src="~/images/banner2.png" alt=" " class="img-responsive" />
+
+
+
 	</div>
-	<div class="col-md-6 agile_banner_bottom1_right">
-		<h3>occaecat cupidatat non proident, sunt in culpa qui officia</h3>
-		<p>
-			Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit,
-			sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-			Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur,
-			adipisci velit, sed quia non numquam eius modi tempora incidunt.
-		</p>
-	</div>
-	<div class="clearfix"> </div>
 </div>
 <div><br /><br /><br /></div>

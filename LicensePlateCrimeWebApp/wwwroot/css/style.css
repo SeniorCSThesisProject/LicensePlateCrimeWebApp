@@ -449,18 +449,16 @@ input[type="submit"], .header_left ul li a, .agile_back_home a, .agileits_social
 	color:#fff;
 	line-height:2em;
 }
-.wthree_more a{
-	padding:10px 30px;
-	border:1px solid #fff;
-	font-size:14px;
-	text-transform:uppercase;
-	text-decoration:none;
-	color:#fff;
+.wthree_more a {
+	width: 45% !important;
+	padding: 10px 30px;
+	border: 1px solid;
+	font-size: 14px;
+	text-transform: uppercase;
+	color: #212121;
 	position: relative;
-    z-index: 1;
-    -webkit-backface-visibility: hidden;
-    -moz-osx-font-smoothing: grayscale;
-	display:block;
+	z-index: 1;
+	display: block;
 }
 /* Wayra */
 .button--wayra {
@@ -1192,7 +1190,7 @@ ul.social li{
 }
 .wthree_more2 a {
     width: 45% !important;
-	text-align:left !important;
+	text-align:center;
 	margin:0;
 }
 .wthree_special_services{
