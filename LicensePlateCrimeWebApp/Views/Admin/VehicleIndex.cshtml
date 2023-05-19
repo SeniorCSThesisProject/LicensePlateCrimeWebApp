@@ -3,4 +3,56 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>vehicle</h2>
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35">Araçlar</h3>
+        <div class="table-data__tool">
+            <div class="table-data__tool-left">
+
+            </div>
+            <div class="table-data__tool-right">
+                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                    <i class="zmdi zmdi-plus"></i>Araç Ekle
+                </button>
+            </div>
+        </div>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>E-MAİL</th>
+                        <th>MODEL</th>
+                        <th>PLAKA</th>
+                        <th>KAYIT TARİHİ</th>
+                        <th>GÜNCELLEME TARİHİ</th>
+                        <th style="text-align:center">İŞLEMLER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-shadow">
+                        <td>
+                            <span class="block-email">lori@example.com</span>
+                        </td>
+                        <td>Seat Arona</td>
+                        <td>77 AB 077</td>
+                        <td>2018-09-27 02:12</td>
+                        <td>2023-03-12 04:42</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
