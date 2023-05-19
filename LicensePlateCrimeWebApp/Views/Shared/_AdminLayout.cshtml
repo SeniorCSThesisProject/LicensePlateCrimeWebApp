@@ -27,6 +27,10 @@
     <!-- Main CSS-->
     <link href="~/CoolAdmin-master/css/theme.css" rel="stylesheet" media="all">
 
+
+    <!-- FullCalendar -->
+    <link href='~/CoolAdmin-master/vendor/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
+
 </head>
 
 <body class="animsition">
@@ -52,32 +56,22 @@
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
                             <a asp-area="" asp-controller="Admin" asp-action="VehicleIndex">
-                                <i class="fas fa-chart-bar"></i>Araçlar
+                                <i class="fas fa-address-card"></i>Araçlar
                             </a>
                         </li>
                         <li class="has-sub">
                             <a asp-area="" asp-controller="Admin" asp-action="ViolationIndex">
-                                <i class="fas fa-chart-bar"></i>İhlaller
+                                <i class="fas fa-clipboard"></i>İhlaller
                             </a>
                         </li>
                         <li class="has-sub">
                             <a asp-area="" asp-controller="Admin" asp-action="ContestIndex">
-                                <i class="fas fa-table"></i>İtirazlar
+                                <i class="fas fa-comments"></i>İtirazlar
                             </a>
                         </li>
                         <li class="has-sub">
                             <a asp-area="" asp-controller="Admin" asp-action="ContactIndex">
-                                <i class="far fa-check-square"></i>İletişim Mesajları
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a asp-area="" asp-controller="Admin" asp-action="Index">
-                                <i class="fas fa-calendar-alt"></i>Takvim
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a asp-area="" asp-controller="Admin" asp-action="Index">
-                                <i class="fas fa-map-marker-alt"></i>Harita
+                                <i class="fas fa-envelope"></i>İletişim Mesajları
                             </a>
                         </li>
                     </ul>
@@ -113,16 +107,6 @@
                         <li class="has-sub">
                             <a asp-area="" asp-controller="Admin" asp-action="ContactIndex">
                                 <i class="fas fa-envelope"></i>İletişim Mesajları
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a asp-area="" asp-controller="Admin" asp-action="Index">
-                                <i class="fas fa-calendar-alt"></i>Takvim
-                            </a>
-                        </li>
-                        <li class="has-sub">
-                            <a asp-area="" asp-controller="Admin" asp-action="Index">
-                                <i class="fas fa-map-marker-alt"></i>Harita
                             </a>
                         </li>
                     </ul>
@@ -221,6 +205,9 @@
     <script src="~/CoolAdmin-master/vendor/chartjs/Chart.bundle.min.js"></script>
     <script src="~/CoolAdmin-master/vendor/select2/select2.min.js">
     </script>
+    <!-- full calendar requires moment along jquery which is included above -->
+    <script src="~/CoolAdmin-master/vendor/fullcalendar-3.10.0/lib/moment.min.js"></script>
+    <script src="~/CoolAdmin-master/vendor/fullcalendar-3.10.0/fullcalendar.js"></script>
 
     <!-- Main JS-->
     <script src="~/CoolAdmin-master/js/main.js"></script>
