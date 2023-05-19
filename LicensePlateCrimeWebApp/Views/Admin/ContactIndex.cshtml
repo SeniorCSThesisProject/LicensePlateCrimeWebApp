@@ -3,4 +3,46 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>contact</h2>
+<div class="row">
+    <div class="col-md-12">
+        <!-- DATA TABLE -->
+        <h3 class="title-5 m-b-35">İLETİŞİM MESAJLARI</h3>
+        <div class="table-responsive table-responsive-data2">
+            <table class="table table-data2">
+                <thead>
+                    <tr>
+                        <th>E-MAİL</th>
+                        <th>AD SOYAD</th>
+                        <th>KONU</th>
+                        <th>TELEFON</th>
+                        <th>MESAJ</th>
+                        <th style="text-align:center">İŞLEMLER</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="tr-shadow">
+                        <td>
+                            <span class="block-email">lori@example.com</span>
+                        </td>
+                        <td>Raif Akyol</td>
+                        <td>ABCD</td>
+                        <td>+905438952068</td>
+                        <td>deneme123 </td>
+                        <td>
+                            <div class="table-data-feature">
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="Yanıtla">
+                                    <i class="zmdi zmdi-mail-send"></i>
+                                </button>
+                                <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                    <i class="zmdi zmdi-delete"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+
+                </tbody>
+            </table>
+        </div>
+        <!-- END DATA TABLE -->
+    </div>
+</div>
