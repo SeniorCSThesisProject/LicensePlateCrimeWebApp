@@ -1,0 +1,186 @@
+﻿@using LicensePlateCrimeWebApp.Data;
+@using LicensePlateCrimeWebApp.Interfaces;
+@model Vehicle;
+@inject FirebaseAppProvider firebaseAppProvider;
+
+<style>
+    .vertical-align {
+        display: flex;
+        align-items: center;
+    }
+
+</style>
+
+@{
+    var owner = await firebaseAppProvider.FirebaseAdminAuth.GetUserAsync(Model.OwnerId);
+    var dateFormat = "dd/MM/yyyy";
+    var dateTimeFormat = "dd/MM/yyyy - HH:mm";
+}
+
+<!-- single -->
+<div class="single">
+    <div class="container">
+        <div class="col-md-4 agile_single_left">
+            <div class="agileits_recent_posts">
+                <h3>Info</h3>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/license_plate_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <h4>@Model.LicensePlate</h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/car_model_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <h4>@Model.Model</h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/date_created_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <h4>@Model.CreationDate?.ToString(dateTimeFormat)</h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/date_updated_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <h4>@Model.LastUpdateDate?.ToString(dateTimeFormat)</h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+@*                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/car_model_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <h4><a href="single.html">@Model.Model</a></h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+*@
+
+@*                <div class="agileits_recent_posts_grid">
+                    <div class="agileits_recent_posts_gridl">
+                        <img src="images/9.jpg" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr">
+                        <h4><a href="single.html">quo voluptas nulla</a></h4>
+                        <ul>
+                            <li><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span><a href="#">7</a></li>
+                            <li><span class="glyphicon glyphicon-time" aria-hidden="true"></span>8:30 AM</li>
+                        </ul>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+*@            </div>
+            <div class="agileits_twitter_posts">
+                <h3>Violations</h3>
+                <ul>
+                    <li>
+                        <i>01 day ago</i><span>
+                            Non numquam <a href="#">http://sd.ds/13jklf#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://sd.ds/1389kjklf#</a>quo nulla.
+                        </span>
+                    </li>
+                    <li>
+                        <i>02 day ago</i><span>
+                            Con numquam <a href="#">http://fd.uf/56hfg#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://fd.uf/56hfg#</a>quo nulla.
+                        </span>
+                    </li>
+                    <li>
+                        <i>03 day ago</i><span>
+                            Qon numquam <a href="#">http://gf.ds/gre21#</a>
+                            eius modi tempora incidunt ut labore et
+                            <a href="#">http://gf.ds/gre21#</a>quo nulla.
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 agile_single_right">
+            <div class="w3_comments">
+                <ul>
+                    <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>@Model.CreationDate?.ToString(dateFormat)</li>
+                    <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="#">@owner.Email</a></li>
+                    <li>
+                        <span class="glyphicon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-card-checklist" viewBox="0 0 16 16">
+                                <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
+                            </svg>
+                        </span><a href="#">5 Violations</a>
+                    </li>
+@*                    <li><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="#">5 Tags</a></li>
+*@                </ul>
+            </div>
+            <h3>
+                ARAC DETAYLARI
+            </h3>
+
+            <div class="w3_comments_bottom">
+                <img src=@Model.ImageUrl alt=" " class="img-responsive" />
+               @* <p>
+                    <i>
+                        Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore,
+                        cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
+                        placeat facere possimus.
+                    </i>Temporibus autem quibusdam et aut officiis
+                    debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae
+                    sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente
+                    delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut
+                    perferendis doloribus asperiores repellat.Ut enim ad minima veniam, quis
+                    nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid
+                    ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea
+                    voluptate velit esse quam nihil molestiae consequatur, vel illum qui
+                    dolorem eum fugiat quo voluptas nulla pariatur?
+                </p>*@
+            </div>
+@*            <div class="agile_single_right_grids">
+                <div class="col-md-6 agile_single_right_grid">
+                    <p>
+                        "On the other hand, we denounce with righteous indignation
+                        and dislike men who are so beguiled and demoralized by the
+                        charms of pleasure of the moment.<span>
+                            In a free hour, when our power of
+                            choice is untrammelled and when nothing prevents our being able
+                            to do what we like best.
+                        </span>
+                    </p>
+                </div>
+                <div class="col-md-6 agile_single_right_grid">
+                    <img src="images/5.jpg" alt=" " class="img-responsive">
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+            <div class="agile_single_right_grids_two">
+                <div class="col-md-6 agile_single_right_grids_two_grid">
+                    <img src="images/11.jpg" alt=" " class="img-responsive">
+                    <p>cum soluta nobis est eligendi</p>
+                </div>
+                <div class="col-md-6 agile_single_right_grids_two_grid">
+                    <h4>
+                        Quis autem vel eum iure reprehenderit qui in ea
+                        voluptate velit esse quam nihil molestiae consequatur.
+                    </h4>
+                </div>
+                <div class="clearfix"> </div>
+            </div>*@
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- //single -->

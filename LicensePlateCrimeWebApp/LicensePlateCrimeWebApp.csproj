@@ -56,10 +56,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="theme\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Include="C:\Users\Veysel\source\repos\LicensePlateCrimeWebApp\LicensePlateCrimeWebApp\.editorconfig" />
     <None Include="wwwroot\css\bootstrap.css" />
     <None Include="wwwroot\css\flexslider.css" />
@@ -89,7 +85,9 @@
     <None Include="wwwroot\images\9.jpg" />
     <None Include="wwwroot\images\banner.jpg" />
     <None Include="wwwroot\images\close.png" />
+    <None Include="wwwroot\images\date_created_graphic.png" />
     <None Include="wwwroot\images\img-sp.png" />
+    <None Include="wwwroot\images\license_plate_graphic.png" />
     <None Include="wwwroot\images\search-icon.png" />
     <None Include="wwwroot\images\tick.png" />
     <None Include="wwwroot\js\bars.js" />
