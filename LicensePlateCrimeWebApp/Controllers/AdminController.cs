@@ -156,11 +156,11 @@ namespace LicensePlateCrimeWebApp.Controllers
 
 
 
-    public IActionResult ContactIndex()
+    public async Task<ActionResult> ContactIndex()
     {
-      //var contact = await _contactRepository.GetAllAsync();
-      //return View(contact);
-      return View();
+      var contact = await _contactRepository.GetAllAsync();
+      return View(contact);
+      
     }
     // GET: Contact/Delete/5
     public ActionResult DeleteContact(int id)

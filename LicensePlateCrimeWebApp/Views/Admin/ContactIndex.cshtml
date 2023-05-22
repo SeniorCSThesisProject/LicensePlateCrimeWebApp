@@ -1,4 +1,9 @@
-﻿@{
+﻿@using LicensePlateCrimeWebApp.Data;
+@using LicensePlateCrimeWebApp.Interfaces;
+@model IEnumerable<Contact>
+
+@inject FirebaseAppProvider firebaseAppProvider;
+@{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -20,26 +25,35 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="tr-shadow">
-                        <td>
-                            <span class="block-email">lori@example.com</span>
-                        </td>
-                        <td>Raif Akyol</td>
-                        <td>ABCD</td>
-                        <td>+905438952068</td>
-                        <td>deneme123 </td>
-                        <td>
-                            <div class="table-data-feature">
-                                <a href="mailto:licensecrime@gmail.com">
-                                <button  class="item" data-toggle="tooltip" data-placement="top" title="Yanıtla">
-                                    <i class="zmdi zmdi-mail-send"></i>
-                                </button> </a>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach (var contact in Model)
+                    {
+                        <tr class="tr-shadow">
+                            <td>
+                                <span class="block-email">@contact.Email</span>
+                            </td>
+                            <td>@contact.Name</td>
+                            <td>@contact.Subject</td>
+                            <td>@contact.Telephone</td>
+                            <td>@contact.Message</td>
+                            <td>
+                                <div class="table-data-feature">
+
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Yanıtla">
+                                            <i class="zmdi zmdi-mail-send"></i>
+                                        </button>
+                                    
+                                    <form method="post" asp-controller="Admin" asp-action="DeleteContact">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@contact.Id" />
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
 
                 </tbody>
             </table>
