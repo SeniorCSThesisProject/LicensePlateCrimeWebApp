@@ -24,7 +24,7 @@
             }
             else
             {
-                @foreach (var vehicle in Model)
+                @foreach (var vehicle in Model.OrderByDescending(v => v.CreationDate))
                 {
                     <div class="col-md-4 wthree_special_service_left">
                         <a asp-controller="Vehicle" asp-action="Detail" asp-route-id="@vehicle.Id">

@@ -9,7 +9,6 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var dateFormat = "dd/MM/yyyy";
     var dateTimeFormat = "dd/MM/yyyy - HH:mm";
-    var owner = "";
 }
 
 <div class="row">
@@ -30,6 +29,7 @@
             <table class="table table-data2">
                 <thead>
                     <tr>
+                        <th>E-MAİL</th>
                         <th>MODEL</th>
                         <th>PLAKA</th>
                         <th>KAYIT TARİHİ</th>
@@ -38,9 +38,13 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var vehicle in Model)
+                    @foreach (var vehicle in Model.OrderByDescending(v=> v.CreationDate))
                     {
+                        var owner = await firebaseAppProvider.FirebaseAdminAuth.GetUserAsync(vehicle.OwnerId);
+
                         <tr class="tr-shadow">
+                            <td>@owner.Email</td>
+                            
                             <td>@vehicle.Model</td>
                             <td>@vehicle.LicensePlate</td>
                             <td>@vehicle.CreationDate?.ToString(dateTimeFormat)</td>
