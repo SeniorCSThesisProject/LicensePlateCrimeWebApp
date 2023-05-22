@@ -4,6 +4,12 @@
 	ViewData["Title"] = "İletişim";
 }
 
+<style>
+	#textRed ul li {
+		color: #a94442 !important;
+    }
+</style>
+
 <!-- mail -->
 <div class="mail">
 	<div class="container">
@@ -28,7 +34,7 @@
 		<div class="col-md-8 wthree_contact_left">
 			<h4>İletişim Formu</h4>
 			<form method="POST" asp-action="Create" enctype="multipart/form-data" novalidate>
-				<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+				<div id="textRed" asp-validation-summary="ModelOnly" class="text-danger"></div>
 				<div class="col-md-6 wthree_contact_left_grid">
 					<input asp-for="Name" type="text" class="form-control" placeholder="Ad Soyad">
 					<span asp-validation-for="Name" class="text-danger"></span><br>
