@@ -7,7 +7,7 @@ namespace LicensePlateCrimeWebApp.Models
   [FirestoreData]
   public class Contact : IFirestoreEntity
   {
-    public string Id { get; set; } = null!;
+    public string Id { get; set; } = "";
     [FirestoreProperty]
     [Required(ErrorMessage = "Ad soyad zorunludur.")]
     public string Name { get; set; }

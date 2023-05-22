@@ -6,7 +6,7 @@ namespace LicensePlateCrimeWebApp.Models
   [FirestoreData]
   public class Vehicle : IFirestoreEntity
   {
-    public string Id { get; set; } = null!;
+    public string Id { get; set; } = "";
 
     [FirestoreProperty]
     public string OwnerId { get; set; }
