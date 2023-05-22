@@ -11,5 +11,9 @@ namespace LicensePlateCrimeWebApp.Interfaces
 
     [FirestoreProperty]
     public DateTime? LastUpdateDate { get; set; }
+
+    public DateTime? GetLocalCreationDate { get; }
+    public DateTime? GetLocalLastUpdatedDate { get; }
+
   }
 }

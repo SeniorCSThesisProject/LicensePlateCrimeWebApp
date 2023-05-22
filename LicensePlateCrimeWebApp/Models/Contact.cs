@@ -38,6 +38,9 @@ namespace LicensePlateCrimeWebApp.Models
     [FirestoreProperty]
     public DateTime? LastUpdateDate { get; set; }
 
+    public DateTime? GetLocalCreationDate => CreationDate?.ToLocalTime();
+
+    public DateTime? GetLocalLastUpdatedDate => LastUpdateDate?.ToLocalTime();
     public Contact(string name, string email, string telephone, string subject, string message)
     {
       Name = name;

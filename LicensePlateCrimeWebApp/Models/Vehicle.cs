@@ -27,6 +27,8 @@ namespace LicensePlateCrimeWebApp.Models
 
     [FirestoreProperty]
     public DateTime? LastUpdateDate { get; set; }
+    public DateTime? GetLocalCreationDate => CreationDate?.ToLocalTime();
+    public DateTime? GetLocalLastUpdatedDate => LastUpdateDate?.ToLocalTime();
 
     public Vehicle(string ownerId, string model, string licensePlate, string imageUrl)
     {

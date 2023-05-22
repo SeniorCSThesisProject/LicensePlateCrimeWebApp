@@ -47,8 +47,8 @@
                             
                             <td>@vehicle.Model</td>
                             <td>@vehicle.LicensePlate</td>
-                            <td>@vehicle.CreationDate?.ToString(dateTimeFormat)</td>
-                            <td>@vehicle.LastUpdateDate?.ToString(dateTimeFormat)</td>
+                            <td>@vehicle.GetLocalCreationDate?.ToString(dateTimeFormat)</td>
+                            <td>@vehicle.GetLocalLastUpdatedDate?.ToString(dateTimeFormat)</td>
                             <td>
                                 <div class="table-data-feature">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
