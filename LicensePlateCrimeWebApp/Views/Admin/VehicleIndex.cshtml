@@ -1,6 +1,15 @@
-﻿@{
+﻿@using LicensePlateCrimeWebApp.Data;
+@using LicensePlateCrimeWebApp.Interfaces;
+@model IEnumerable<Vehicle>
+
+@inject FirebaseAppProvider firebaseAppProvider;
+
+@{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var dateFormat = "dd/MM/yyyy";
+    var dateTimeFormat = "dd/MM/yyyy - HH:mm";
+    var owner = "";
 }
 
 <div class="row">
@@ -12,16 +21,15 @@
 
             </div>
             <div class="table-data__tool-right">
-                <button class="au-btn au-btn-icon au-btn--green au-btn--small">
+                <a asp-controller="Admin" asp-action="AddVehicle" class="au-btn au-btn-icon au-btn--green au-btn--small">
                     <i class="zmdi zmdi-plus"></i>Araç Ekle
-                </button>
+                </a>
             </div>
         </div>
         <div class="table-responsive table-responsive-data2">
             <table class="table table-data2">
                 <thead>
                     <tr>
-                        <th>E-MAİL</th>
                         <th>MODEL</th>
                         <th>PLAKA</th>
                         <th>KAYIT TARİHİ</th>
@@ -30,25 +38,30 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="tr-shadow">
-                        <td>
-                            <span class="block-email">lori@example.com</span>
-                        </td>
-                        <td>Seat Arona</td>
-                        <td>77 AB 077</td>
-                        <td>2018-09-27 02:12</td>
-                        <td>2023-03-12 04:42</td>
-                        <td>
-                            <div class="table-data-feature">
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
-                                    <i class="zmdi zmdi-edit"></i>
-                                </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                    @foreach (var vehicle in Model)
+                    {
+                        <tr class="tr-shadow">
+                            <td>@vehicle.Model</td>
+                            <td>@vehicle.LicensePlate</td>
+                            <td>@vehicle.CreationDate?.ToString(dateTimeFormat)</td>
+                            <td>@vehicle.LastUpdateDate?.ToString(dateTimeFormat)</td>
+                            <td>
+                                <div class="table-data-feature">
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                                        <i class="zmdi zmdi-edit"></i>
+                                    </button>
+                                    <form method="post" asp-controller="Admin" asp-action="DeleteVehicle">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@vehicle.Id" />
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    
                     
                 </tbody>
             </table>
