@@ -6,13 +6,12 @@
 
 <div class="container">
     <div class="row justify-content-lg-center">
-        <div class="col col-lg-2"></div>
+       
 
-        <div class="col-md-auto">
+        <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">İhlal Ekle</div>
                 <div class="card-body card-block">
-                    <!--
                     <form method="POST" asp-controller="Admin" asp-action="Create" enctype="multipart/form-data">
                         <input type="hidden" id="OwnerId" name="OwnerId" asp-for="OwnerId" />
                         <div class="form-group">
@@ -26,21 +25,43 @@
                                 <div class="input-group-addon">Plaka</div>
                                 <input asp-for="LicensePlate" type="text" class="form-control">
                             </div>
+                        </div>                       
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="select" class=" form-control-label">İhlal Tipi</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select name="select" id="select" class="form-control">
+                                    <option>Lütfen ihlal tipi seçiniz...</option>
+                                    <option value="Ehliyetsiz araç kullanma">Ehliyetsiz araç kullanma</option>
+                                    <option value="Emniyet kemeri takmama">Emniyet kemeri takmama</option>
+                                    <option value="Şerit izleme-değiştirme kurallarına uymama">Şerit izleme-değiştirme kurallarına uymama</option>
+                                    <option value="Trafik sigortası olmadan trafiğe çıkma">Trafik sigortası olmadan trafiğe çıkma</option>
+                                    <option value="Yayaya  öncelik vermeme cezası">Yayaya  öncelik vermeme cezası</option>
+                                    <option value="Seyir halinde cep telefonu kullanma">Seyir halinde cep telefonu kullanma</option>
+                                    <option value="Takip mesafesine uymama">Takip mesafesine uymama</option>
+                                    <option value="Aracın Zorunlu Muayenesi geçmiştir">Aracın Zorunlu Muayenesi geçmiştir</option>
+                                    <option value="Engelli için ayrılan yere park etme">Engelli için ayrılan yere park etme</option>
+                                    <option value="Emniyet şeridini ihlal etme">Emniyet şeridini ihlal etme</option>
+                                    <option value="MTV borcu bulunmaktadır">MTV borcu bulunmaktadır</option>
+                                </select>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">Resim</div>
-                                <input asp-for="Image" type="file" class="form-control">
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="textarea-input" class=" form-control-label">Açıklama</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <textarea style="min-height:100px;" name="textarea-input" id="textarea-input" rows="9" placeholder="Açıklamalar..." class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="form-actions form-group">
                             <button type="submit" class="btn btn-primary btn-sm">Kaydet</button>
                         </div>
                     </form>
-                    -->
                 </div>
             </div>
         </div>
-        <div class="col col-lg-2"></div>
+        
     </div>
 </div>
