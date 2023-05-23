@@ -87,37 +87,19 @@
             <div class="agileits_twitter_posts">
                 <h3>Violations</h3>
                 <ul>
-                    @{var violations = await _vehicleRepository.GetAllViolationsByVehicleIdAsync(Model.Id);}
-                    @foreach(var violation in violations)
+                    @{
+                        var violations = await _vehicleRepository.GetAllViolationsByVehicleIdAsync(Model.Id);
+                    }
+                    @foreach (var violation in violations)
                     {
                         <li>
-                        <i>@violation.CreationDateLocalStr</i><span>
-                                @violation.Description
-                                <a asp-controller="Violation" asp-action="Detail" asp-route-id="@violation.Id">@violation.Message</a>"
-                            </span>
+                            <a asp-controller="Violation" asp-action="Detail" asp-route-id="@violation.Id">
+                                <i>@violation.CreationDateLocalStr</i><span>
+                                    @violation.Description - @violation.Message
+                                </span>
+                            </a>
                         </li>
                     }
-                    <li>
-                        <i>01 day ago</i><span>
-                            Non numquam <a href="#">http://sd.ds/13jklf#</a>
-                            eius modi tempora incidunt ut labore et
-                            <a href="#">http://sd.ds/1389kjklf#</a>quo nulla.
-                        </span>
-                    </li>
-                    <li>
-                        <i>02 day ago</i><span>
-                            Con numquam <a href="#">http://fd.uf/56hfg#</a>
-                            eius modi tempora incidunt ut labore et
-                            <a href="#">http://fd.uf/56hfg#</a>quo nulla.
-                        </span>
-                    </li>
-                    <li>
-                        <i>03 day ago</i><span>
-                            Qon numquam <a href="#">http://gf.ds/gre21#</a>
-                            eius modi tempora incidunt ut labore et
-                            <a href="#">http://gf.ds/gre21#</a>quo nulla.
-                        </span>
-                    </li>
                 </ul>
             </div>
         </div>
