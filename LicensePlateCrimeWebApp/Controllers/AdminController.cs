@@ -185,7 +185,7 @@ namespace LicensePlateCrimeWebApp.Controllers
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> DeleteContact(string id)
     {
-      var isDeleted = await _vehicleRepository.DeleteAsync(id);
+      var isDeleted = await _contactRepository.DeleteAsync(id);
       return RedirectToAction("ContactIndex", "Admin");
     }
 

@@ -37,6 +37,22 @@
                             <li class="list-group-item">
                                 <i class="fa fa-file-text"> Mesaj:</i> @contact.Message
                             </li>
+                            <li>
+                                <div class="table-data-feature">
+                                    <a href="mailto:@contact.Email">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Yanıtla">
+                                            <i class="zmdi zmdi-mail-send"></i>
+                                        </button>
+                                    </a>
+                                    <form method="post" asp-controller="Admin" asp-action="DeleteContact">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@contact.Id" />
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </li>
                         </ul>
 
                     </section>
