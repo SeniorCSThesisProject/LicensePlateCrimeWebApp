@@ -190,18 +190,18 @@ namespace LicensePlateCrimeWebApp.Controllers
 
     //---------------Contact---------------//
 
-    //+++++++++++++++Contest+++++++++++++++//
+    //+++++++++++++++Objection+++++++++++++++//
 
 
 
-    public IActionResult ContestIndex()
+    public IActionResult ObjectionIndex()
     {
       return View();
     }
 
 
 
-    //---------------Contest---------------//
+    //---------------Objection---------------//
 
   }
 }

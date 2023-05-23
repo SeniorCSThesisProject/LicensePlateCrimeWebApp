@@ -13,6 +13,7 @@ namespace LicensePlateCrimeWebApp.Models
 
     //public Firebase.Auth.User? Owner { get; set; }
 
+    [FirestoreProperty]
     public bool IsWanted { get; set; }
 
     [FirestoreProperty]
