@@ -14,11 +14,13 @@ namespace LicensePlateCrimeWebApp.Controllers
     private readonly FirebaseAppProvider _firebaseAppProvider;
     private readonly IVehicleRepository _vehicleRepository;
     private readonly IContactRepository _contactRepository;
+    private readonly IViolationRepository _violationRepository;
 
-    public AdminController(IVehicleRepository vehicleRepository, IContactRepository contactRepository, FirebaseAppProvider firebaseAppProvider)
+    public AdminController(IVehicleRepository vehicleRepository, IContactRepository contactRepository, IViolationRepository violationRepository, FirebaseAppProvider firebaseAppProvider)
     {
       _vehicleRepository = vehicleRepository;
       _contactRepository = contactRepository;
+      _violationRepository = violationRepository;
       _firebaseAppProvider = firebaseAppProvider;
     }
 
@@ -125,31 +127,25 @@ namespace LicensePlateCrimeWebApp.Controllers
     // GET: Violation/Create
     public ActionResult AddViolation()
     {
-      var currentUser = _firebaseAppProvider.FirebaseAuthClient.User;
-      var currentUserId = currentUser.Uid;
-      var createVehicleViewModel = new CreateVehicleViewModel
-      {
-        OwnerId = currentUserId
-      };
-      return View(createVehicleViewModel);
+      var createviolationModel = new Violation();
+      return View(createviolationModel);
     }
     // POST: Violation/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> AddViolation(CreateVehicleViewModel createVehicleViewModel)
+    public async Task<ActionResult> AddViolation(Violation createviolationModel)
     {
       if (ModelState.IsValid)
       {
-        var uploadedImgUrl = await _vehicleRepository.UploadVehicleImgAsync(createVehicleViewModel.Image);
-        var vehicle = new Vehicle(createVehicleViewModel.OwnerId, createVehicleViewModel.Model, createVehicleViewModel.LicensePlate, uploadedImgUrl);
-        var id = await _vehicleRepository.AddAsync(vehicle);
-        vehicle.Id = id;
-        return RedirectToAction("VehicleIndex");
+        var violation = new Violation(createviolationModel.Model, createviolationModel.LicensePlate, createviolationModel.ViolationType, createviolationModel.Message);
+        var id = await _violationRepository.AddAsync(violation);
+        violation.Id = id;
+        return RedirectToAction("ViolationIndex", "Admin");
       }
       else
       {
-        ModelState.AddModelError("", "Photo Upload Failed");
-        return View(createVehicleViewModel);
+        ModelState.AddModelError("", "Failed");
+        return View(createviolationModel);
       }
     }
     // GET: Violation/Delete/5
