@@ -1,0 +1,76 @@
+﻿@using LicensePlateCrimeWebApp.Interfaces;
+@model LicensePlateCrimeWebApp.Models.Violation
+@inject IVehicleRepository _vehicleRepostiory
+
+@{
+    ViewData["Title"] = "Admin Paneli";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container">
+    <div class="row justify-content-lg-center">
+
+
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">İhlal Güncelle</div>
+                <div class="card-body card-block">
+                    <form method="POST" asp-controller="Admin" asp-action="UpdateViolation" enctype="multipart/form-data">
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="select" class=" form-control-label">Araç</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select asp-for="VehicleId" type="select" class="form-control">
+                                    <option value="">Lütfen araç seçiniz...</option>
+                                    @{
+                                        var vehicles = await _vehicleRepostiory.GetAllAsync();
+                                    }
+                                    @foreach (var vehicle in vehicles)
+                                    {
+                                        <option value="@vehicle.Id">@vehicle.Model - @vehicle.LicensePlate</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="select" class=" form-control-label">İhlal Tipi</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select asp-for="ViolationType" type="select" class="form-control">
+                                    <option value="">Lütfen ihlal tipi seçiniz...</option>
+                                    <option value="@ViolationTypes.NoLicense">Ehliyetsiz araç kullanma</option>
+                                    <option value="@ViolationTypes.NoSeatbelt">Emniyet kemeri takmama</option>
+                                    <option value="@ViolationTypes.ImproperLaneSwitching">Şerit izleme-değiştirme kurallarına uymama</option>
+                                    <option value="@ViolationTypes.NoInsurance">Trafik sigortası olmadan trafiğe çıkma</option>
+                                    <option value="@ViolationTypes.PedestrianPriority">Yayaya  öncelik vermeme cezası</option>
+                                    <option value="@ViolationTypes.PhoneUsage">Seyir halinde cep telefonu kullanma</option>
+                                    <option value="@ViolationTypes.FollowingDistanceTooLow">Takip mesafesine uymama</option>
+                                    <option value="@ViolationTypes.ObligatoryRepairDateDue">Aracın Zorunlu Muayenesi geçmiştir</option>
+                                    <option value="@ViolationTypes.NoParkingInDisabledSpot">Engelli için ayrılan yere park etme</option>
+                                    <option value="@ViolationTypes.EmergencyLine">Emniyet şeridini ihlal etme</option>
+                                    <option value="@ViolationTypes.MtvDebtDue">MTV borcu bulunmaktadır</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="textarea-input" class=" form-control-label">Açıklama</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <textarea asp-for="Message" type="text" style="min-height:100px;" rows="9" placeholder="Açıklamalar..." class="form-control"></textarea>
+
+                            </div>
+                        </div>
+                        <div class="form-actions form-group">
+                            <button type="submit" class="btn btn-primary btn-sm">Kaydet</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
