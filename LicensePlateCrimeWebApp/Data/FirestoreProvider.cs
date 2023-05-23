@@ -45,8 +45,8 @@ namespace LicensePlateCrimeWebApp.Data
     {
       var collection = _fireStoreDb.Collection(GetCollectionName<T>());
       var snapshot = await collection.GetSnapshotAsync();
-      //return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
-      return snapshot.Documents.Select(x => { var entity = x.ConvertTo<T>(); entity.Id = x.Id; return entity; }).ToList();
+      return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
+      //return snapshot.Documents.Select(x => { var entity = x.ConvertTo<T>(); entity.Id = x.Id; return entity; }).ToList();
     }
 
     public async Task<IReadOnlyCollection<T>> WhereEqualTo<T>(string fieldPath, object value) where T : IFirestoreEntity
@@ -59,8 +59,8 @@ namespace LicensePlateCrimeWebApp.Data
     private static async Task<IReadOnlyCollection<T>> GetList<T>(Query query) where T : IFirestoreEntity
     {
       var snapshot = await query.GetSnapshotAsync();
-      return snapshot.Documents.Select(x => { var entity = x.ConvertTo<T>(); entity.Id = x.Id; return entity; }).ToList();
-      //return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
+      //return snapshot.Documents.Select(x => { var entity = x.ConvertTo<T>(); entity.Id = x.Id; return entity; }).ToList();
+      return snapshot.Documents.Select(x => x.ConvertTo<T>()).ToList();
     }
 
     // Storage Stuff

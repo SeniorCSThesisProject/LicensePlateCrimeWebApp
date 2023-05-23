@@ -1,5 +1,4 @@
 ﻿using Google.Cloud.Firestore;
-using LicensePlateCrimeWebApp.Interfaces;
 
 namespace LicensePlateCrimeWebApp.Models
 {
@@ -21,7 +20,7 @@ namespace LicensePlateCrimeWebApp.Models
 
 
   [FirestoreData]
-  public class Violation : IFirestoreEntity
+  public class Violation : FirestoreEntity
   {
     public Dictionary<ViolationTypes, string> ViolationTypeDescriptions = new()
     {
@@ -38,8 +37,6 @@ namespace LicensePlateCrimeWebApp.Models
       { ViolationTypes.MtvDebtDue, "MTV borcu bulunmaktadır" }
     };
 
-    public string Id { get; set; } = "";
-
     [FirestoreProperty]
     public string VehicleId { get; set; }
 
@@ -51,26 +48,12 @@ namespace LicensePlateCrimeWebApp.Models
 
     [FirestoreProperty]
     public string Message { get; set; }
-
-
-    [FirestoreProperty]
-    public DateTime? CreationDate { get; set; }
-
-    [FirestoreProperty]
-    public DateTime? LastUpdateDate { get; set; }
-
-    public DateTime? GetLocalCreationDate => CreationDate?.ToLocalTime();
-
-    public DateTime? GetLocalLastUpdatedDate => LastUpdateDate?.ToLocalTime();
-
     public Violation(string vehicleId, ViolationTypes vioalationType, string message)
     {
       VehicleId = vehicleId;
       ViolationType = vioalationType;
       Description = ViolationTypeDescriptions[vioalationType];
       Message = message;
-      CreationDate = DateTime.UtcNow;
-      LastUpdateDate = DateTime.UtcNow;
     }
     public Violation()
     {

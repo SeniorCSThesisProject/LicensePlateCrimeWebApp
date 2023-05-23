@@ -4,6 +4,7 @@ namespace LicensePlateCrimeWebApp.Interfaces
 {
   public interface IFirestoreEntity
   {
+    [FirestoreDocumentId]
     public string Id { get; set; }
 
     [FirestoreProperty]
@@ -12,8 +13,8 @@ namespace LicensePlateCrimeWebApp.Interfaces
     [FirestoreProperty]
     public DateTime? LastUpdateDate { get; set; }
 
-    public DateTime? GetLocalCreationDate { get; }
-    public DateTime? GetLocalLastUpdatedDate { get; }
+    public string? CreationDateLocalStr { get; }
+    public string? LastUpdateDateLocalStr { get; }
 
   }
 }

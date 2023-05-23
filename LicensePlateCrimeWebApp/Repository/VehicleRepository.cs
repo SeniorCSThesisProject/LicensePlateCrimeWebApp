@@ -62,5 +62,10 @@ namespace LicensePlateCrimeWebApp.Repository
     {
       return await _firestoreProvider.UploadImageAsync(imgFile);
     }
+
+    public async Task<IEnumerable<Violation>> GetAllViolationsByVehicleIdAsync(string id)
+    {
+      return await _firestoreProvider.WhereEqualTo<Violation>(nameof(Violation.VehicleId), id);
+    }
   }
 }
