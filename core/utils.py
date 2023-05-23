@@ -7,20 +7,30 @@ import pytesseract
 from core.config import cfg
 import re
 
-import pypyodbc
 
 # If you don't have tesseract executable in your PATH, include the following:
 # pytesseract.pytesseract.tesseract_cmd = r'<full_path_to_your_tesseract_executable>'
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
 
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import firestore
 
-db = pypyodbc.connect(
-    'Driver={SQL Server};'
-    'Server=LAPTOP-GJPOVRTV;'
-    'Database=proje;'
-    'Trusted_Connection=True;'
-)
-imlec = db.cursor()
+# Use the private key file of the service account directly.
+cred = credentials.Certificate("./service_account_key.json")
+app = firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+vehicles_ref = db.collection('Vehicles')
+vehicle_docs = vehicles_ref.stream()
+
+vehicles = []
+for vehicle_doc in vehicle_docs:
+    license_plate = vehicle_doc.get('LicensePlate')
+    is_wanted = vehicle_doc.get('IsWanted')
+    vehicles.append({'license_plate': license_plate, 'is_wanted': is_wanted})
+print(vehicles)
+
 # function to recognize license plate numbers using Tesseract OCR
 def recognize_plate(img, coords):
     # separate coordinates from box
@@ -62,11 +72,19 @@ def recognize_plate(img, coords):
     clean_text = re.sub('[\W_]+', '', text)
     plate_num = clean_text
 
-    if plate_num != None:      
+    # if plate_num != None:      
+    #     if len(plate_num)>5:
+    #         # sonuc=imlec.execute('SELECT * FROM araclar WHERE plaka=? AND ceza=?',(plate_num,0))
+    #         # araclar = imlec.fetchall()
+    #         araclar = vehicles_ref.where(u'plate', u'==', plate_num).where(u'penalty', u'==', 0).stream();
+    #         if len(araclar)>0:
+    #             print("Cezali License Plate #: ", plate_num)
+    #             return "CEZALI ->" + plate_num
+    #         else:
+    #             print("License Plate #: ", plate_num)
+    if plate_num != None:
         if len(plate_num)>5:
-            sonuc=imlec.execute('SELECT * FROM araclar WHERE plaka=? AND ceza=?',(plate_num,0))
-            araclar = imlec.fetchall()
-            if len(araclar)>0:
+            if any(plate_num == vehicle.get('license_plate') for vehicle in vehicles):
                 print("Cezali License Plate #: ", plate_num)
                 return "CEZALI ->" + plate_num
             else:
