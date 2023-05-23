@@ -46,7 +46,7 @@ namespace LicensePlateCrimeWebApp.Repository
       throw new NotImplementedException();
     }
 
-    public async Task<Vehicle> GetVehicleByViolationIdAsync(string id)
+    public async Task<Vehicle> GetVehicleByIdAsync(string id)
     {
       return await _vehicleRepository.GetByIdAsync(id);
     }

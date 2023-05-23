@@ -42,7 +42,7 @@
                     
                         @foreach (var violation in Model)
                         {
-                            var vehicle = await _violationRepository.GetVehicleByViolationIdAsync(violation.VehicleId);
+                            var vehicle = await _violationRepository.GetVehicleByIdAsync(violation.VehicleId);
                           
                             <tr class="tr-shadow">
                             <td>@vehicle.Model</td>
