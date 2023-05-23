@@ -30,12 +30,12 @@
                 <thead>
                     <tr>
                         <th style="width:10%">MODEL</th>
-                        <th style="width:15%">PLAKA</th>
+                        <th style="width:10%">PLAKA</th>
                         <th style="width:20%">İHLAL TİPİ</th>
                         <th style="width:25%">AÇIKLAMA</th>
-                        <th style="width:10%">KAYIT TARİHİ</th>
-                        <th style="width:10%">GÜNCELLEME TARİHİ</th>
-                        <th style="text-align:center; width:10%">İŞLEMLER</th>
+                        <th style="width:12%">KAYIT TARİHİ</th>
+                        <th style="width:12%">GÜNCELLEME TARİHİ</th>
+                        <th style="text-align:center; width:9%">İŞLEMLER</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,7 +47,7 @@
                             <tr class="tr-shadow">
                             <td>@vehicle.Model</td>
                             <td>@vehicle.LicensePlate</td>
-                            <td>@($"{@violation.ViolationType} - {@violation.Description}")</td>
+                            <td>@violation.Description</td>
                             <td>@violation.Message</td>
                             <td>@violation.GetLocalCreationDate?.ToString(dateTimeFormat)</td>
                             <td>@violation.GetLocalLastUpdatedDate?.ToString(dateTimeFormat)</td>
