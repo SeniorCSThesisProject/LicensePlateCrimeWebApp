@@ -1,4 +1,4 @@
-﻿@model LicensePlateCrimeWebApp.ViewModels.CreateVehicleViewModel
+﻿@model LicensePlateCrimeWebApp.Models.Violation
 @{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -12,18 +12,19 @@
             <div class="card">
                 <div class="card-header">İhlal Ekle</div>
                 <div class="card-body card-block">
-                    <form method="POST" asp-controller="Admin" asp-action="Create" enctype="multipart/form-data">
-                        <input type="hidden" id="OwnerId" name="OwnerId" asp-for="OwnerId" />
+                    <form method="POST" asp-controller="Admin" asp-action="AddViolation" enctype="multipart/form-data">
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon">Model</div>
                                 <input asp-for="Model" type="text" class="form-control">
+                               
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon">Plaka</div>
                                 <input asp-for="LicensePlate" type="text" class="form-control">
+                                
                             </div>
                         </div>                       
                         <div class="row form-group">
@@ -31,8 +32,8 @@
                                 <label for="select" class=" form-control-label">İhlal Tipi</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <select name="select" id="select" class="form-control">
-                                    <option>Lütfen ihlal tipi seçiniz...</option>
+                                <select asp-for="ViolationType" type="select" name="select" id="select" class="form-control">
+                                    <option value="">Lütfen ihlal tipi seçiniz...</option>
                                     <option value="Ehliyetsiz araç kullanma">Ehliyetsiz araç kullanma</option>
                                     <option value="Emniyet kemeri takmama">Emniyet kemeri takmama</option>
                                     <option value="Şerit izleme-değiştirme kurallarına uymama">Şerit izleme-değiştirme kurallarına uymama</option>
@@ -45,6 +46,7 @@
                                     <option value="Emniyet şeridini ihlal etme">Emniyet şeridini ihlal etme</option>
                                     <option value="MTV borcu bulunmaktadır">MTV borcu bulunmaktadır</option>
                                 </select>
+                                
                             </div>
                         </div>
                         <div class="row form-group">
@@ -52,7 +54,8 @@
                                 <label for="textarea-input" class=" form-control-label">Açıklama</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <textarea style="min-height:100px;" name="textarea-input" id="textarea-input" rows="9" placeholder="Açıklamalar..." class="form-control"></textarea>
+                                <textarea asp-for="Message" type="text" style="min-height:100px;" name="textarea-input" id="textarea-input" rows="9" placeholder="Açıklamalar..." class="form-control"></textarea>
+                                
                             </div>
                         </div>
                         <div class="form-actions form-group">

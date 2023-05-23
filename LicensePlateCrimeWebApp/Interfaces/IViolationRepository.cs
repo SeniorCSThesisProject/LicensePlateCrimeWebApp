@@ -1,0 +1,17 @@
+﻿using LicensePlateCrimeWebApp.Models;
+
+namespace LicensePlateCrimeWebApp.Interfaces
+{
+  public interface IViolationRepository
+  {
+    Task<IEnumerable<Violation>> GetAllAsync();
+    Task<Violation> GetByIdAsync(string id);
+    Task<Violation> GetByIdNoTrackingAsync(string id);
+    Task<Violation> GetByLicensePlateAsync(string id);
+
+    Task<string> AddAsync(Violation violation);
+    Task<bool> UpdateAsync(Violation violation);
+    Task<bool> DeleteAsync(string id);
+    Task<bool> SaveAsync();
+  }
+}
