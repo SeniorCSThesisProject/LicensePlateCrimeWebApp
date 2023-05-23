@@ -13,6 +13,8 @@ namespace LicensePlateCrimeWebApp.Models
 
     //public Firebase.Auth.User? Owner { get; set; }
 
+    public bool IsWanted { get; set; }
+
     [FirestoreProperty]
     public string Model { get; set; }
 
@@ -30,9 +32,10 @@ namespace LicensePlateCrimeWebApp.Models
     public DateTime? GetLocalCreationDate => CreationDate?.ToLocalTime();
     public DateTime? GetLocalLastUpdatedDate => LastUpdateDate?.ToLocalTime();
 
-    public Vehicle(string ownerId, string model, string licensePlate, string imageUrl)
+    public Vehicle(string ownerId, string model, string licensePlate, string imageUrl, bool isWanted = false)
     {
       OwnerId = ownerId;
+      IsWanted = isWanted;
       Model = model;
       LicensePlate = licensePlate;
       ImageUrl = imageUrl;

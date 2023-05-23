@@ -5,6 +5,8 @@ namespace LicensePlateCrimeWebApp.Interfaces
   public interface IViolationRepository
   {
     Task<IEnumerable<Violation>> GetAllAsync();
+
+    Task<Vehicle> GetVehicleByViolationIdAsync(string id);
     Task<Violation> GetByIdAsync(string id);
     Task<Violation> GetByIdNoTrackingAsync(string id);
     Task<Violation> GetByLicensePlateAsync(string id);

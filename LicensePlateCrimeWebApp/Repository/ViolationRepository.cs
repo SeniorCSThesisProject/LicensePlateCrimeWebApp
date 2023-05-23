@@ -7,10 +7,12 @@ namespace LicensePlateCrimeWebApp.Repository
   public class ViolationRepository : IViolationRepository
   {
     private readonly FirestoreProvider _firestoreProvider;
+    private readonly IVehicleRepository _vehicleRepository;
 
-    public ViolationRepository(FirestoreProvider firestoreProvider)
+    public ViolationRepository(FirestoreProvider firestoreProvider, IVehicleRepository vehicleRepository)
     {
       _firestoreProvider = firestoreProvider;
+      _vehicleRepository = vehicleRepository;
     }
 
     public async Task<string> AddAsync(Violation Violation)
@@ -42,6 +44,11 @@ namespace LicensePlateCrimeWebApp.Repository
     public Task<Violation> GetByLicensePlateAsync(string id)
     {
       throw new NotImplementedException();
+    }
+
+    public async Task<Vehicle> GetVehicleByViolationIdAsync(string id)
+    {
+      return await _vehicleRepository.GetByIdAsync(id);
     }
 
     public Task<bool> SaveAsync()

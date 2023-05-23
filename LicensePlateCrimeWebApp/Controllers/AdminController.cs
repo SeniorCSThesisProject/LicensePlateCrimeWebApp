@@ -1,11 +1,8 @@
-﻿using FirebaseAdmin.Auth;
-using LicensePlateCrimeWebApp.Data;
+﻿using LicensePlateCrimeWebApp.Data;
 using LicensePlateCrimeWebApp.Interfaces;
 using LicensePlateCrimeWebApp.Models;
 using LicensePlateCrimeWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using NuGet.Packaging.Signing;
-using System.Text;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
@@ -137,7 +134,7 @@ namespace LicensePlateCrimeWebApp.Controllers
     {
       if (ModelState.IsValid)
       {
-        var violation = new Violation(createviolationModel.Model, createviolationModel.LicensePlate, createviolationModel.ViolationType, createviolationModel.Message);
+        var violation = new Violation(createviolationModel.VehicleId, createviolationModel.ViolationType, createviolationModel.Message);
         var id = await _violationRepository.AddAsync(violation);
         violation.Id = id;
         return RedirectToAction("ViolationIndex", "Admin");
@@ -174,7 +171,7 @@ namespace LicensePlateCrimeWebApp.Controllers
     {
       var contact = await _contactRepository.GetAllAsync();
       return View(contact);
-      
+
     }
     // GET: Contact/Delete/5
     public ActionResult DeleteContact(int id)

@@ -1,4 +1,7 @@
-﻿@model LicensePlateCrimeWebApp.Models.Violation
+﻿@using LicensePlateCrimeWebApp.Interfaces;
+@model LicensePlateCrimeWebApp.Models.Violation
+@inject IVehicleRepository _vehicleRepostiory
+
 @{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
@@ -6,47 +9,50 @@
 
 <div class="container">
     <div class="row justify-content-lg-center">
-       
+
 
         <div class="col-lg-8">
             <div class="card">
                 <div class="card-header">İhlal Ekle</div>
                 <div class="card-body card-block">
                     <form method="POST" asp-controller="Admin" asp-action="AddViolation" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">Model</div>
-                                <input asp-for="Model" type="text" class="form-control">
-                               
+                        <div class="row form-group">
+                            <div class="col col-md-3">
+                                <label for="select" class=" form-control-label">Araç</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <select asp-for="VehicleId" type="select" class="form-control">
+                                    <option value="">Lütfen araç seçiniz...</option>
+                                    @{
+                                        var vehicles = await _vehicleRepostiory.GetAllAsync();
+                                    }
+                                    @foreach (var vehicle in vehicles)
+                                    {
+                                        <option value="@vehicle.Id">@vehicle.Model - @vehicle.LicensePlate</option>
+                                    }
+                                </select>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group">
-                                <div class="input-group-addon">Plaka</div>
-                                <input asp-for="LicensePlate" type="text" class="form-control">
-                                
-                            </div>
-                        </div>                       
                         <div class="row form-group">
                             <div class="col col-md-3">
                                 <label for="select" class=" form-control-label">İhlal Tipi</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <select asp-for="ViolationType" type="select" name="select" id="select" class="form-control">
+                                <select asp-for="ViolationType" type="select" class="form-control">
                                     <option value="">Lütfen ihlal tipi seçiniz...</option>
-                                    <option value="Ehliyetsiz araç kullanma">Ehliyetsiz araç kullanma</option>
-                                    <option value="Emniyet kemeri takmama">Emniyet kemeri takmama</option>
-                                    <option value="Şerit izleme-değiştirme kurallarına uymama">Şerit izleme-değiştirme kurallarına uymama</option>
-                                    <option value="Trafik sigortası olmadan trafiğe çıkma">Trafik sigortası olmadan trafiğe çıkma</option>
-                                    <option value="Yayaya  öncelik vermeme cezası">Yayaya  öncelik vermeme cezası</option>
-                                    <option value="Seyir halinde cep telefonu kullanma">Seyir halinde cep telefonu kullanma</option>
-                                    <option value="Takip mesafesine uymama">Takip mesafesine uymama</option>
-                                    <option value="Aracın Zorunlu Muayenesi geçmiştir">Aracın Zorunlu Muayenesi geçmiştir</option>
-                                    <option value="Engelli için ayrılan yere park etme">Engelli için ayrılan yere park etme</option>
-                                    <option value="Emniyet şeridini ihlal etme">Emniyet şeridini ihlal etme</option>
-                                    <option value="MTV borcu bulunmaktadır">MTV borcu bulunmaktadır</option>
+                                    <option value="@ViolationTypes.NoLicense">Ehliyetsiz araç kullanma</option>
+                                    <option value="@ViolationTypes.NoSeatbelt">Emniyet kemeri takmama</option>
+                                    <option value="@ViolationTypes.ImproperLaneSwitching">Şerit izleme-değiştirme kurallarına uymama</option>
+                                    <option value="@ViolationTypes.NoInsurance">Trafik sigortası olmadan trafiğe çıkma</option>
+                                    <option value="@ViolationTypes.PedestrianPriority">Yayaya  öncelik vermeme cezası</option>
+                                    <option value="@ViolationTypes.PhoneUsage">Seyir halinde cep telefonu kullanma</option>
+                                    <option value="@ViolationTypes.FollowingDistanceTooLow">Takip mesafesine uymama</option>
+                                    <option value="@ViolationTypes.ObligatoryRepairDateDue">Aracın Zorunlu Muayenesi geçmiştir</option>
+                                    <option value="@ViolationTypes.NoParkingInDisabledSpot">Engelli için ayrılan yere park etme</option>
+                                    <option value="@ViolationTypes.EmergencyLine">Emniyet şeridini ihlal etme</option>
+                                    <option value="@ViolationTypes.MtvDebtDue">MTV borcu bulunmaktadır</option>
                                 </select>
-                                
+
                             </div>
                         </div>
                         <div class="row form-group">
@@ -54,8 +60,8 @@
                                 <label for="textarea-input" class=" form-control-label">Açıklama</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <textarea asp-for="Message" type="text" style="min-height:100px;" name="textarea-input" id="textarea-input" rows="9" placeholder="Açıklamalar..." class="form-control"></textarea>
-                                
+                                <textarea asp-for="Message" type="text" style="min-height:100px;" rows="9" placeholder="Açıklamalar..." class="form-control"></textarea>
+
                             </div>
                         </div>
                         <div class="form-actions form-group">
@@ -65,6 +71,6 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
 </div>
