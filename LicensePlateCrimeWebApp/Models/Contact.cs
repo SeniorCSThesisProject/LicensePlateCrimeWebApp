@@ -1,13 +1,11 @@
 ﻿using Google.Cloud.Firestore;
-using LicensePlateCrimeWebApp.Interfaces;
 using System.ComponentModel.DataAnnotations;
 
 namespace LicensePlateCrimeWebApp.Models
 {
   [FirestoreData]
-  public class Contact : IFirestoreEntity
+  public class Contact : FirestoreEntity
   {
-    public string Id { get; set; } = "";
     [FirestoreProperty]
     [Required(ErrorMessage = "Ad soyad zorunludur.")]
     public string Name { get; set; }
@@ -31,16 +29,6 @@ namespace LicensePlateCrimeWebApp.Models
     [MinLength(5, ErrorMessage = "En az 5 karakterden oluşan mesaj gönderiniz.")]
     public string Message { get; set; }
 
-
-    [FirestoreProperty]
-    public DateTime? CreationDate { get; set; }
-
-    [FirestoreProperty]
-    public DateTime? LastUpdateDate { get; set; }
-
-    public DateTime? GetLocalCreationDate => CreationDate?.ToLocalTime();
-
-    public DateTime? GetLocalLastUpdatedDate => LastUpdateDate?.ToLocalTime();
     public Contact(string name, string email, string telephone, string subject, string message)
     {
       Name = name;
@@ -48,8 +36,6 @@ namespace LicensePlateCrimeWebApp.Models
       Telephone = telephone;
       Subject = subject;
       Message = message;
-      CreationDate = DateTime.UtcNow;
-      LastUpdateDate = DateTime.UtcNow;
     }
 
     public Contact()

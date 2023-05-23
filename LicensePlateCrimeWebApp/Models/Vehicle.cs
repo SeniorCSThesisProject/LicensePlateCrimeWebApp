@@ -1,13 +1,10 @@
 ﻿using Google.Cloud.Firestore;
-using LicensePlateCrimeWebApp.Interfaces;
 
 namespace LicensePlateCrimeWebApp.Models
 {
   [FirestoreData]
-  public class Vehicle : IFirestoreEntity
+  public class Vehicle : FirestoreEntity
   {
-    public string Id { get; set; } = "";
-
     [FirestoreProperty]
     public string OwnerId { get; set; }
 
@@ -25,14 +22,6 @@ namespace LicensePlateCrimeWebApp.Models
     [FirestoreProperty]
     public string ImageUrl { get; set; }
 
-    [FirestoreProperty]
-    public DateTime? CreationDate { get; set; }
-
-    [FirestoreProperty]
-    public DateTime? LastUpdateDate { get; set; }
-    public DateTime? GetLocalCreationDate => CreationDate?.ToLocalTime();
-    public DateTime? GetLocalLastUpdatedDate => LastUpdateDate?.ToLocalTime();
-
     public Vehicle(string ownerId, string model, string licensePlate, string imageUrl, bool isWanted = false)
     {
       OwnerId = ownerId;
@@ -40,8 +29,6 @@ namespace LicensePlateCrimeWebApp.Models
       Model = model;
       LicensePlate = licensePlate;
       ImageUrl = imageUrl;
-      CreationDate = DateTime.UtcNow;
-      LastUpdateDate = DateTime.UtcNow;
     }
     public Vehicle()
     {

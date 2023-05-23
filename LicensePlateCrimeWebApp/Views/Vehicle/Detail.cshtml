@@ -2,6 +2,7 @@
 @using LicensePlateCrimeWebApp.Interfaces;
 @model Vehicle;
 @inject FirebaseAppProvider firebaseAppProvider;
+@inject IVehicleRepository _vehicleRepository;
 
 <style>
     .vertical-align {
@@ -13,8 +14,6 @@
 
 @{
     var owner = await firebaseAppProvider.FirebaseAdminAuth.GetUserAsync(Model.OwnerId);
-    var dateFormat = "dd/MM/yyyy";
-    var dateTimeFormat = "dd/MM/yyyy - HH:mm";
 }
 
 <!-- single -->
@@ -46,7 +45,7 @@
                         <img src="~/images/date_created_graphic.png" alt=" " class="img-responsive" />
                     </div>
                     <div class="agileits_recent_posts_gridr col-md-6">
-                        <h4>@Model.GetLocalCreationDate?.ToString(dateTimeFormat)</h4>
+                        <h4>@Model.CreationDateLocalStr</h4>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -55,7 +54,7 @@
                         <img src="~/images/date_updated_graphic.png" alt=" " class="img-responsive" />
                     </div>
                     <div class="agileits_recent_posts_gridr col-md-6">
-                        <h4>@Model.GetLocalLastUpdatedDate?.ToString(dateTimeFormat)</h4>
+                        <h4>@Model.LastUpdateDateLocalStr</h4>
                     </div>
                     <div class="clearfix"> </div>
                 </div>
@@ -88,6 +87,16 @@
             <div class="agileits_twitter_posts">
                 <h3>Violations</h3>
                 <ul>
+                    @{var violations = await _vehicleRepository.GetAllViolationsByVehicleIdAsync(Model.Id);}
+                    @foreach(var violation in violations)
+                    {
+                        <li>
+                        <i>@violation.CreationDateLocalStr</i><span>
+                                @violation.Description
+                                <a asp-controller="Violation" asp-action="Detail" asp-route-id="@violation.Id">@violation.Message</a>"
+                            </span>
+                        </li>
+                    }
                     <li>
                         <i>01 day ago</i><span>
                             Non numquam <a href="#">http://sd.ds/13jklf#</a>
@@ -115,7 +124,7 @@
         <div class="col-md-8 agile_single_right">
             <div class="w3_comments">
                 <ul>
-                    <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>@Model.CreationDate?.ToString(dateFormat)</li>
+                    <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>@Model.CreationDateLocalStr</li>
                     <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="#">@owner.Email</a></li>
                     <li>
                         <span class="glyphicon" aria-hidden="true">

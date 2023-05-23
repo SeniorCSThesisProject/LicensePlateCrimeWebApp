@@ -9,6 +9,7 @@ namespace LicensePlateCrimeWebApp.Interfaces
     Task<Vehicle> GetByIdAsync(string id);
     Task<Vehicle> GetByIdNoTrackingAsync(string id);
     Task<Vehicle> GetByLicensePlateAsync(string id);
+    Task<IEnumerable<Violation>> GetAllViolationsByVehicleIdAsync(string id);
 
     Task<string> UploadVehicleImgAsync(IFormFile imgFile);
     Task<string> AddAsync(Vehicle vehicle);

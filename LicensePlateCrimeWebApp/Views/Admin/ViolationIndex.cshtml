@@ -8,8 +8,6 @@
 @{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-    var dateFormat = "dd/MM/yyyy";
-    var dateTimeFormat = "dd/MM/yyyy - HH:mm";
 }
 
 <div class="row">
@@ -49,8 +47,8 @@
                             <td>@vehicle.LicensePlate</td>
                             <td>@violation.Description</td>
                             <td>@violation.Message</td>
-                            <td>@violation.GetLocalCreationDate?.ToString(dateTimeFormat)</td>
-                            <td>@violation.GetLocalLastUpdatedDate?.ToString(dateTimeFormat)</td>
+                            <td>@violation.CreationDateLocalStr</td>
+                            <td>@violation.LastUpdateDateLocalStr</td>
                             <td>
                                 <div class="table-data-feature">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
