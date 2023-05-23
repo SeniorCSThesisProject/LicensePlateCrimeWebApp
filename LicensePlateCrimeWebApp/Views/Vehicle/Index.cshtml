@@ -26,7 +26,7 @@
             {
                 @foreach (var vehicle in Model.OrderByDescending(v => v.CreationDate))
                 {
-                    <div class="col-md-4 wthree_special_service_left">
+                    <div class="col-md-4 wthree_special_service_left form-group">
                         <a asp-controller="Vehicle" asp-action="Detail" asp-route-id="@vehicle.Id">
                             <img src=@vehicle.ImageUrl alt=" " class="" />
                             <h4>@vehicle.Model (@vehicle.LicensePlate)</h4>
