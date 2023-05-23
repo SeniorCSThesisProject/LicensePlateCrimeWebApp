@@ -1,7 +1,10 @@
-﻿@model IEnumerable<Vehicle>
+﻿@using FirebaseAdmin.Auth;
+@model IAsyncEnumerator<ExportedUserRecord>
 @{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var dateFormat = "dd/MM/yyyy";
+    var dateTimeFormat = "dd/MM/yyyy - HH:mm";
 }
 
 <!-- USER DATA-->
@@ -9,6 +12,7 @@
     <h3 class="title-3 m-b-30">
         <i class="zmdi zmdi-account-calendar"></i>Kullanıcılar
     </h3>
+
     <div class="table-responsive table-data">
         <table class="table">
             <thead>
@@ -21,36 +25,39 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <div class="table-data__info">
-                            <i>admin@gmail.com</i>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="role admin">admin</span>
-                    </td>
-                    <td>
-                        
-                    </td>
-                    <td>
-                        
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="table-data__info">
-                            <i>raif77@gmail.com</i>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="role user">user</span>
-                    </td>
-                    <td>
-                    </td>
-                    <td>
-                    </td>
-                </tr>
+                @while (await Model.MoveNextAsync())
+                {
+                    ExportedUserRecord user = Model.Current;
+                    <tr>
+                        <td>
+                            <div class="table-data__info">
+                                <i>@user.Email</i>
+                            </div>
+                        </td>
+                        <td>
+                            @if (@user.Email == "admin@gmail.com") {
+                                <span class="role admin">admin</span>
+                            }
+                            else
+                            {
+                                <span class="role user">user</span>
+                            }
+                        </td>
+                        <td>@user.UserMetaData.CreationTimestamp?.ToLocalTime().ToString(dateTimeFormat) </td>
+                        <td>@user.UserMetaData.LastSignInTimestamp?.ToLocalTime().ToString(dateTimeFormat)</td>
+                        <td>
+                            <div class="table-data-feature">
+                                <form method="post" asp-controller="Admin" asp-action="DeleteUser">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@user.Uid" />
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                }
             </tbody>
         </table>
     </div>

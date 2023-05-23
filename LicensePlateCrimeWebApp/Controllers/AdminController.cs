@@ -1,8 +1,10 @@
-﻿using LicensePlateCrimeWebApp.Data;
+﻿using FirebaseAdmin.Auth;
+using LicensePlateCrimeWebApp.Data;
 using LicensePlateCrimeWebApp.Interfaces;
 using LicensePlateCrimeWebApp.Models;
 using LicensePlateCrimeWebApp.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Packaging.Signing;
 using System.Text;
 
 namespace LicensePlateCrimeWebApp.Controllers
@@ -85,11 +87,27 @@ namespace LicensePlateCrimeWebApp.Controllers
 
 
 
-    public IActionResult Index()
+    public async Task<ActionResult> Index()
+    {
+      // Iterate through all users. This will still retrieve users in batches,
+      // buffering no more than 1000 users in memory at a time.
+      var enumerator = _firebaseAppProvider.FirebaseAdminAuth.ListUsersAsync(null).GetAsyncEnumerator();
+      return View(enumerator);
+    }
+    // GET: Contact/Delete/5
+    public ActionResult DeleteUser(int id)
     {
       return View();
     }
-
+    // POST: Contact/Delete/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> DeleteUser(string id)
+    {
+      //var isDeleted = await _firebaseAppProvider.FirebaseAdminAuth.DeleteUsersAsync(id);
+      //return RedirectToAction("Index", "Admin");
+      return View();
+    }
 
 
     //---------------Index---------------//
