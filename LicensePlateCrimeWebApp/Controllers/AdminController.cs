@@ -116,9 +116,11 @@ namespace LicensePlateCrimeWebApp.Controllers
 
 
 
-    public IActionResult ViolationIndex()
+    public async Task<ActionResult> ViolationIndex()
     {
-      return View();
+      var violation = await _violationRepository.GetAllAsync();
+      //var vehicles = await _vehicleRepository.GetAllFromUserIdAsync(_firebaseAppProvider.FirebaseAuthClient.User.Uid);
+      return View(violation);
     }
 
     // GET: Violation/Create

@@ -1,6 +1,15 @@
-﻿@{
+﻿@using LicensePlateCrimeWebApp.Data;
+@using LicensePlateCrimeWebApp.Interfaces;
+
+@inject IViolationRepository _violationRepository
+@model IEnumerable<Violation>
+@inject FirebaseAppProvider firebaseAppProvider;
+
+@{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var dateFormat = "dd/MM/yyyy";
+    var dateTimeFormat = "dd/MM/yyyy - HH:mm";
 }
 
 <div class="row">
@@ -30,25 +39,31 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr class="tr-shadow">
-                        <td>Seat Arona</td>
-                        <td>77 AB 077</td>
-                        <td>MTV borcu bulunmaktadır</td>
-                        <td>MTV 2021/2.Dönem borcu : 878 TL</td>
-                        <td>21.03.2023</td>
-                        <td>23.05.2023</td>
-                        <td>
-                            <div class="table-data-feature">
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
-                                    <i class="zmdi zmdi-edit"></i>
-                                </button>
-                                <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
-                                    <i class="zmdi zmdi-delete"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-
+                    
+                        @foreach (var violation in Model)
+                        {
+                            var vehicle = await _violationRepository.GetVehicleByViolationIdAsync(violation.VehicleId);
+                          
+                            <tr class="tr-shadow">
+                            <td>@vehicle.Model</td>
+                            <td>@vehicle.LicensePlate</td>
+                            <td>@violation.ViolationType</td>
+                            <td>@violation.Message</td>
+                            <td>@violation.GetLocalCreationDate?.ToString(dateTimeFormat)</td>
+                            <td>@violation.GetLocalLastUpdatedDate?.ToString(dateTimeFormat)</td>
+                            <td>
+                                <div class="table-data-feature">
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                                        <i class="zmdi zmdi-edit"></i>
+                                    </button>
+                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                        <i class="zmdi zmdi-delete"></i>
+                                    </button>
+                                </div>
+                            </td>
+                            
+                            </tr>
+                        }
                 </tbody>
             </table>
         </div>
