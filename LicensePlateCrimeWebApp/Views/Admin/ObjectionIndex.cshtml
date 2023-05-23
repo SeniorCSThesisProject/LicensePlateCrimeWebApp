@@ -12,7 +12,8 @@
                         <i class="zmdi zmdi-comment-text"></i>İtirazlar
                     </h3>
                     <button class="au-btn-plus">
-                        <i class="zmdi zmdi-plus"></i>
+                        <a asp-area="" asp-controller="Admin" asp-action="ObjectionIndex">
+                        <i class="zmdi zmdi-undo"></i></a>
                     </button>
                 </div>
                 <div class="au-inbox-wrap js-inbox-wrap">
@@ -42,7 +43,7 @@
                            
                         </div>
                         <div class="au-message__footer">
-                            <button class="au-btn au-btn-load js-load-btn">load more</button>
+                            <button class="au-btn au-btn-load js-load-btn">Daha Fazla</button>
                         </div>
                     </div>
                     <div class="au-chat">
@@ -60,7 +61,6 @@
                         </div>
                         <div class="au-chat__content">
                             <div class="recei-mess-wrap">
-                                <span class="mess-time">23.05.2023 - 17:55</span>
                                 <div class="recei-mess__inner">
                                     <div class="avatar avatar--tiny">
                                         <img src="~/CoolAdmin-master/images/icon/avatar-04.jpg" alt="John Smith">
@@ -72,7 +72,6 @@
                                 </div>
                             </div>
                             <div class="send-mess-wrap">
-                                <span class="mess-time">23.05.2023 - 22:15</span>
                                 <div class="send-mess__inner">
                                     <div class="send-mess-list">
                                         <div class="send-mess">Lorem ipsum dolor sit amet, consectetur adipiscing elit non iaculis</div>
@@ -80,11 +79,16 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="au-chat-textfield">
-                            <form class="au-form-icon">
-                                <input class="au-input au-input--full au-input--h65" type="text" placeholder="Yanıtla">
-                                <button type="submit" class="btn btn-primary btn-sm" style="width:auto;height:64px;">Gönder</button>
-                            </form>
+                        <div class="row justify-content-lg-center">
+                            <div class="col-lg-8">
+                                <div class="input-group">
+                                    <input type="email" id="input2-group2" placeholder="Yanıtla" class="form-control">
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary">Gönder</button>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>

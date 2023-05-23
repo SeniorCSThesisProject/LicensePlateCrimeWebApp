@@ -8,57 +8,41 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        <!-- DATA TABLE -->
-        <h3 class="title-5 m-b-35">İLETİŞİM MESAJLARI</h3>
-        <div class="table-responsive table-responsive-data2">
-            <table class="table table-data2">
-                <thead>
-                    <tr>
-                        <th>E-MAİL</th>
-                        <th>AD SOYAD</th>
-                        <th>KONU</th>
-                        <th>TELEFON</th>
-                        <th>MESAJ</th>
-                        <th style="text-align:center">İŞLEMLER</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var contact in Model)
-                    {
-                        <tr class="tr-shadow">
-                            <td>
-                                <span class="block-email">@contact.Email</span>
-                            </td>
-                            <td>@contact.Name</td>
-                            <td>@contact.Subject</td>
-                            <td>@contact.Telephone</td>
-                            <td>@contact.Message</td>
-                            <td>
-                                <div class="table-data-feature">
-                                    <a href="mailto:@contact.Email">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Yanıtla">
-                                            <i class="zmdi zmdi-mail-send"></i>
-                                        </button>
-                                    </a>
-                                    <form method="post" asp-controller="Admin" asp-action="DeleteContact">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@contact.Id" />
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
-                                    </form>
+<!-- MAIN CONTENT-->
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var contact in Model)
+        {
+            <div class="col-md-4">
+                <aside class="profile-nav alt">
+                    <section class="card">
+                        <div class="card-header user-header alt bg-dark">
+                            <div class="media">
+                                <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="~/CoolAdmin-master/images/icon/avatar-06.jpg">
+                                <div class="media-body">
+                                    <h6 style="max-width:200px;" class="text-light display-6">@contact.Email</h6>
+                                    <p style="max-width:200px;"> @contact.Name</p>
                                 </div>
-                            </td>
-                        </tr>
-                    }
+                            </div>
+                        </div>
 
 
-                </tbody>
-            </table>
-        </div>
-        <!-- END DATA TABLE -->
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item" style="max-width:200px;">
+                                <i class="fa fa-list-ul"> Konu:</i> @contact.Subject
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa fa-phone"> Telefon:</i> @contact.Telephone
+                            </li>
+                            <li class="list-group-item">
+                                <i class="fa fa-file-text"> Mesaj:</i> @contact.Message
+                            </li>
+                        </ul>
+
+                    </section>
+                </aside>
+            </div>
+        }
     </div>
 </div>
 
