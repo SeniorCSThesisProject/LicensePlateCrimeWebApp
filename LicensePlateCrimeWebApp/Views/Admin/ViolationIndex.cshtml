@@ -47,7 +47,7 @@
                             <tr class="tr-shadow">
                             <td>@vehicle.Model</td>
                             <td>@vehicle.LicensePlate</td>
-                            <td>@violation.ViolationType</td>
+                            <td>@($"{@violation.ViolationType} - {@violation.Description}")</td>
                             <td>@violation.Message</td>
                             <td>@violation.GetLocalCreationDate?.ToString(dateTimeFormat)</td>
                             <td>@violation.GetLocalLastUpdatedDate?.ToString(dateTimeFormat)</td>
