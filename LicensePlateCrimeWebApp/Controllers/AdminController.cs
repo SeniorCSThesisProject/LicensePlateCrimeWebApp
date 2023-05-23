@@ -106,9 +106,9 @@ namespace LicensePlateCrimeWebApp.Controllers
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> DeleteUser(string id)
     {
-      //var isDeleted = await _firebaseAppProvider.FirebaseAdminAuth.DeleteUsersAsync(id);
-      //return RedirectToAction("Index", "Admin");
-      return View();
+      await _firebaseAppProvider.FirebaseAdminAuth.DeleteUserAsync(id);
+      return RedirectToAction("Index", "Admin");
+      //return View();
     }
 
 
