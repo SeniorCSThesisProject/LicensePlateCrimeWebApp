@@ -51,9 +51,11 @@
                             <td>@vehicle.LastUpdateDateLocalStr</td>
                             <td>
                                 <div class="table-data-feature">
+									<a asp-controller="Admin" asp-action="UpdateVehicle">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
                                         <i class="zmdi zmdi-edit"></i>
                                     </button>
+                                    </a>
                                     <form method="post" asp-controller="Admin" asp-action="DeleteVehicle">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@vehicle.Id" />
