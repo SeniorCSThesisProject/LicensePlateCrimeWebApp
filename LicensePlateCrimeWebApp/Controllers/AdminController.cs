@@ -64,29 +64,53 @@ namespace LicensePlateCrimeWebApp.Controllers
         return View(createVehicleViewModel);
       }
     }
-    // GET: Contact/Delete/5
-    public ActionResult DeleteVehicle(int id)
+		// GET: Vehicle/Delete/5
+		public ActionResult DeleteVehicle(int id)
     {
       return View();
     }
-    // POST: Contact/Delete/5
-    [HttpPost]
+		// POST: Vehicle/Delete/5
+		[HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> DeleteVehicle(string id)
     {
       var isDeleted = await _vehicleRepository.DeleteAsync(id);
       return RedirectToAction("VehicleIndex", "Admin");
     }
+		// GET: Vehicles/Update
+		public ActionResult UpdateVehicle()
+		{
+		
+			return View();
+		}
+		// POST: Vehicles/Create
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> UpdateVehicle(CreateVehicleViewModel createVehicleViewModel)
+		{
+			if (ModelState.IsValid)
+			{
+				var uploadedImgUrl = await _vehicleRepository.UploadVehicleImgAsync(createVehicleViewModel.Image);
+				var vehicle = new Vehicle(createVehicleViewModel.OwnerId, createVehicleViewModel.Model, createVehicleViewModel.LicensePlate, uploadedImgUrl);
+				var id = await _vehicleRepository.AddAsync(vehicle);
+				vehicle.Id = id;
+				return RedirectToAction("VehicleIndex");
+			}
+			else
+			{
+				ModelState.AddModelError("", "Photo Upload Failed");
+				return View(createVehicleViewModel);
+			}
+		}
+
+
+		//---------------Vehicles---------------//
+
+		//+++++++++++++++Index+++++++++++++++//
 
 
 
-    //---------------Vehicles---------------//
-
-    //+++++++++++++++Index+++++++++++++++//
-
-
-
-    public async Task<ActionResult> Index()
+		public async Task<ActionResult> Index()
     {
       // Iterate through all users. This will still retrieve users in batches,
       // buffering no more than 1000 users in memory at a time.
@@ -157,19 +181,42 @@ namespace LicensePlateCrimeWebApp.Controllers
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> DeleteViolation(string id)
     {
-      var isDeleted = await _vehicleRepository.DeleteAsync(id);
+      var isDeleted = await _violationRepository.DeleteAsync(id);
       return RedirectToAction("ViolationIndex", "Admin");
     }
+		// GET: Violation/Update
+		public ActionResult UpdateViolation()
+		{
+
+			return View();
+		}
+		// POST: Violation/Create
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<ActionResult> UpdateViolation(Violation createviolationModel)
+		{
+			if (ModelState.IsValid)
+			{
+				var violation = new Violation(createviolationModel.VehicleId, createviolationModel.ViolationType, createviolationModel.Message);
+				var id = await _violationRepository.AddAsync(violation);
+				violation.Id = id;
+				return RedirectToAction("ViolationIndex", "Admin");
+			}
+			else
+			{
+				ModelState.AddModelError("", "Failed");
+				return View(createviolationModel);
+			}
+		}
+
+
+		//---------------Violation---------------//
+
+		//+++++++++++++++Contact+++++++++++++++//
 
 
 
-    //---------------Violation---------------//
-
-    //+++++++++++++++Contact+++++++++++++++//
-
-
-
-    public async Task<ActionResult> ContactIndex()
+		public async Task<ActionResult> ContactIndex()
     {
       var contact = await _contactRepository.GetAllAsync();
       return View(contact);
@@ -185,7 +232,7 @@ namespace LicensePlateCrimeWebApp.Controllers
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> DeleteContact(string id)
     {
-      var isDeleted = await _vehicleRepository.DeleteAsync(id);
+      var isDeleted = await _contactRepository.DeleteAsync(id);
       return RedirectToAction("ContactIndex", "Admin");
     }
 

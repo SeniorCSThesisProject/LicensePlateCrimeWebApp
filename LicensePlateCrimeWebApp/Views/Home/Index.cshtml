@@ -1,7 +1,15 @@
 ﻿@using static LicensePlateCrimeWebApp.Helpers.GlobalHelpers;
 @using Newtonsoft.Json;
+@using LicensePlateCrimeWebApp.Interfaces;
+@inject IVehicleRepository _vehicleRepository;
+@inject IViolationRepository _violationRepository;
 @{
     ViewData["Title"] = "Ana Sayfa";
+}
+
+@{
+	var vehicles = await _vehicleRepository.GetAllAsync();
+	var violation = await _violationRepository.GetAllAsync();
 }
 <!-- banner -->
 <div class="banner">
@@ -151,22 +159,22 @@
 	<div class="container">
 		<div class="col-md-3 about_counter_left">
 			<i class="fas fa-users" aria-hidden="true"></i>
-			<p class="counter">147</p>
+			<p class="counter"></p>
 			<h3>Üye</h3>
 		</div>
 		<div class="col-md-3 about_counter_left">
 			<i class="fas fa-car-side" aria-hidden="true"></i>
-			<p class="counter">598</p>
+			<p class="counter">@vehicles.Count()</p>
 			<h3>Araç</h3>
 		</div>
 		<div class="col-md-3 about_counter_left">
 			<i class="fas fa-balance-scale-right" aria-hidden="true"></i>
-			<p class="counter">8,983</p>
+			<p class="counter">@violation.Count()</p>
 			<h3>İhlal</h3>
 		</div>
 		<div class="col-md-3 about_counter_left">
 			<i class="far fa-file-alt" aria-hidden="true"></i>
-			<p class="counter">25,894</p>
+			<p class="counter"></p>
 			<h3>İtiraz</h3>
 		</div>
 		<div class="clearfix"> </div>

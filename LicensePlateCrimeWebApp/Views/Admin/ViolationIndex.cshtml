@@ -51,12 +51,17 @@
                             <td>@violation.LastUpdateDateLocalStr</td>
                             <td>
                                 <div class="table-data-feature">
+                                    <a asp-controller="Admin" asp-action="UpdateViolation">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
                                         <i class="zmdi zmdi-edit"></i>
-                                    </button>
+                                    </button></a>
+                                    <form method="post" asp-controller="Admin" asp-action="DeleteViolation">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@violation.Id" />
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
                                         <i class="zmdi zmdi-delete"></i>
                                     </button>
+                                    </form>
                                 </div>
                             </td>
                             
