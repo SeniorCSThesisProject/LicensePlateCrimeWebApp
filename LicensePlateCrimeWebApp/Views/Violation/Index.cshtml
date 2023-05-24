@@ -1,12 +1,17 @@
 ﻿@using LicensePlateCrimeWebApp.Interfaces;
 @model IEnumerable<Violation>
 @inject IViolationRepository _violationRepository;
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    var title = @localizer["İhlallerim"];
+    ViewData["Title"] = title;
+}
 <!-- special-services -->
 <div class="special-services">
     <div class="container">
-        <h3>Violations</h3>
-        <p class="quia">on your vehicles</p>
+        <h3>@localizer["İhlallerim"]</h3>
+        <p class="quia">@localizer["on your vehicles"]</p>
         <div class="row">
             <div class="col-md-9"></div>
 
@@ -14,7 +19,7 @@
 
                 @if (Model.Count() == 0)
                 {
-                    <h1>No violations found</h1>
+                    <h1>@localizer["No violations found"]</h1>
                 }
                 else
                 {
@@ -30,7 +35,7 @@
                             <div style="text-align:center;" class="wthree_more">
                                 <a asp-controller="Violation" id="violation-view-button" asp-action="Detail" asp-route-id="@violation.Id" class="button--wayra button--border-thick button--text-upper button--size-s">
                                     <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
-                                    Details
+                                    @localizer["Details"]
                                 </a>
                             </div>
                         </div>

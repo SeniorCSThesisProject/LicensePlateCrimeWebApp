@@ -3,7 +3,8 @@
 @model Violation;
 @inject FirebaseAppProvider firebaseAppProvider;
 @inject IViolationRepository _violationRepository;
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 <style>
     .vertical-align {
         display: flex;
@@ -15,6 +16,8 @@
 @{
     var vehicle = await _violationRepository.GetVehicleByIdAsync(Model.VehicleId);
     var owner = await firebaseAppProvider.FirebaseAdminAuth.GetUserAsync(vehicle.OwnerId);
+    var title = @localizer["İhlallerim - Detaylar"];
+    ViewData["Title"] = title;
 }
 
 <!-- single -->
@@ -22,7 +25,7 @@
     <div class="container">
         <div class="col-md-4 agile_single_left">
             <div class="agileits_recent_posts">
-                    <h3>Violation Info</h3>
+                <h3>@localizer["Violation Info"]</h3>
                 <div class="agileits_recent_posts_grid row vertical-align">
                     <div class="agileits_recent_posts_gridl col-md-6">
                         <!--TODO: change img-->
@@ -62,7 +65,7 @@
                     <div class="clearfix"> </div>
                 </div>
                 <a asp-controller="Vehicle" asp-action="Detail" asp-route-id="@vehicle.Id">
-                    <h3>Vehicle Info</h3>
+                    <h3>@localizer["Vehicle Info"]</h3>
                 </a>
                 <div class="agileits_recent_posts_grid row vertical-align">
                     <div class="agileits_recent_posts_gridl col-md-6">
@@ -99,7 +102,7 @@
                 </ul>
             </div>
             <h3>
-                IHLAL DETAYLARI
+                @localizer["İHLAL DETAYLARI"]
             </h3>
 
             <div class="w3_comments_bottom">
