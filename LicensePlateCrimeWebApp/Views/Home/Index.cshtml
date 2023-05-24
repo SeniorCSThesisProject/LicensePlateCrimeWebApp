@@ -3,8 +3,11 @@
 @using LicensePlateCrimeWebApp.Interfaces;
 @inject IVehicleRepository _vehicleRepository;
 @inject IViolationRepository _violationRepository;
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-    ViewData["Title"] = "Ana Sayfa";
+	var title = @localizer["Ana Sayfa"];
+	ViewData["Title"] = title;
 }
 
 @{
@@ -15,7 +18,7 @@
 <div class="banner">
 	<div class="container">
 		<div class="w3ls_banner_info">
-			<h2 style="color:white;">PLAKA CEZA SİSTEMİ</h2><br />
+			<h2 style="color:white;">@localizer["PLAKA CEZA SİSTEMİ"]</h2><br />
 		</div>
 	</div>
 </div>
@@ -24,18 +27,17 @@
 <div class="banner-bottom">
 	<div class="container">
 		<div class="col-md-6 banner_bottom_left">
-			<h3>Plaka Ceza Sistemi</h3><br />
+			<h3>@localizer["Plaka Ceza Sistemi"]</h3><br />
 			<p>
-				Plaka Ceza Sistemi Modülü ile Araçlarınızı ile ilgili bilgilere ulaşıp 
-				detayları görüntüleyebilir, Eğer ihlaleriniz mevcut ise ihlal bilgilerini görüntüleyip ilgili birimlere itirazlarda bulunabilirsiniz.
+				@localizer["Plaka Ceza Sistemi Modülü ile Araçlarınızı ile ilgili bilgilere ulaşıp detayları görüntüleyebilir, Eğer ihlaleriniz mevcut ise ihlal bilgilerini görüntüleyip ilgili birimlere itirazlarda bulunabilirsiniz."]
 			</p>
 			<div class="wthree_more wthree_more1" style="width: 80%;">
 				@if (Authenticated(Context)){}
 				else
 				{
-					<a asp-area="" asp-controller="Login" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE GİRİŞİ</a>
+					<a asp-area="" asp-controller="Login" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["ÜYE GİRİŞİ"]</a>
 					<br />
-					<a asp-area="" asp-controller="Signup" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">ÜYE OL</a>
+					<a asp-area="" asp-controller="Signup" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["ÜYE OL"]</a>
 				}
 			</div>
 		</div>
@@ -49,7 +51,7 @@
 					<div class="view view-tenth">
 						<div class="agile_text_box">
 							<i class="fas fa-address-card"></i>
-							<h3>Araçlarım</h3>
+							<h3>@localizer["Araçlarım"]</h3>
 							<p></p>
 						</div>
 					</div>
@@ -60,7 +62,7 @@
 					<div class="view view-tenth">
 						<div class="agile_text_box">
 							<i class="fas fa-clipboard"></i>
-							<h3>İhlallerim</h3>
+							<h3>@localizer["İhlallerim"]</h3>
 							<p></p>
 						</div>
 					</div>
@@ -74,7 +76,7 @@
 					<div class="view view-tenth">
 						<div class="agile_text_box">
 							<i class="fas fa-comments"></i>
-							<h3>İtirazlarım</h3>
+							<h3>@localizer["İtirazlarım"]</h3>
 							<p></p>
 						</div>
 					</div>
@@ -85,7 +87,7 @@
 					<div class="view view-tenth">
 						<div class="agile_text_box">
 							<i class="fas fa-comment"></i>
-							<h3>İletişim</h3>
+							<h3>@localizer["İletişim"]</h3>
 							<p></p>
 						</div>
 					</div>
@@ -102,7 +104,7 @@
 						<div class="view view-tenth">
 							<div class="agile_text_box">
 									<i class="fa fa-align-left"></i>
-								<h3>Ana Sayfa</h3>
+									<h3>@localizer["Ana Sayfa"]</h3>
 								<p></p>
 							</div>
 						</div>
@@ -113,7 +115,7 @@
 						<div class="view view-tenth">
 							<div class="agile_text_box">
 									<i class="fas fa-user-shield"></i>
-								<h3>Gizlilik Sözleşmesi</h3>
+									<h3>@localizer["Gizlilik Sözleşmesi"]</h3>
 								<p></p>
 							</div>
 						</div>
@@ -127,7 +129,7 @@
 						<div class="view view-tenth">
 							<div class="agile_text_box">
 									<i class="fas fa-users"></i>
-									<h3>Hakkımızda</h3>
+									<h3>@localizer["Hakkımızda"]</h3>
 								<p></p>
 							</div>
 						</div>
@@ -138,7 +140,7 @@
 						<div class="view view-tenth">
 							<div class="agile_text_box">
 									<i class="fas fa-comment"></i>
-								<h3>İletişim</h3>
+								<h3>@localizer["İletişim"]</h3>
 								<p></p>
 							</div>
 						</div>
@@ -160,22 +162,36 @@
 		<div class="col-md-3 about_counter_left">
 			<i class="fas fa-users" aria-hidden="true"></i>
 			<p class="counter"></p>
-			<h3>Üye</h3>
+			<h3>@localizer["Üye"]</h3>
 		</div>
 		<div class="col-md-3 about_counter_left">
 			<i class="fas fa-car-side" aria-hidden="true"></i>
-			<p class="counter">@vehicles.Count()</p>
-			<h3>Araç</h3>
+			@if (@vehicles.Count() == 0)
+			{
+				<p class="counter">0</p>
+			}
+			else
+			{
+				<p class="counter">@vehicles.Count()</p>
+			}
+			<h3>@localizer["Araç"]</h3>
 		</div>
 		<div class="col-md-3 about_counter_left">
 			<i class="fas fa-balance-scale-right" aria-hidden="true"></i>
-			<p class="counter">@violation.Count()</p>
-			<h3>İhlal</h3>
+			@if (@violation.Count() == 0)
+			{
+				<p class="counter">0</p>
+			}
+			else
+			{
+				<p class="counter">@violation.Count()</p>
+			}
+			<h3>@localizer["İhlal"]</h3>
 		</div>
 		<div class="col-md-3 about_counter_left">
 			<i class="far fa-file-alt" aria-hidden="true"></i>
 			<p class="counter"></p>
-			<h3>İtiraz</h3>
+			<h3>@localizer["İtiraz"]</h3>
 		</div>
 		<div class="clearfix"> </div>
 	</div>
@@ -186,27 +202,20 @@
 	<div class="container">
 		<div class="w3l_about_bottom_grids">
 			<div class="col-md-6 w3l_about_bottom_grid_left">
-				<h3>Plaka Ceza Sistemi</h3>
+				<h3>@localizer["Plaka Ceza Sistemi"]</h3>
 				<p>
-					Araç trafiğini izlemede geleneksel yöntemlerle karşılaştırıldığında Plaka Ceza Sistemi yöntemi daha kararlı ve 
-					düşük maliyetlidir. Ayrıca mevcut kamera izleme altyapısı üzerinde kurulum yada yeni bir altyapı gerektirmeden 
-					plaka tespiti kolaylıkla yapılabilmektedir. Otoyol ve karayollarında belirli sıklıkta bulunan kameralar 
-					kullanılarak plaka tespiti yapılabilir. Plakası tespit edilen araçların ceza, vergi borcu, geçmiş muayene zamanı 
-					gibi cezalı durumları varsa kolaylıkla tespit edilip gerekli adli, idari işlemlerin yapılmasını kolaylaştıracaktır. 
-					Güvenlik güçlerinin iş yükü en aza indirilerek yollardaki güven ve konfor artırılabilecektir.<br />
-					Sistemimiz, Avrupa ve Türkiye başta olmak üzere bir çok ülke de bulunan araçlar için plaka tespiti altyapısını sağlamaktadır. 
-					Bu ülkeler de otoyol, karayolu ve bölünmüş yollar gibi yerlerde kurulmuş olan kamera altyapısının yüksekliği ve açısı
-					gibi etmenleriyle uyumludur.
+					@localizer["Araç trafiğini izlemede geleneksel yöntemlerle karşılaştırıldığında Plaka Ceza Sistemi yöntemi daha kararlı ve düşük maliyetlidir. Ayrıca mevcut kamera izleme altyapısı üzerinde kurulum yada yeni bir altyapı gerektirmeden plaka tespiti kolaylıkla yapılabilmektedir. Otoyol ve karayollarında belirli sıklıkta bulunan kameralar kullanılarak plaka tespiti yapılabilir. Plakası tespit edilen araçların ceza, vergi borcu, geçmiş muayene zamanı gibi cezalı durumları varsa kolaylıkla tespit edilip gerekli adli, idari işlemlerin yapılmasını kolaylaştıracaktır. Güvenlik güçlerinin iş yükü en aza indirilerek yollardaki güven ve konfor artırılabilecektir."]<br />
+					@localizer["Sistemimiz, Avrupa ve Türkiye başta olmak üzere bir çok ülke de bulunan araçlar için plaka tespiti altyapısını sağlamaktadır. Bu ülkeler de otoyol, karayolu ve bölünmüş yollar gibi yerlerde kurulmuş olan kamera altyapısının yüksekliği ve açısıgibi etmenleriyle uyumludur."]
 				</p>
 			</div>
 			<div class="col-md-6 w3l_about_bottom_grid_right">
 				<br/>
 				<div class='bar_group'>
-					<div class='bar_group__bar thin elastic' label='Sistem Kararlılığı Oranı : %90' value='262'></div>
-					<div class='bar_group__bar thin elastic' label='Plaka Tespİt Algorİtması Doğruluğu : %86' value='250'></div>
-					<div class='bar_group__bar thin elastic' label='Malİyettekİ Artış Oranı : %15' value='44'></div>
-					<div class='bar_group__bar thin elastic' label='Sİstem Bakımı Artış Oranı : %45' value='130'></div>
-					<div class='bar_group__bar thin elastic' label='Yollardakİ GÜven ve Konfordakİ Artış Oranı : %35' value='102'></div>
+					<div class='bar_group__bar thin elastic' label='@localizer["Sistem Kararlılığı Oranı"] : %90' value='262'></div>
+					<div class='bar_group__bar thin elastic' label='@localizer["Plaka Tespİt Algorİtması Doğruluğu"] : %86' value='250'></div>
+					<div class='bar_group__bar thin elastic' label='@localizer["Malİyettekİ Artış Oranı"] : %15' value='44'></div>
+					<div class='bar_group__bar thin elastic' label='@localizer["Sİstem Bakımı Artış Oranı"] : %45' value='130'></div>
+					<div class='bar_group__bar thin elastic' label='@localizer["Yollardakİ GÜven ve Konfordakİ Artış Oranı"] : %35' value='102'></div>
 				</div>
 				<script src="js/bars.js"></script>
 			</div>

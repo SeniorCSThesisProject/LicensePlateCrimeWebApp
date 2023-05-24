@@ -7,7 +7,11 @@ using LicensePlateCrimeWebApp.Data;
 using LicensePlateCrimeWebApp.Interfaces;
 using LicensePlateCrimeWebApp.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
-
+using System.Globalization;
+using System.Reflection;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.AspNetCore.Localization;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -63,9 +67,29 @@ builder.Services.AddSession(options =>
   options.Cookie.IsEssential = true;
 });
 
+builder.Services.AddControllersWithViews().AddViewLocalization(Microsoft.AspNetCore.Mvc.Razor.LanguageViewLocationExpanderFormat.Suffix);
+builder.Services.AddLocalization(options =>
+{
+  options.ResourcesPath = "Resources";
+});
 
+builder.Services.Configure<RequestLocalizationOptions>(options =>
+{
+  var supportedCultures = new[]
+  {
+    new CultureInfo("tr-TR"),
+    new CultureInfo("en-US")
+  };
+  options.DefaultRequestCulture = new RequestCulture("tr-TR");
+  options.SupportedUICultures = supportedCultures;
+  options.SupportedCultures = supportedCultures;
+  options.RequestCultureProviders.Insert(0, new QueryStringRequestCultureProvider());
+});
 
 var app = builder.Build();
+
+app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocalizationOptions>>().Value);
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

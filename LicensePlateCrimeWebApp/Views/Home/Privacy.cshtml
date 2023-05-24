@@ -1,40 +1,43 @@
-﻿@{
-	ViewData["Title"] = "Gizlilik Politikası";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+	var title = @localizer["Gizlilik Politikası"];
+	ViewData["Title"] = title;
 }
 
 <div class="mail">
 	<div class="container">
-		<h3>GİZLİLİK POLİTİKASI</h3>
+		<h3>@localizer["GİZLİLİK POLİTİKASI"]</h3>
 		<div class="row">
 			<br />
-			<p>Plaka Ceza Sistemi Yazılım Teknolojileri Araştırma Geliştirme ve &nbsp;Pazarlama Ticaret A.Ş. (“Plaka Ceza Sistemi”), internet sitesini ziyaret eden sizlerin paylaşmış olduğu bilgilerin gizliliğini sağlamayı ilke olarak kabul etmiştir. Bu nedenle işbu “Gizlilik Politikası” sizlerin hangi bilgilerinin, hangi yollarla ve hukuka uygun hangi amaç çerçevesinde Plaka Ceza Sistemi tarafından işlendiğini, bu bilgilerin hukuka uygun olarak ve vermiş olduğunuz izin kapsamında hangi üçüncü kişiler ile paylaşıldığını ve Plaka Ceza Sistemi tarafından ne şekilde korunduğunu açıklayarak sizi bilgilendirmek amacı ile oluşturulmuştur. Plaka Ceza Sistemi tarafından sizlere her türlü kanaldan sunulan tüm hizmetler kısaca “Hizmet” olarak anılacaktır.</p>
+			<p>@localizer["Plaka Ceza Sistemi Yazılım Teknolojileri Araştırma Geliştirme ve"] &nbsp;@localizer["Pazarlama Ticaret A.Ş. (“Plaka Ceza Sistemi”)"], @localizer["internet sitesini ziyaret eden sizlerin paylaşmış olduğu bilgilerin gizliliğini sağlamayı ilke olarak kabul etmiştir. Bu nedenle işbu “Gizlilik Politikası” sizlerin hangi bilgilerinin, hangi yollarla ve hukuka uygun hangi amaç çerçevesinde Plaka Ceza Sistemi tarafından işlendiğini, bu bilgilerin hukuka uygun olarak ve vermiş olduğunuz izin kapsamında hangi üçüncü kişiler ile paylaşıldığını ve Plaka Ceza Sistemi tarafından ne şekilde korunduğunu açıklayarak sizi bilgilendirmek amacı ile oluşturulmuştur. Plaka Ceza Sistemi tarafından sizlere her türlü kanaldan sunulan tüm hizmetler kısaca “Hizmet” olarak anılacaktır."]</p>
 			<br />
 			<ol>
-				<li><strong>GİZLİLİK POLİTİKASININ KAPSAMI</strong></li>
+				<li><strong>@localizer["GİZLİLİK POLİTİKASININ KAPSAMI"]</strong></li>
 			</ol>
-			<p>Sunulan hizmetin bir parçası olarak Plaka Ceza Sistemi, hizmet alan sizlere ilişkin bilgileri işbu Gizlilik Politikası kapsamında elde edebilir ve aktarabilir. Bu tür bilgi aktarımları, üçüncü kişiler tarafından belirlenen şartlara ve üçüncü kişiler ile mevcut sözleşmelere ve yürürlükteki mevcut yasal mevzuata uygun olarak yapılır. Bu Gizlilik Politikası, bilgi aktarımı yapılan üçüncü kişilerin gizlilik uygulamalarını yansıtmamaktadır ve onların gizlilik politikalarından veya uygulamalarından Plaka Ceza Sistemi sorumlu değildir. İşbu Gizlilik Politikası Plaka Ceza Sistemi’in kendi kontrolü dışındaki uygulamalar, üçüncü taraflara ait internet siteleri ve platformlar tarafından toplanılan bilgiler, üçüncü taraflarca Plaka Ceza Sistemi internet sitesindeki bağlantılar üzerinden toplanan bilgiler veya Plaka Ceza Sistemi’in sponsor olduğu ve/veya katıldığı üçüncü taraf internet siteleri üzerindeki başlıklar, kampanyalar ve diğer reklam veya tanıtımları kapsamamaktadır. Üçüncü tarafların kendi internet siteleri yoluyla topladığı, sakladığı ve kullandığı kişisel verilere yönelik yapılan işlemlerden Plaka Ceza Sistemi sorumlu değildir.</p>
+			<p>@localizer["Sunulan hizmetin bir parçası olarak Plaka Ceza Sistemi, hizmet alan sizlere ilişkin bilgileri işbu Gizlilik Politikası kapsamında elde edebilir ve aktarabilir. Bu tür bilgi aktarımları, üçüncü kişiler tarafından belirlenen şartlara ve üçüncü kişiler ile mevcut sözleşmelere ve yürürlükteki mevcut yasal mevzuata uygun olarak yapılır. Bu Gizlilik Politikası, bilgi aktarımı yapılan üçüncü kişilerin gizlilik uygulamalarını yansıtmamaktadır ve onların gizlilik politikalarından veya uygulamalarından Plaka Ceza Sistemi sorumlu değildir. İşbu Gizlilik Politikası Plaka Ceza Sistemi’in kendi kontrolü dışındaki uygulamalar, üçüncü taraflara ait internet siteleri ve platformlar tarafından toplanılan bilgiler, üçüncü taraflarca Plaka Ceza Sistemi internet sitesindeki bağlantılar üzerinden toplanan bilgiler veya Plaka Ceza Sistemi’in sponsor olduğu ve/veya katıldığı üçüncü taraf internet siteleri üzerindeki başlıklar, kampanyalar ve diğer reklam veya tanıtımları kapsamamaktadır. Üçüncü tarafların kendi internet siteleri yoluyla topladığı, sakladığı ve kullandığı kişisel verilere yönelik yapılan işlemlerden Plaka Ceza Sistemi sorumlu değildir."]</p>
 			<br />
 			<ol start="2">
-				<li><strong>TOPLANAN VERİLER</strong></li>
+				<li><strong>@localizer["TOPLANAN VERİLER"]</strong></li>
 			</ol>
-			<p>Plaka Ceza Sistemi tarafından, verilen Hizmetler kapsamında birtakım kişisel verileriniz işlenmektedir. Bu kişisel veriler şunları içerebilir: ad-soyad, T.C. Kimlik Numarası, uyruk bilgisi, anne adı, baba adı, doğum yeri, doğum tarihi, cinsiyet, vergi numarası, SGK numarası, imza bilgisi, fotoğraf, taşıt plakası, telefon numarası, adres, e-posta adresi, faks numarası, IP adresi, sosyal medya hesapları, konum bilgileri, ürün veya hizmet satın almanızla ilgili bilgiler, ödeme bilgileri, sitemizde görüntülediğiniz sayfalar, sitemizi mobil cihazınız ile ziyaret etmeniz halinde mobil cihazınızı tanıtan veriler ve tarafımıza vermeyi açıkça ve yazılı olarak tercih ettiğiniz ve onayladığınız veya üçüncü kişilerden bu açık onayınız ile elde edebileceğimiz diğer her tür bilgiye tarafımızdan erişilebilir ve bu bilgiler işlenebilir.</p>
+			<p>@localizer["Plaka Ceza Sistemi tarafından, verilen Hizmetler kapsamında birtakım kişisel verileriniz işlenmektedir. Bu kişisel veriler şunları içerebilir: ad-soyad, T.C. Kimlik Numarası, uyruk bilgisi, anne adı, baba adı, doğum yeri, doğum tarihi, cinsiyet, vergi numarası, SGK numarası, imza bilgisi, fotoğraf, taşıt plakası, telefon numarası, adres, e-posta adresi, faks numarası, IP adresi, sosyal medya hesapları, konum bilgileri, ürün veya hizmet satın almanızla ilgili bilgiler, ödeme bilgileri, sitemizde görüntülediğiniz sayfalar, sitemizi mobil cihazınız ile ziyaret etmeniz halinde mobil cihazınızı tanıtan veriler ve tarafımıza vermeyi açıkça ve yazılı olarak tercih ettiğiniz ve onayladığınız veya üçüncü kişilerden bu açık onayınız ile elde edebileceğimiz diğer her tür bilgiye tarafımızdan erişilebilir ve bu bilgiler işlenebilir."]</p>
 			<br />
 			<ol start="3">
-				<li><strong>ÇEREZ KULLANIMI</strong></li>
+				<li><strong>@localizer["ÇEREZ KULLANIMI"]</strong></li>
 			</ol>
-			<p>Plaka Ceza Sistemi, yukarıda anılan kişisel verilerden bazılarını teknik bir iletişim dosyasını (Çerez-Cookie) kullanarak elde edebilir. Bahsi geçen teknik iletişim dosyaları, ana bellekte saklanmak üzere bir internet sitesinin kullanıcının tarayıcısına (browser) gönderdiği küçük metin dosyalarıdır. Teknik iletişim dosyası bir internet sitesi hakkında durum ve tercihleri saklayarak İnternet’in kullanımını kolaylaştırır. Teknik iletişim dosyası, internet sitesini kaç kişinin kullandığını, bir kişinin internet sitesini hangi amaçla, kaç kez ziyaret ettiğini ve ne kadar kaldıkları hakkında istatistiksel bilgileri elde etmeye ve kullanıcılar için özel tasarlanmış kullanıcı sayfalarından dinamik olarak reklam ve içerik üretilmesine yardımcı olur. Teknik iletişim dosyası, ana bellekte veya e-postanızdan veri veya başkaca herhangi bir kişisel veri almak için tasarlanmamıştır. Tarayıcıların pek çoğu başta teknik iletişim dosyasını kabul eder biçimde tasarlanmıştır ancak kullanıcılar dilerse teknik iletişim dosyasının gelmemesi veya teknik iletişim dosyasının gönderildiğinde ikaz verilmesini sağlayacak biçimde ayarları değiştirebilirler.</p>
+			<p>@localizer["Plaka Ceza Sistemi, yukarıda anılan kişisel verilerden bazılarını teknik bir iletişim dosyasını (Çerez-Cookie) kullanarak elde edebilir. Bahsi geçen teknik iletişim dosyaları, ana bellekte saklanmak üzere bir internet sitesinin kullanıcının tarayıcısına (browser) gönderdiği küçük metin dosyalarıdır. Teknik iletişim dosyası bir internet sitesi hakkında durum ve tercihleri saklayarak İnternet’in kullanımını kolaylaştırır. Teknik iletişim dosyası, internet sitesini kaç kişinin kullandığını, bir kişinin internet sitesini hangi amaçla, kaç kez ziyaret ettiğini ve ne kadar kaldıkları hakkında istatistiksel bilgileri elde etmeye ve kullanıcılar için özel tasarlanmış kullanıcı sayfalarından dinamik olarak reklam ve içerik üretilmesine yardımcı olur. Teknik iletişim dosyası, ana bellekte veya e-postanızdan veri veya başkaca herhangi bir kişisel veri almak için tasarlanmamıştır. Tarayıcıların pek çoğu başta teknik iletişim dosyasını kabul eder biçimde tasarlanmıştır ancak kullanıcılar dilerse teknik iletişim dosyasının gelmemesi veya teknik iletişim dosyasının gönderildiğinde ikaz verilmesini sağlayacak biçimde ayarları değiştirebilirler."]</p>
 			<br />
 			<ol start="4">
-				<li><strong>BİLGİ GÜNCELLEME VE DEĞİŞİKLİK</strong></li>
+				<li><strong>@localizer["BİLGİ GÜNCELLEME VE DEĞİŞİKLİK"]</strong></li>
 			</ol>
-			<p>Plaka Ceza Sistemi, gizlilik ve veri koruma prensiplerini güncel tutmak ve ilgili mevzuata uygun hale getirmek için işbu Gizlilik Politikası’nın içeriğini dilediği zaman değiştirebilir. Değişen Gizlilik Politikası Plaka Ceza Sistemi internet sitesinde ilan edilecektir. Gizlilik Politikası’nın güncel haline web sitemiz üzerinden sürekli olarak ulaşmanız mümkündür. İşbu Gizlilik Politikası’nın değiştirilmesinden sonra Plaka Ceza Sistemi’in hizmet ve/veya uygulamalarını kullanmaya devam etmeniz halinde yapılan değişiklikleri kabul ettiğiniz varsayılır. Plaka Ceza Sistemi’in değişiklik yaptığı Gizlilik Politikası hükümleri internet sitesinde yayınlandığı tarihte yürürlük kazanır.</p>
-			<p><a href="mailto:licencecrime@gmail.com">licencecrime@gmail.com</a> mail adresinden iletişim bilgilerinizin ve tercihlerinizin doğru, tam ve güncel olmasına yardımcı olabilirsiniz. Elimizdeki diğer kişisel veriler açısından; yanlış olan bir bilgiyi düzeltmemizi ya da yasa gereği veya meşru ticari amaçlar ile saklamasının gerekmediği bilginin silinmesini talep edebilirsiniz.</p>
+			<p>@localizer["Plaka Ceza Sistemi, gizlilik ve veri koruma prensiplerini güncel tutmak ve ilgili mevzuata uygun hale getirmek için işbu Gizlilik Politikası’nın içeriğini dilediği zaman değiştirebilir. Değişen Gizlilik Politikası Plaka Ceza Sistemi internet sitesinde ilan edilecektir. Gizlilik Politikası’nın güncel haline web sitemiz üzerinden sürekli olarak ulaşmanız mümkündür. İşbu Gizlilik Politikası’nın değiştirilmesinden sonra Plaka Ceza Sistemi’in hizmet ve/veya uygulamalarını kullanmaya devam etmeniz halinde yapılan değişiklikleri kabul ettiğiniz varsayılır. Plaka Ceza Sistemi’in değişiklik yaptığı Gizlilik Politikası hükümleri internet sitesinde yayınlandığı tarihte yürürlük kazanır."]</p>
+			<p><a href="mailto:licencecrime@gmail.com">licencecrime@gmail.com</a> @localizer["mail adresinden iletişim bilgilerinizin ve tercihlerinizin doğru, tam ve güncel olmasına yardımcı olabilirsiniz. Elimizdeki diğer kişisel veriler açısından; yanlış olan bir bilgiyi düzeltmemizi ya da yasa gereği veya meşru ticari amaçlar ile saklamasının gerekmediği bilginin silinmesini talep edebilirsiniz."]</p>
 			<br />
-			<h4><strong><u>İletişim Bilgileri</u></strong></h4>
-			<p>Kemalpaşa, Esentepe Kampüsü, Üniversite Cd.</p>
-			<p>54050 Serdivan/Sakarya</p> <i> Plaka Ceza Sistemi A.Ş.</i>
-			<p><strong>Tel:</strong> + (264) 054 1 054 &nbsp;<strong> Faks:</strong> + (264) 054 1 055</p>
-			<p>Son Güncelleme Tarihi: 13.05.2023</p>
+			<h4><strong><u>@localizer["İletişim Bilgileri"]</u></strong></h4>
+			<p>Kemalpaşa, Esentepe @localizer["Kampüsü, Üniversite Cd."]</p>
+			<p>54050 Serdivan/Sakarya</p> <i> @localizer["Plaka Ceza Sistemi A.Ş."]</i>
+			<p><strong>@localizer["Tel"]:</strong> + (264) 054 1 054 &nbsp;<strong> @localizer["Faks"]:</strong> + (264) 054 1 055</p>
+			<p>@localizer["Son Güncelleme Tarihi"]: 13.05.2023</p>
 			<p>&nbsp;</p>
 		</div>
 		<div class="clearfix"> </div>

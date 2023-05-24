@@ -1,7 +1,9 @@
 ﻿@model LicensePlateCrimeWebApp.Models.Contact
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-	ViewData["Title"] = "İletişim";
+	var title = @localizer["İletişim"];
+	ViewData["Title"] = title;
 }
 
 <style>
@@ -13,16 +15,16 @@
 <!-- mail -->
 <div class="mail">
 	<div class="container">
-		<h3>İLETİŞİM</h3>
-		<p class="quia">Görüş ve önerilerinizi bizimle paylaşabilirsiniz...</p>
+		<h3>@localizer["İLETİŞİM"]</h3>
+		<p class="quia">@localizer["Görüş ve önerilerinizi bizimle paylaşabilirsiniz..."]</p>
 
 		<div class="w3ls_map">
 			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6045.777731807772!2d30.33154572673654!3d40.7424708673143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ccadf2977958d7%3A0xc7996fa884f94c03!2sSakarya%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1683992880171!5m2!1str!2str" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 		</div>
 		<div class="col-md-4 wthree_contact_left">
-			<h4>Adres</h4>
+			<h4>@localizer["Adres"]</h4>
 			<p>
-				Kemalpaşa, Esentepe Kampüsü, Üniversite Cd.<br />
+				Kemalpaşa, Esentepe @localizer["Kampüsü, Üniversite Cd."]<br />
 				<span>54050 Serdivan/Sakarya</span>
 			</p>
 			<ul>
@@ -32,27 +34,27 @@
 			</ul>
 		</div>
 		<div class="col-md-8 wthree_contact_left">
-			<h4>İletişim Formu</h4>
+			<h4>@localizer["İletişim Formu"]</h4>
 			<form method="POST" asp-action="Create" enctype="multipart/form-data" novalidate>
 				<div id="textRed" asp-validation-summary="ModelOnly" class="text-danger"></div>
 				<div class="col-md-6 wthree_contact_left_grid">
-					<input asp-for="Name" type="text" class="form-control" placeholder="Ad Soyad">
+					<input asp-for="Name" type="text" class="form-control" placeholder="@localizer["Ad Soyad"]">
 					<span asp-validation-for="Name" class="text-danger"></span><br>
 					<input asp-for="Email" type="text" class="form-control" placeholder="E-Mail">
 					<span asp-validation-for="Email" class="text-danger"></span><br>
 				</div>
 				<div class="col-md-6 wthree_contact_left_grid">
-					<input asp-for="Telephone" type="text" class="form-control" placeholder="Telefon">
+					<input asp-for="Telephone" type="text" class="form-control" placeholder="@localizer["Telefon"]">
 					<span asp-validation-for="Telephone" class="text-danger"></span><br>
-					<input asp-for="Subject" type="text" class="form-control" placeholder="Konu">
+					<input asp-for="Subject" type="text" class="form-control" placeholder="@localizer["Konu"]">
 					<span asp-validation-for="Subject" class="text-danger"></span><br>
 				</div>
 				<div>
-					<textarea asp-for="Message" type="text" placeholder="Mesaj..."></textarea>
+					<textarea asp-for="Message" type="text" placeholder="@localizer["Mesaj..."]"></textarea>
 					&emsp;<span asp-validation-for="Message" class="text-danger"></span>
 				</div>
-				<input style="border-radius:15px;" type="submit" value="GÖNDER">
-				<input style="border-radius:15px;" type="reset" value="TEMİZLE">
+				<input style="border-radius:15px;" type="submit" value="@localizer["GÖNDER"]">
+				<input style="border-radius:15px;" type="reset" value="@localizer["TEMİZLE"]">
 
 				
 			</form>

@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Ana Sayfa" xml:space="preserve">
+    <value>Home Page</value>
+  </data>
+  <data name="Araç" xml:space="preserve">
+    <value>Vehicle</value>
+  </data>
+  <data name="Araç trafiğini izlemede geleneksel yöntemlerle karşılaştırıldığında Plaka Ceza Sistemi yöntemi daha kararlı ve düşük maliyetlidir. Ayrıca mevcut kamera izleme altyapısı üzerinde kurulum yada yeni bir altyapı gerektirmeden plaka tespiti kolaylıkla yapılabilmektedir. Otoyol ve karayollarında belirli sıklıkta bulunan kameralar kullanılarak plaka tespiti yapılabilir. Plakası tespit edilen araçların ceza, vergi borcu, geçmiş muayene zamanı gibi cezalı durumları varsa kolaylıkla tespit edilip gerekli adli, idari işlemlerin yapılmasını kolaylaştıracaktır. Güvenlik güçlerinin iş yükü en aza indirilerek yollardaki güven ve konfor artırılabilecektir." xml:space="preserve">
+    <value>Compared with traditional methods of monitoring vehicle traffic, the License Plate Penalty System method is more stable and cost-effective. In addition, license plate detection can be easily performed on the existing camera monitoring infrastructure without requiring installation or a new infrastructure. License plate detection can be made by using cameras located on highways and highways on a certain frequency. If the vehicles whose license plates are detected have penalized conditions such as fines, tax debts, past inspection time, it will be easily identified and facilitate the necessary judicial and administrative actions. By minimizing the workload of the security forces, confidence and comfort on the roads can be increased.</value>
+  </data>
+  <data name="Araçlarım" xml:space="preserve">
+    <value>My Vehicles</value>
+  </data>
+  <data name="Gizlilik Sözleşmesi" xml:space="preserve">
+    <value>Privacy Policy</value>
+  </data>
+  <data name="Hakkımızda" xml:space="preserve">
+    <value>About us</value>
+  </data>
+  <data name="Her Hakkı Saklıdır" xml:space="preserve">
+    <value>All Rights Reserved</value>
+  </data>
+  <data name="Malİyettekİ Artış Oranı" xml:space="preserve">
+    <value>The Rate of Increase in Cost</value>
+  </data>
+  <data name="Plaka Ceza Sistemi" xml:space="preserve">
+    <value>License Plate Crime System</value>
+  </data>
+  <data name="Plaka Ceza Sistemi Modülü ile Araçlarınızı ile ilgili bilgilere ulaşıp detayları görüntüleyebilir, Eğer ihlaleriniz mevcut ise ihlal bilgilerini görüntüleyip ilgili birimlere itirazlarda bulunabilirsiniz." xml:space="preserve">
+    <value>With the License Plate Crime System Module, you can access the information about your vehicles and view the details, If you have a violator, you can view the violation information and file objections to the relevant units.</value>
+  </data>
+  <data name="PLAKA CEZA SİSTEMİ" xml:space="preserve">
+    <value>LICENSE PLATE CRIME SYSTEM</value>
+  </data>
+  <data name="Plaka Tespİt Algorİtması Doğruluğu" xml:space="preserve">
+    <value>The Accuracy of the License Plate Detection Algorithm</value>
+  </data>
+  <data name="Sistem Kararlılığı Oranı" xml:space="preserve">
+    <value>System Stability Ratio</value>
+  </data>
+  <data name="Sistemimiz, Avrupa ve Türkiye başta olmak üzere bir çok ülke de bulunan araçlar için plaka tespiti altyapısını sağlamaktadır. Bu ülkeler de otoyol, karayolu ve bölünmüş yollar gibi yerlerde kurulmuş olan kamera altyapısının yüksekliği ve açısıgibi etmenleriyle uyumludur." xml:space="preserve">
+    <value>Our system provides license plate detection infrastructure for vehicles located in many countries, especially in Europe and Turkey. These countries are also compatible with factors such as the height and angle of the camera infrastructure installed in places such as highways, highways and divided roads.</value>
+  </data>
+  <data name="Sİstem Bakımı Artış Oranı" xml:space="preserve">
+    <value>System Maintenance Increase Rate</value>
+  </data>
+  <data name="Yollardakİ GÜven ve Konfordakİ Artış Oranı" xml:space="preserve">
+    <value>The Rate of Increase in Confidence and Comfort on the Roads</value>
+  </data>
+  <data name="Üye" xml:space="preserve">
+    <value>Member</value>
+  </data>
+  <data name="ÜYE GİRİŞİ" xml:space="preserve">
+    <value>SIGN IN</value>
+  </data>
+  <data name="ÜYE OL" xml:space="preserve">
+    <value>SIGN UP</value>
+  </data>
+  <data name="İhlal" xml:space="preserve">
+    <value>Violation</value>
+  </data>
+  <data name="İhlallerim" xml:space="preserve">
+    <value>My Violations</value>
+  </data>
+  <data name="İletişim" xml:space="preserve">
+    <value>Contact us</value>
+  </data>
+  <data name="İtiraz" xml:space="preserve">
+    <value>Objection</value>
+  </data>
+  <data name="İtirazlarım" xml:space="preserve">
+    <value>My Objections</value>
+  </data>
+</root>

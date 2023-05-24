@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BİLGİ GÜNCELLEME VE DEĞİŞİKLİK" xml:space="preserve">
+    <value>BİLGİ GÜNCELLEME VE DEĞİŞİKLİK</value>
+  </data>
+  <data name="Faks" xml:space="preserve">
+    <value>Faks</value>
+  </data>
+  <data name="Gizlilik Politikası" xml:space="preserve">
+    <value>Gizlilik Politikası</value>
+  </data>
+  <data name="GİZLİLİK POLİTİKASI" xml:space="preserve">
+    <value>GİZLİLİK POLİTİKASI</value>
+  </data>
+  <data name="GİZLİLİK POLİTİKASININ KAPSAMI" xml:space="preserve">
+    <value>GİZLİLİK POLİTİKASININ KAPSAMI</value>
+  </data>
+  <data name="internet sitesini ziyaret eden sizlerin paylaşmış olduğu bilgilerin gizliliğini sağlamayı ilke olarak kabul etmiştir. Bu nedenle işbu “Gizlilik Politikası” sizlerin hangi bilgilerinin, hangi yollarla ve hukuka uygun hangi amaç çerçevesinde Plaka Ceza Sistemi tarafından işlendiğini, bu bilgilerin hukuka uygun olarak ve vermiş olduğunuz izin kapsamında hangi üçüncü kişiler ile paylaşıldığını ve Plaka Ceza Sistemi tarafından ne şekilde korunduğunu açıklayarak sizi bilgilendirmek amacı ile oluşturulmuştur. Plaka Ceza Sistemi tarafından sizlere her türlü kanaldan sunulan tüm hizmetler kısaca “Hizmet” olarak anılacaktır." xml:space="preserve">
+    <value>internet sitesini ziyaret eden sizlerin paylaşmış olduğu bilgilerin gizliliğini sağlamayı ilke olarak kabul etmiştir. Bu nedenle işbu “Gizlilik Politikası” sizlerin hangi bilgilerinin, hangi yollarla ve hukuka uygun hangi amaç çerçevesinde Plaka Ceza Sistemi tarafından işlendiğini, bu bilgilerin hukuka uygun olarak ve vermiş olduğunuz izin kapsamında hangi üçüncü kişiler ile paylaşıldığını ve Plaka Ceza Sistemi tarafından ne şekilde korunduğunu açıklayarak sizi bilgilendirmek amacı ile oluşturulmuştur. Plaka Ceza Sistemi tarafından sizlere her türlü kanaldan sunulan tüm hizmetler kısaca “Hizmet” olarak anılacaktır.</value>
+  </data>
+  <data name="Kampüsü, Üniversite Cd." xml:space="preserve">
+    <value>Kampüsü, Üniversite Cd.</value>
+  </data>
+  <data name="mail adresinden iletişim bilgilerinizin ve tercihlerinizin doğru, tam ve güncel olmasına yardımcı olabilirsiniz. Elimizdeki diğer kişisel veriler açısından; yanlış olan bir bilgiyi düzeltmemizi ya da yasa gereği veya meşru ticari amaçlar ile saklamasının gerekmediği bilginin silinmesini talep edebilirsiniz." xml:space="preserve">
+    <value>mail adresinden iletişim bilgilerinizin ve tercihlerinizin doğru, tam ve güncel olmasına yardımcı olabilirsiniz. Elimizdeki diğer kişisel veriler açısından; yanlış olan bir bilgiyi düzeltmemizi ya da yasa gereği veya meşru ticari amaçlar ile saklamasının gerekmediği bilginin silinmesini talep edebilirsiniz.</value>
+  </data>
+  <data name="Pazarlama Ticaret A.Ş. (“Plaka Ceza Sistemi”)" xml:space="preserve">
+    <value>Pazarlama Ticaret A.Ş. (“Plaka Ceza Sistemi”)</value>
+  </data>
+  <data name="Plaka Ceza Sistemi A.Ş." xml:space="preserve">
+    <value>Plaka Ceza Sistemi A.Ş.</value>
+  </data>
+  <data name="Plaka Ceza Sistemi tarafından, verilen Hizmetler kapsamında birtakım kişisel verileriniz işlenmektedir. Bu kişisel veriler şunları içerebilir: ad-soyad, T.C. Kimlik Numarası, uyruk bilgisi, anne adı, baba adı, doğum yeri, doğum tarihi, cinsiyet, vergi numarası, SGK numarası, imza bilgisi, fotoğraf, taşıt plakası, telefon numarası, adres, e-posta adresi, faks numarası, IP adresi, sosyal medya hesapları, konum bilgileri, ürün veya hizmet satın almanızla ilgili bilgiler, ödeme bilgileri, sitemizde görüntülediğiniz sayfalar, sitemizi mobil cihazınız ile ziyaret etmeniz halinde mobil cihazınızı tanıtan veriler ve tarafımıza vermeyi açıkça ve yazılı olarak tercih ettiğiniz ve onayladığınız veya üçüncü kişilerden bu açık onayınız ile elde edebileceğimiz diğer her tür bilgiye tarafımızdan erişilebilir ve bu bilgiler işlenebilir." xml:space="preserve">
+    <value>Plaka Ceza Sistemi tarafından, verilen Hizmetler kapsamında birtakım kişisel verileriniz işlenmektedir. Bu kişisel veriler şunları içerebilir: ad-soyad, T.C. Kimlik Numarası, uyruk bilgisi, anne adı, baba adı, doğum yeri, doğum tarihi, cinsiyet, vergi numarası, SGK numarası, imza bilgisi, fotoğraf, taşıt plakası, telefon numarası, adres, e-posta adresi, faks numarası, IP adresi, sosyal medya hesapları, konum bilgileri, ürün veya hizmet satın almanızla ilgili bilgiler, ödeme bilgileri, sitemizde görüntülediğiniz sayfalar, sitemizi mobil cihazınız ile ziyaret etmeniz halinde mobil cihazınızı tanıtan veriler ve tarafımıza vermeyi açıkça ve yazılı olarak tercih ettiğiniz ve onayladığınız veya üçüncü kişilerden bu açık onayınız ile elde edebileceğimiz diğer her tür bilgiye tarafımızdan erişilebilir ve bu bilgiler işlenebilir.</value>
+  </data>
+  <data name="Plaka Ceza Sistemi Yazılım Teknolojileri Araştırma Geliştirme ve" xml:space="preserve">
+    <value>Plaka Ceza Sistemi Yazılım Teknolojileri Araştırma Geliştirme ve</value>
+  </data>
+  <data name="Plaka Ceza Sistemi, gizlilik ve veri koruma prensiplerini güncel tutmak ve ilgili mevzuata uygun hale getirmek için işbu Gizlilik Politikası’nın içeriğini dilediği zaman değiştirebilir. Değişen Gizlilik Politikası Plaka Ceza Sistemi internet sitesinde ilan edilecektir. Gizlilik Politikası’nın güncel haline web sitemiz üzerinden sürekli olarak ulaşmanız mümkündür. İşbu Gizlilik Politikası’nın değiştirilmesinden sonra Plaka Ceza Sistemi’in hizmet ve/veya uygulamalarını kullanmaya devam etmeniz halinde yapılan değişiklikleri kabul ettiğiniz varsayılır. Plaka Ceza Sistemi’in değişiklik yaptığı Gizlilik Politikası hükümleri internet sitesinde yayınlandığı tarihte yürürlük kazanır." xml:space="preserve">
+    <value>Plaka Ceza Sistemi, gizlilik ve veri koruma prensiplerini güncel tutmak ve ilgili mevzuata uygun hale getirmek için işbu Gizlilik Politikası’nın içeriğini dilediği zaman değiştirebilir. Değişen Gizlilik Politikası Plaka Ceza Sistemi internet sitesinde ilan edilecektir. Gizlilik Politikası’nın güncel haline web sitemiz üzerinden sürekli olarak ulaşmanız mümkündür. İşbu Gizlilik Politikası’nın değiştirilmesinden sonra Plaka Ceza Sistemi’in hizmet ve/veya uygulamalarını kullanmaya devam etmeniz halinde yapılan değişiklikleri kabul ettiğiniz varsayılır. Plaka Ceza Sistemi’in değişiklik yaptığı Gizlilik Politikası hükümleri internet sitesinde yayınlandığı tarihte yürürlük kazanır.</value>
+  </data>
+  <data name="Plaka Ceza Sistemi, yukarıda anılan kişisel verilerden bazılarını teknik bir iletişim dosyasını (Çerez-Cookie) kullanarak elde edebilir. Bahsi geçen teknik iletişim dosyaları, ana bellekte saklanmak üzere bir internet sitesinin kullanıcının tarayıcısına (browser) gönderdiği küçük metin dosyalarıdır. Teknik iletişim dosyası bir internet sitesi hakkında durum ve tercihleri saklayarak İnternet’in kullanımını kolaylaştırır. Teknik iletişim dosyası, internet sitesini kaç kişinin kullandığını, bir kişinin internet sitesini hangi amaçla, kaç kez ziyaret ettiğini ve ne kadar kaldıkları hakkında istatistiksel bilgileri elde etmeye ve kullanıcılar için özel tasarlanmış kullanıcı sayfalarından dinamik olarak reklam ve içerik üretilmesine yardımcı olur. Teknik iletişim dosyası, ana bellekte veya e-postanızdan veri veya başkaca herhangi bir kişisel veri almak için tasarlanmamıştır. Tarayıcıların pek çoğu başta teknik iletişim dosyasını kabul eder biçimde tasarlanmıştır ancak kullanıcılar dilerse teknik iletişim dosyasının gelmemesi veya teknik iletişim dosyasının gönderildiğinde ikaz verilmesini sağlayacak biçimde ayarları değiştirebilirler." xml:space="preserve">
+    <value>Plaka Ceza Sistemi, yukarıda anılan kişisel verilerden bazılarını teknik bir iletişim dosyasını (Çerez-Cookie) kullanarak elde edebilir. Bahsi geçen teknik iletişim dosyaları, ana bellekte saklanmak üzere bir internet sitesinin kullanıcının tarayıcısına (browser) gönderdiği küçük metin dosyalarıdır. Teknik iletişim dosyası bir internet sitesi hakkında durum ve tercihleri saklayarak İnternet’in kullanımını kolaylaştırır. Teknik iletişim dosyası, internet sitesini kaç kişinin kullandığını, bir kişinin internet sitesini hangi amaçla, kaç kez ziyaret ettiğini ve ne kadar kaldıkları hakkında istatistiksel bilgileri elde etmeye ve kullanıcılar için özel tasarlanmış kullanıcı sayfalarından dinamik olarak reklam ve içerik üretilmesine yardımcı olur. Teknik iletişim dosyası, ana bellekte veya e-postanızdan veri veya başkaca herhangi bir kişisel veri almak için tasarlanmamıştır. Tarayıcıların pek çoğu başta teknik iletişim dosyasını kabul eder biçimde tasarlanmıştır ancak kullanıcılar dilerse teknik iletişim dosyasının gelmemesi veya teknik iletişim dosyasının gönderildiğinde ikaz verilmesini sağlayacak biçimde ayarları değiştirebilirler.</value>
+  </data>
+  <data name="Son Güncelleme Tarihi" xml:space="preserve">
+    <value>Son Güncelleme Tarihi</value>
+  </data>
+  <data name="Sunulan hizmetin bir parçası olarak Plaka Ceza Sistemi, hizmet alan sizlere ilişkin bilgileri işbu Gizlilik Politikası kapsamında elde edebilir ve aktarabilir. Bu tür bilgi aktarımları, üçüncü kişiler tarafından belirlenen şartlara ve üçüncü kişiler ile mevcut sözleşmelere ve yürürlükteki mevcut yasal mevzuata uygun olarak yapılır. Bu Gizlilik Politikası, bilgi aktarımı yapılan üçüncü kişilerin gizlilik uygulamalarını yansıtmamaktadır ve onların gizlilik politikalarından veya uygulamalarından Plaka Ceza Sistemi sorumlu değildir. İşbu Gizlilik Politikası Plaka Ceza Sistemi’in kendi kontrolü dışındaki uygulamalar, üçüncü taraflara ait internet siteleri ve platformlar tarafından toplanılan bilgiler, üçüncü taraflarca Plaka Ceza Sistemi internet sitesindeki bağlantılar üzerinden toplanan bilgiler veya Plaka Ceza Sistemi’in sponsor olduğu ve/veya katıldığı üçüncü taraf internet siteleri üzerindeki başlıklar, kampanyalar ve diğer reklam veya tanıtımları kapsamamaktadır. Üçüncü tarafların kendi internet siteleri yoluyla topladığı, sakladığı ve kullandığı kişisel verilere yönelik yapılan işlemlerden Plaka Ceza Sistemi sorumlu değildir." xml:space="preserve">
+    <value>Sunulan hizmetin bir parçası olarak Plaka Ceza Sistemi, hizmet alan sizlere ilişkin bilgileri işbu Gizlilik Politikası kapsamında elde edebilir ve aktarabilir. Bu tür bilgi aktarımları, üçüncü kişiler tarafından belirlenen şartlara ve üçüncü kişiler ile mevcut sözleşmelere ve yürürlükteki mevcut yasal mevzuata uygun olarak yapılır. Bu Gizlilik Politikası, bilgi aktarımı yapılan üçüncü kişilerin gizlilik uygulamalarını yansıtmamaktadır ve onların gizlilik politikalarından veya uygulamalarından Plaka Ceza Sistemi sorumlu değildir. İşbu Gizlilik Politikası Plaka Ceza Sistemi’in kendi kontrolü dışındaki uygulamalar, üçüncü taraflara ait internet siteleri ve platformlar tarafından toplanılan bilgiler, üçüncü taraflarca Plaka Ceza Sistemi internet sitesindeki bağlantılar üzerinden toplanan bilgiler veya Plaka Ceza Sistemi’in sponsor olduğu ve/veya katıldığı üçüncü taraf internet siteleri üzerindeki başlıklar, kampanyalar ve diğer reklam veya tanıtımları kapsamamaktadır. Üçüncü tarafların kendi internet siteleri yoluyla topladığı, sakladığı ve kullandığı kişisel verilere yönelik yapılan işlemlerden Plaka Ceza Sistemi sorumlu değildir.</value>
+  </data>
+  <data name="Tel" xml:space="preserve">
+    <value>Tel</value>
+  </data>
+  <data name="TOPLANAN VERİLER" xml:space="preserve">
+    <value>TOPLANAN VERİLER</value>
+  </data>
+  <data name="ÇEREZ KULLANIMI" xml:space="preserve">
+    <value>ÇEREZ KULLANIMI</value>
+  </data>
+  <data name="İletişim Bilgileri" xml:space="preserve">
+    <value>İletişim Bilgileri</value>
+  </data>
+</root>

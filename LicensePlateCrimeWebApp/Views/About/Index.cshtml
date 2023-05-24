@@ -1,29 +1,32 @@
-﻿@{
-	ViewData["Title"] = "Hakkımızda";
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+	var title = @localizer["Hakkımızda"];
+	ViewData["Title"] = title;
 }
 <div class="special-services">
 	<div class="container">
-		<h3>HAKKIMIZDA</h3>
+		<h3>@localizer["HAKKIMIZDA"]</h3>
 		<div class="wthree_special_services">
 			<div class="col-md-4 wthree_special_service_left">
 				<img src="~/images/h9.jpg" alt=" " class="img-responsive" style="width:650px;height:250px;" />
-				<h4 style="text-align:center;">Hakkımızda</h4>
+				<h4 style="text-align:center;">@localizer["Hakkımızda"]</h4>
 				<div style="text-align:center;" class="wthree_more">
-					<a href="" data-toggle="modal" data-target="#hakkımızda" class="button--wayra button--border-thick button--text-upper button--size-s">Daha Fazla</a>
+					<a href="" data-toggle="modal" data-target="#hakkımızda" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["Daha Fazla"]</a>
 				</div>
 			</div> &emsp;
 			<div class="col-md-4 wthree_special_service_left">
 				<img src="~/images/h10.jpg" alt=" " class="img-responsive" style="width:650px;height:250px;" />
-				<h4 style="text-align:center;">Vizyonumuz</h4>
+				<h4 style="text-align:center;">@localizer["Vizyonumuz"]</h4>
 				<div style="text-align:center;" class="wthree_more">
-					<a href="" data-toggle="modal" data-target="#vizyon" class="button--wayra button--border-thick button--text-upper button--size-s">Daha Fazla</a>
+					<a href="" data-toggle="modal" data-target="#vizyon" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["Daha Fazla"]</a>
 				</div>
 			</div> &emsp;
 			<div class="col-md-4 wthree_special_service_left">
 				<img src="~/images/h11.jpg" alt=" " class="img-responsive" style="width:650px;height:230px;" />
-				<h4 style="text-align:center;">Misyonumuz</h4>
+				<h4 style="text-align:center;">@localizer["Misyonumuz"]</h4>
 				<div style="text-align:center;" class="wthree_more">
-					<a href="" data-toggle="modal" data-target="#misyon" class="button--wayra button--border-thick button--text-upper button--size-s">Daha Fazla</a>
+					<a href="" data-toggle="modal" data-target="#misyon" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["Daha Fazla"]</a>
 				</div>
 			</div>
 			<div class="clearfix"> </div>
@@ -34,15 +37,15 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-						<h4 class="modal-title" id="myModalLabel">Hakkımızda</h4>
+						<h4 class="modal-title" id="myModalLabel">@localizer["Hakkımızda"]</h4>
 					</div>
 					<form method="post" action="/home/uyeol">
 						<div class="modal-body">
 							<div class="form-group">
 								<p>
-									Plaka Ceza Sistemi, 2023'ten bu yana kendi teknoloji, tasarım ve uygulamaları ile müşterilerinin ihtiyaçlarına uygun özel çözümler sunuyor. Sakarya’da Muhammed Veysel Artuç ve Raif Akyol tarafından geliştirilen Plaka Ceza Sistemi modülü ürekli kendini geliştirmeyi amaçlıyor.
+									@localizer["Plaka Ceza Sistemi, 2023'ten bu yana kendi teknoloji, tasarım ve uygulamaları ile müşterilerinin ihtiyaçlarına uygun özel çözümler sunuyor. Sakarya’da Muhammed Veysel Artuç ve Raif Akyol tarafından geliştirilen Plaka Ceza Sistemi modülü ürekli kendini geliştirmeyi amaçlıyor."]
 									<br />
-									Plaka Ceza Sistemi, otoyol, karayolu gibi ulaşım yollarında bulunan kamera altyapısı sayesinde araç plakalarını okuyup ceza takibinin yapılmasını sağlıyor. Yüzde yüz Türk sermayeli global bir şirket olan Plaka Ceza Sistemi, bugün ulaşım alanında fikri mülkiyet hakları kendisine ait ürünleri ile yer alıyor.
+									@localizer["Plaka Ceza Sistemi, otoyol, karayolu gibi ulaşım yollarında bulunan kamera altyapısı sayesinde araç plakalarını okuyup ceza takibinin yapılmasını sağlıyor. Yüzde yüz Türk sermayeli global bir şirket olan Plaka Ceza Sistemi, bugün ulaşım alanında fikri mülkiyet hakları kendisine ait ürünleri ile yer alıyor."]
 								</p>
 							</div>
 						</div>
@@ -57,12 +60,12 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-						<h4 class="modal-title" id="myModalLabel">Vizyonumuz</h4>
+						<h4 class="modal-title" id="myModalLabel">@localizer["Vizyonumuz"]</h4>
 					</div>
 					<form method="post" action="/home/uyeol">
 						<div class="modal-body">
 							<div class="form-group">
-								<p>Plaka Ceza Sistemi, kendi teknolojisini geliştirerek ürünlerinde yerli ve milli kimlik özelliğini korur; topyekûn mükemmellik felsefesi ile müşterilerinin, çalışanlarının ve ortaklarının memnuniyetinde sürekliliği sağlamayı hedefler.</p>
+								<p>@localizer["Plaka Ceza Sistemi, kendi teknolojisini geliştirerek ürünlerinde yerli ve milli kimlik özelliğini korur; topyekûn mükemmellik felsefesi ile müşterilerinin, çalışanlarının ve ortaklarının memnuniyetinde sürekliliği sağlamayı hedefler."]</p>
 							</div>
 						</div>
 					</form>
@@ -76,12 +79,12 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-						<h4 class="modal-title" id="myModalLabel">Misyonumuz</h4>
+						<h4 class="modal-title" id="myModalLabel">@localizer["Misyonumuz"]</h4>
 					</div>
 					<form method="post" action="/home/uyeol">
 						<div class="modal-body">
 							<div class="form-group">
-								<p>Plaka Ceza Sistemi'nin ana görevi, yollardaki kameralar aracılığıyla araç plakalarının okunması ve müşteri beklentileri doğrultusunda, dünya çapında rekabet gücü olan ürünler olarak tasarlamak, üretmek ve pazarlamaktır.</p>
+								<p>@localizer["Plaka Ceza Sistemi'nin ana görevi, yollardaki kameralar aracılığıyla araç plakalarının okunması ve müşteri beklentileri doğrultusunda, dünya çapında rekabet gücü olan ürünler olarak tasarlamak, üretmek ve pazarlamaktır."]</p>
 							</div>
 						</div>
 					</form>
