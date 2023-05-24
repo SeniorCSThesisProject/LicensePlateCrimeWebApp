@@ -31,6 +31,18 @@ namespace LicensePlateCrimeWebApp.Repository
       return await _firestoreProvider.GetAll<Violation>();
     }
 
+    public async Task<IEnumerable<Violation>> GetAllFromUserIdAsync(string id)
+    {
+      List<Violation> user_violations = new List<Violation>();
+      var user_vehicles = await _vehicleRepository.GetAllFromUserIdAsync(id);
+      foreach (var vehicle in user_vehicles)
+      {
+        var violations = await _vehicleRepository.GetAllViolationsByVehicleIdAsync(vehicle.Id);
+        user_violations.AddRange(violations);
+      }
+      return user_violations;
+    }
+
     public async Task<Violation> GetByIdAsync(string id)
     {
       return await _firestoreProvider.Get<Violation>(id);
