@@ -1,0 +1,112 @@
+﻿@using LicensePlateCrimeWebApp.Data;
+@using LicensePlateCrimeWebApp.Interfaces;
+@model Violation;
+@inject FirebaseAppProvider firebaseAppProvider;
+@inject IViolationRepository _violationRepository;
+
+<style>
+    .vertical-align {
+        display: flex;
+        align-items: center;
+    }
+
+</style>
+
+@{
+    var vehicle = await _violationRepository.GetVehicleByIdAsync(Model.VehicleId);
+    var owner = await firebaseAppProvider.FirebaseAdminAuth.GetUserAsync(vehicle.OwnerId);
+}
+
+<!-- single -->
+<div class="single">
+    <div class="container">
+        <div class="col-md-4 agile_single_left">
+            <div class="agileits_recent_posts">
+                    <h3>Violation Info</h3>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <!--TODO: change img-->
+                        <img src="~/images/license_plate_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                            <h4>@Model.Description</h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <!--TODO: change img-->
+                        <img src="~/images/license_plate_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <h4>@Model.Message</h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/date_created_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <h4>@Model.CreationDateLocalStr</h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div style="margin-bottom:20px;" class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/date_updated_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <h4>@Model.LastUpdateDateLocalStr</h4>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <a asp-controller="Vehicle" asp-action="Detail" asp-route-id="@vehicle.Id">
+                    <h3>Vehicle Info</h3>
+                </a>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/license_plate_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <a asp-controller="Vehicle" asp-action="Detail" asp-route-id="@vehicle.Id">
+                            <h4>@vehicle.LicensePlate</h4>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="agileits_recent_posts_grid row vertical-align">
+                    <div class="agileits_recent_posts_gridl col-md-6">
+                        <img src="~/images/car_model_graphic.png" alt=" " class="img-responsive" />
+                    </div>
+                    <div class="agileits_recent_posts_gridr col-md-6">
+                        <a asp-controller="Vehicle" asp-action="Detail" asp-route-id="@vehicle.Id">
+                            <h4>@vehicle.Model</h4>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                
+            </div>
+        </div>
+        <div class="col-md-8 agile_single_right">
+            <div class="w3_comments">
+                <ul>
+                    <li><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>@Model.CreationDateLocalStr</li>
+                    <li><span class="glyphicon glyphicon-user" aria-hidden="true"></span><a href="#">@owner.Email</a></li>
+                    @*                    <li><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="#">5 Tags</a></li>
+                    *@
+                </ul>
+            </div>
+            <h3>
+                IHLAL DETAYLARI
+            </h3>
+
+            <div class="w3_comments_bottom">
+                <img src="~/images//violation_graphic.png" alt=" " class="img-responsive" />
+            </div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<!-- //single -->
