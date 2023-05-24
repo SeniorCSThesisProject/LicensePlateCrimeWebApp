@@ -1,13 +1,15 @@
 ﻿@model LicensePlateCrimeWebApp.Models.LoginModel
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-	ViewData["Title"] = "Kayıt Ol";
+	var title = @localizer["Kayıt Ol"];
+	ViewData["Title"] = title;
 }
 <!-- sign-up -->
 <div class="login">
 	<div class="container">
-		<h6>Kayıt Ol!</h6>
-		<h3>Plaka Ceza Sistemi'ne Hoşgeldiniz.</h3> 
+		<h6>@localizer["Kayıt Ol"]!</h6>
+		<h3>@localizer["Plaka Ceza Sistemi'ne Hoşgeldiniz."]</h3> 
 		<form asp-action="Registration" method="post" novalidate>
 			<!-- validation error message -->
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -16,16 +18,16 @@
 			<input asp-for="Email" placeholder="username@gmail.com">
 			<span asp-validation-for="Email" class="text-danger"></span>
 			<br /><br />
-			<label>Şifre :</label>
+			<label>@localizer["Şifre"] :</label>
 			<input type="password" asp-for="Password" class="lock" placeholder="******">
 			<span asp-validation-for="Password" class="text-danger"></span>
 
 
 			<div style="text-align:center" class="remember">
-				<label class="checkbox"><input type="checkbox" name="Checkbox" checked=""><i> </i><a asp-area="" asp-controller="Home" asp-action="Privacy">Üyelik şartlarını</a> kabul ettiğinizi onaylıyorsunuz.</label>
-				<br /><br /><input style="border-radius:15px;width:200px;" type="submit" value="Kayıt Ol">
+				<label class="checkbox"><input type="checkbox" name="Checkbox" checked=""><i> </i><a asp-area="" asp-controller="Home" asp-action="Privacy">@localizer["Üyelik şartlarını"]</a> @localizer["kabul ettiğinizi onaylıyorsunuz."]</label>
+				<br /><br /><input style="border-radius:15px;width:200px;" type="submit" value="@localizer["Kayıt Ol"]">
 				<br /><br />
-				<h3>Zaten bir hesabınız var mı? &emsp;<a style="text-align:center" asp-controller="Login" asp-action="Index">Giriş Yap!</a></h3>
+				<h3>@localizer["Zaten bir hesabınız var mı?"] &emsp;<a style="text-align:center" asp-controller="Login" asp-action="Index">@localizer["Giriş Yap!"]</a></h3>
 			</div>
 
 		</form>
