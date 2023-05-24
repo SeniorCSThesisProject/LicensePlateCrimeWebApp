@@ -1,16 +1,21 @@
 ﻿@model IEnumerable<Vehicle>
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
+@{
+    var title = @localizer["Araçlarım"];
+    ViewData["Title"] = title;
+}
 <!-- special-services -->
 <div class="special-services">
     <div class="container">
-        <h3>Vehicles</h3>
-        <p class="quia">owned by you</p>
+        <h3>@localizer["Araçlarım"]</h3>
+        <p class="quia">@localizer["owned by you"]</p>
         <div class="row">
             <div class="col-md-9"></div>
             <div class="wthree_more wthree_more2 col-md-3">
                 <a asp-action="Create" class="btn button--wayra button--border-thick button--text-upper button--size-s">
                     <i class="glyphicon glyphicon-plus" aria-hidden="true"></i>
-                    Create
+                    @localizer["Create"]
                 </a>
             </div>
         </div>
@@ -20,7 +25,7 @@
 
             @if (Model.Count() == 0)
             {
-                <h1>No vehicles found</h1>
+                <h1>@localizer["No vehicles found"]</h1>
             }
             else
             {
@@ -36,7 +41,7 @@
                             <div class="wthree_more wthree_more2 col-md-6">
                                 <a asp-controller="Vehicle" id="vehicle-view-button" asp-action="Detail" asp-route-id="@vehicle.Id" class="button--wayra button--border-thick button--text-upper button--size-s">
                                     <i class="glyphicon glyphicon-eye-open" aria-hidden="true"></i>
-                                    Details
+                                    @localizer["Details"]
                                 </a>
                             </div>
                             <div class="wthree_more wthree_more2 col-md-6">
@@ -45,7 +50,7 @@
                                     <input type="hidden" name="id" value="@vehicle.Id" />
                                     <a id="vehicle-delete-button" href="javascript:void(0);" onclick="this.parentElement.submit();" class="button--wayra button--border-thick button--text-upper button--size-s">
                                         <i class="glyphicon glyphicon-trash" aria-hidden="true"></i>
-                                        Delete
+                                        @localizer["Delete"]
                                     </a>
                                 </form>
 @*                                <a asp-controller="Vehicle" id="vehicle-delete-button" asp-action="Delete" asp-route-id="@vehicle.Id" class="button--wayra button--border-thick button--text-upper button--size-s">

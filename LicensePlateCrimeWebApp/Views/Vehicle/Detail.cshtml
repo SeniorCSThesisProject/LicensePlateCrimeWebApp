@@ -3,7 +3,8 @@
 @model Vehicle;
 @inject FirebaseAppProvider firebaseAppProvider;
 @inject IVehicleRepository _vehicleRepository;
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 <style>
     .vertical-align {
         display: flex;
@@ -13,6 +14,8 @@
 </style>
 
 @{
+    var title = @localizer["Araçlarım - Detaylar"];
+    ViewData["Title"] = title;
     var owner = await firebaseAppProvider.FirebaseAdminAuth.GetUserAsync(Model.OwnerId);
 }
 
@@ -21,7 +24,7 @@
     <div class="container">
         <div class="col-md-4 agile_single_left">
             <div class="agileits_recent_posts">
-                <h3>Info</h3>
+                <h3>@localizer["Info"]</h3>
                 <div class="agileits_recent_posts_grid row vertical-align">
                     <div class="agileits_recent_posts_gridl col-md-6">
                         <img src="~/images/license_plate_graphic.png" alt=" " class="img-responsive" />
@@ -85,7 +88,7 @@
                 *@
             </div>
             <div class="agileits_twitter_posts">
-                <h3>Violations</h3>
+                <h3>@localizer["Violations"]</h3>
                 <ul>
                     @{
                         var violations = await _vehicleRepository.GetAllViolationsByVehicleIdAsync(Model.Id);
@@ -114,14 +117,14 @@
                                 <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
                                 <path d="M7 5.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 1 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0zM7 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm-1.496-.854a.5.5 0 0 1 0 .708l-1.5 1.5a.5.5 0 0 1-.708 0l-.5-.5a.5.5 0 0 1 .708-.708l.146.147 1.146-1.147a.5.5 0 0 1 .708 0z" />
                             </svg>
-                        </span><a asp-controller="Violation" asp-action="Index" asp-route-vehicleId="@Model.Id">@violations.Count() Violations</a>
+                        </span><a asp-controller="Violation" asp-action="Index" asp-route-vehicleId="@Model.Id">@violations.Count() @localizer["Violations"]</a>
                     </li>
                     @*                    <li><span class="glyphicon glyphicon-tags" aria-hidden="true"></span><a href="#">5 Tags</a></li>
                     *@
                 </ul>
             </div>
             <h3>
-                ARAC DETAYLARI
+                @localizer["ARAÇ DETAYLARI"]
             </h3>
 
             <div class="w3_comments_bottom">
