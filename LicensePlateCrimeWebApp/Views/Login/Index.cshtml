@@ -1,13 +1,15 @@
 ﻿@model LicensePlateCrimeWebApp.Models.LoginModel
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-	ViewData["Title"] = "Giriş Yap";
+	var title = @localizer["Giriş Yap"];
+	ViewData["Title"] = title;
 }
 
 @if (!String.IsNullOrEmpty(ViewData["ReturnUrl"]?.ToString()))
 {
 	<div class="alert alert-danger" role="alert">
-		<strong>Hata</strong> Bu sayfaya erişmek için Giriş yapmalısınız.
+		<strong>@localizer["Hata"]</strong> @localizer["Bu sayfaya erişmek için Giriş yapmalısınız."]
 	</div>
 }
 
@@ -15,8 +17,8 @@
 <!-- sign-up -->
 <div class="login">
 	<div class="container">
-		<h6>GİRİŞ YAP!</h6>
-		<h3>Plaka Ceza Sistemi'ne Hoşgeldiniz.</h3>
+		<h6>@localizer["GİRİŞ YAP"]!</h6>
+		<h3>@localizer["Plaka Ceza Sistemi'ne Hoşgeldiniz."]</h3>
 		<form asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" novalidate>
 			<!-- validation error message -->
 			<div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -26,14 +28,14 @@
 			<input asp-for="Email" placeholder="username@gmail.com">
 			<span asp-validation-for="Email" class="text-danger"></span>
 			<br /><br />
-			<label>Şifre :</label>
+			<label>@localizer["Şifre"] :</label>
 			<input type="password" asp-for="Password" class="lock" placeholder="******">
 			<span asp-validation-for="Password" class="text-danger"></span>
 			
 			<div style="text-align:center" class="remember">
-				<input style="border-radius:15px;width:200px;" type="submit" value="Giriş Yap">
+				<input style="border-radius:15px;width:200px;" type="submit" value="@localizer["Giriş Yap"]">
 				<br /><br />
-				<h3>Üye değil misiniz? &emsp;<a style="text-align:center" asp-controller="Signup" asp-action="Index">Kayıt Ol!</a></h3>
+				<h3>@localizer["Üye değil misiniz?"] &emsp;<a style="text-align:center" asp-controller="Signup" asp-action="Index">@localizer["Kayıt Ol"]!</a></h3>
 			</div>
 		</form>
 	</div>
