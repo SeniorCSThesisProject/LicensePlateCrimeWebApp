@@ -4,8 +4,13 @@ import colorsys
 import numpy as np
 import tensorflow as tf
 import pytesseract
+import datetime
+import asyncio
 from core.config import cfg
 import re
+from PIL import Image
+import os
+
 
 
 # If you don't have tesseract executable in your PATH, include the following:
@@ -13,15 +18,16 @@ import re
 pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract'
 
 import firebase_admin
-from firebase_admin import credentials
-from firebase_admin import firestore
+from firebase_admin import credentials, firestore, db, storage
+
 
 # Use the private key file of the service account directly.
 cred = credentials.Certificate("./service_account_key.json")
-app = firebase_admin.initialize_app(cred)
-db = firestore.client()
+fb_app = firebase_admin.initialize_app(cred, {'databaseURL': 'https://bitirme-8af0e-default-rtdb.firebaseio.com/', 'storageBucket': 'bitirme-8af0e.appspot.com'})
+firestore_db = firestore.client()
 
-vehicles_ref = db.collection('Vehicles')
+
+vehicles_ref = firestore_db.collection('Vehicles')
 vehicle_docs = vehicles_ref.stream()
 
 vehicles = []
@@ -31,8 +37,41 @@ for vehicle_doc in vehicle_docs:
     vehicles.append({'license_plate': license_plate, 'is_wanted': is_wanted})
 print(vehicles)
 
+bucket = storage.bucket()
+
+realtime_alert_ref = db.reference('AlertInfo')
+
+async def get_stored_vehicle(license_plate):
+    for vehicle in vehicles:
+        if vehicle['license_plate'] == license_plate:
+            return vehicle
+    return None
+
+async def realtime_alert(license_plate, img_data):
+    print("REALTIME ALERT STARTED")
+    current_datetime = datetime.datetime.now()
+    img = Image.fromarray(img_data, 'RGB')
+    img_filename = f'{license_plate}_{current_datetime.strftime("%Y-%m-%d-%H-%M")}.png'
+    img_relative_filepath = f'detections\\wanted_imgs\\{img_filename}'
+    img_absolute_filepath = os.path.join(os.getcwd(), img_relative_filepath)
+    img.save(img_absolute_filepath)
+    blob = bucket.blob(img_filename)
+    blob.upload_from_filename(img_absolute_filepath)
+    blob.make_public()
+    img_url = blob.public_url
+
+    realtime_alert_ref.set({
+        'LicensePlate': license_plate,
+        'Date': current_datetime.isoformat(),
+        'Location': 'P8VQ+HW Serdivan, Sakarya',
+        'ImageUrl': img_url
+    })
+
+    print("REALTIME ALERT ENDED")
+    #upload the image to firebase storage
+
 # function to recognize license plate numbers using Tesseract OCR
-def recognize_plate(img, coords):
+async def recognize_plate(img, coords):
     # separate coordinates from box
     xmin, ymin, xmax, ymax = coords
     # get the subimage that makes up the bounded region and take an additional 5 pixels on each side
@@ -82,14 +121,32 @@ def recognize_plate(img, coords):
     #             return "CEZALI ->" + plate_num
     #         else:
     #             print("License Plate #: ", plate_num)
+    is_wanted = False
     if plate_num != None:
         if len(plate_num)>5:
-            if any(plate_num == vehicle.get('license_plate') for vehicle in vehicles):
-                print("Cezali License Plate #: ", plate_num)
-                return "CEZALI ->" + plate_num
+            stored_vehicle = await get_stored_vehicle(plate_num)
+            # License plate is found on the database
+            if stored_vehicle != None:
+                is_wanted = stored_vehicle['is_wanted']
+                if (is_wanted):
+                    print("Cezali License Plate #: ", plate_num)
+                    await realtime_alert(plate_num, img)
             else:
                 print("License Plate #: ", plate_num)
-    return plate_num
+            # for vehicle in vehicles:
+            #     stored_license_plate = vehicle['license_plate']
+            #     stored_is_wanted = vehicle['is_wanted']
+            #     if stored_license_plate == plate_num:
+            #         is_wanted = stored_is_wanted
+            #         if (is_wanted):
+            #             print("Cezali License Plate #: ", plate_num)
+            #             await realtime_alert(plate_num, img)
+            #             break
+            #     else:
+            #         print("License Plate #: ", plate_num)
+            #         break
+            # if any(plate_num == vehicle.get('license_plate') for vehicle in vehicles):
+    return plate_num, is_wanted
 
 
 def load_weights(model, weights_file, model_name='yolov4'):
@@ -165,7 +222,7 @@ def format_boxes(bboxes, image_height, image_width):
         box[0], box[1], box[2], box[3] = xmin, ymin, xmax, ymax
     return bboxes
 
-def draw_bbox(image, bboxes, counted_classes = None, show_label=True, allowed_classes=list(read_class_names(cfg.YOLO.CLASSES).values()), read_plate = False):
+async def draw_bbox(image, bboxes, counted_classes = None, show_label=True, allowed_classes=list(read_class_names(cfg.YOLO.CLASSES).values()), read_plate = False):
     classes = read_class_names(cfg.YOLO.CLASSES)
     num_classes = len(classes)
     image_h, image_w, _ = image.shape
@@ -190,10 +247,10 @@ def draw_bbox(image, bboxes, counted_classes = None, show_label=True, allowed_cl
         else:
             if read_plate:
                 height_ratio = int(image_h / 25)
-                plate_number = recognize_plate(image, coor)
+                plate_number, is_wanted = await recognize_plate(image, coor)
                 if plate_number != None:
-                    if plate_number.startswith("C"):
-                        cv2.putText(image, plate_number, (int(coor[0]), int(coor[1]-height_ratio)), 
+                    if is_wanted:
+                        cv2.putText(image, f'CEZALI -> {plate_number}', (int(coor[0]), int(coor[1]-height_ratio)), 
                         cv2.FONT_HERSHEY_SIMPLEX, 1.25, (255,0,0), 2)
                     else:
                         cv2.putText(image, plate_number, (int(coor[0]), int(coor[1]-height_ratio)), 
