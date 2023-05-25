@@ -13,7 +13,8 @@
                 <div class="card-header">Araç Güncelle</div>
                 <div class="card-body card-block">
                     <form method="POST" asp-controller="Admin" asp-action="UpdateVehicle" enctype="multipart/form-data">
-                        <input type="hidden" id="OwnerId" name="OwnerId" asp-for="OwnerId" />
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="OwnerId" />
                         <div class="form-group">
                             <div class="input-group">
                                 <div class="input-group-addon">Model</div>

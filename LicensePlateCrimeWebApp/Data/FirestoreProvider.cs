@@ -27,6 +27,14 @@ namespace LicensePlateCrimeWebApp.Data
       return document.Id;
     }
 
+    public async Task<string> Update<T>(T entity) where T : IFirestoreEntity
+    {
+      CollectionReference collection = _fireStoreDb.Collection(GetCollectionName<T>());
+      DocumentReference document = collection.Document(entity.Id);
+      await document.SetAsync(entity);
+      return document.Id;
+    }
+
     public async Task<T> Get<T>(string id) where T : IFirestoreEntity
     {
       var document = _fireStoreDb.Collection(GetCollectionName<T>()).Document(id);

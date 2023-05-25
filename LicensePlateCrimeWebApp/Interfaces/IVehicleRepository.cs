@@ -13,7 +13,7 @@ namespace LicensePlateCrimeWebApp.Interfaces
 
     Task<string> UploadVehicleImgAsync(IFormFile imgFile);
     Task<string> AddAsync(Vehicle vehicle);
-    Task<bool> UpdateAsync(Vehicle vehicle);
+    Task<string> UpdateAsync(Vehicle vehicle);
     Task<bool> DeleteAsync(string id);
     Task<bool> SaveAsync();
   }
