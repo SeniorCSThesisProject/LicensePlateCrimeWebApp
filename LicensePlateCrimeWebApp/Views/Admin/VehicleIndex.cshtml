@@ -55,11 +55,11 @@
                             <td>@vehicle.CreationDateLocalStr</td>
                             <td>@vehicle.LastUpdateDateLocalStr</td>
                             <td style="text-align:center">
-                                <form method="post" asp-controller="Admin" asp-action="SwitchVehicleWanted">
+                                <form method="post" asp-controller="Admin" asp-action="SwitchVehicleWanted" asp-route-id="@vehicle.Id" asp-route-isWanted="@vehicle.IsWanted">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@vehicle.Id" />
                                 <label class="switch switch-default switch-pill switch-danger mr-2">
-                                    <input type="checkbox" class="switch-input" checked="@vehicle.IsWanted">
+                                        <input type="checkbox" name="isWanted" class="switch-input" checked="@vehicle.IsWanted">
                                     <span class="switch-label"></span>
                                     <span class="switch-handle"></span>
                                 </label>
