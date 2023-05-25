@@ -53,9 +53,10 @@ namespace LicensePlateCrimeWebApp.Repository
       throw new NotImplementedException();
     }
 
-    public Task<bool> UpdateAsync(Vehicle vehicle)
+    public async Task<string> UpdateAsync(Vehicle vehicle)
     {
-      throw new NotImplementedException();
+      var id = await _firestoreProvider.Update(vehicle);
+      return id;
     }
 
     public async Task<string> UploadVehicleImgAsync(IFormFile imgFile)

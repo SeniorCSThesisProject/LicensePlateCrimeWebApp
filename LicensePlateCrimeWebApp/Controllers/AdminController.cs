@@ -64,47 +64,52 @@ namespace LicensePlateCrimeWebApp.Controllers
         return View(createVehicleViewModel);
       }
     }
-		// GET: Vehicle/Delete/5
-		public ActionResult DeleteVehicle(int id)
+    // GET: Vehicle/Delete/5
+    public ActionResult DeleteVehicle(int id)
     {
       return View();
     }
-		// POST: Vehicle/Delete/5
-		[HttpPost]
+    // POST: Vehicle/Delete/5
+    [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> DeleteVehicle(string id)
     {
       var isDeleted = await _vehicleRepository.DeleteAsync(id);
       return RedirectToAction("VehicleIndex", "Admin");
     }
-
-
-
-		// GET: Vehicles/Update
-		public ActionResult UpdateVehicle()
-		{
-		
-			return View();
-		}
-		// POST: Vehicles/Create
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> UpdateVehicle(CreateVehicleViewModel createVehicleViewModel)
-		{
-			if (ModelState.IsValid)
-			{
-				var uploadedImgUrl = await _vehicleRepository.UploadVehicleImgAsync(createVehicleViewModel.Image);
-				var vehicle = new Vehicle(createVehicleViewModel.OwnerId, createVehicleViewModel.Model, createVehicleViewModel.LicensePlate, uploadedImgUrl);
-				var id = await _vehicleRepository.AddAsync(vehicle);
-				vehicle.Id = id;
-				return RedirectToAction("VehicleIndex");
-			}
-			else
-			{
-				ModelState.AddModelError("", "Photo Upload Failed");
-				return View(createVehicleViewModel);
-			}
-		}
+    // GET: Vehicles/Update
+    public async Task<ActionResult> UpdateVehicle(string id)
+    {
+      var vehicle = await _vehicleRepository.GetByIdAsync(id);
+      var createVehicleViewModel = new CreateVehicleViewModel
+      {
+        Id = vehicle.Id,
+        OwnerId = vehicle.OwnerId,
+        Model = vehicle.Model,
+        LicensePlate = vehicle.LicensePlate,
+      };
+      return View(createVehicleViewModel);
+    }
+    // POST: Vehicles/Create
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> UpdateVehicle(CreateVehicleViewModel createVehicleViewModel)
+    {
+      if (ModelState.IsValid)
+      {
+        var uploadedImgUrl = await _vehicleRepository.UploadVehicleImgAsync(createVehicleViewModel.Image);
+        var vehicle = new Vehicle(createVehicleViewModel.OwnerId, createVehicleViewModel.Model, createVehicleViewModel.LicensePlate, uploadedImgUrl);
+        vehicle.Id = createVehicleViewModel.Id;
+        //await _vehicleRepository.AddAsync(vehicle);
+        await _vehicleRepository.UpdateAsync(vehicle);
+        return RedirectToAction("VehicleIndex");
+      }
+      else
+      {
+        ModelState.AddModelError("", "Photo Upload Failed");
+        return View(createVehicleViewModel);
+      }
+    }
 
     // POST: Vehicle/Delete/5
     [HttpPost]
@@ -198,39 +203,39 @@ namespace LicensePlateCrimeWebApp.Controllers
       var isDeleted = await _violationRepository.DeleteAsync(id);
       return RedirectToAction("ViolationIndex", "Admin");
     }
-		// GET: Violation/Update
-		public ActionResult UpdateViolation()
-		{
+    // GET: Violation/Update
+    public ActionResult UpdateViolation()
+    {
 
-			return View();
-		}
-		// POST: Violation/Create
-		[HttpPost]
-		[ValidateAntiForgeryToken]
-		public async Task<ActionResult> UpdateViolation(Violation createviolationModel)
-		{
-			if (ModelState.IsValid)
-			{
-				var violation = new Violation(createviolationModel.VehicleId, createviolationModel.ViolationType, createviolationModel.Message);
-				var id = await _violationRepository.AddAsync(violation);
-				violation.Id = id;
-				return RedirectToAction("ViolationIndex", "Admin");
-			}
-			else
-			{
-				ModelState.AddModelError("", "Failed");
-				return View(createviolationModel);
-			}
-		}
-
-
-		//---------------Violation---------------//
-
-		//+++++++++++++++Contact+++++++++++++++//
+      return View();
+    }
+    // POST: Violation/Create
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> UpdateViolation(Violation createviolationModel)
+    {
+      if (ModelState.IsValid)
+      {
+        var violation = new Violation(createviolationModel.VehicleId, createviolationModel.ViolationType, createviolationModel.Message);
+        var id = await _violationRepository.AddAsync(violation);
+        violation.Id = id;
+        return RedirectToAction("ViolationIndex", "Admin");
+      }
+      else
+      {
+        ModelState.AddModelError("", "Failed");
+        return View(createviolationModel);
+      }
+    }
 
 
+    //---------------Violation---------------//
 
-		public async Task<ActionResult> ContactIndex()
+    //+++++++++++++++Contact+++++++++++++++//
+
+
+
+    public async Task<ActionResult> ContactIndex()
     {
       var contact = await _contactRepository.GetAllAsync();
       return View(contact);
