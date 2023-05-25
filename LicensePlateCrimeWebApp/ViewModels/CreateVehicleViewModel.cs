@@ -5,6 +5,7 @@
     public string? Id { get; set; }
     public string OwnerId { get; set; }
     public string Model { get; set; }
+    public bool IsWanted { get; set; }
     public string LicensePlate { get; set; }
     public IFormFile Image { get; set; }
 

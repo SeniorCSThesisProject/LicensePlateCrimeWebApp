@@ -53,7 +53,7 @@ namespace LicensePlateCrimeWebApp.Controllers
       if (ModelState.IsValid)
       {
         var uploadedImgUrl = await _vehicleRepository.UploadVehicleImgAsync(createVehicleViewModel.Image);
-        var vehicle = new Vehicle(createVehicleViewModel.OwnerId, createVehicleViewModel.Model, createVehicleViewModel.LicensePlate, uploadedImgUrl);
+        var vehicle = new Vehicle(createVehicleViewModel.OwnerId, createVehicleViewModel.Model, createVehicleViewModel.LicensePlate, uploadedImgUrl, createVehicleViewModel.IsWanted);
         var id = await _vehicleRepository.AddAsync(vehicle);
         vehicle.Id = id;
         return RedirectToAction("VehicleIndex");
@@ -77,6 +77,9 @@ namespace LicensePlateCrimeWebApp.Controllers
       var isDeleted = await _vehicleRepository.DeleteAsync(id);
       return RedirectToAction("VehicleIndex", "Admin");
     }
+
+
+
 		// GET: Vehicles/Update
 		public ActionResult UpdateVehicle()
 		{
@@ -103,14 +106,25 @@ namespace LicensePlateCrimeWebApp.Controllers
 			}
 		}
 
+    // POST: Vehicle/Delete/5
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> SwitchVehicleWanted(string id,bool isWanted)
+    {
 
-		//---------------Vehicles---------------//
+      var vehicle= await _vehicleRepository.GetByIdAsync(id);
+      vehicle.IsWanted = isWanted;
+      await _vehicleRepository.UpdateAsync(vehicle);
+      return RedirectToAction("VehicleIndex", "Admin");
+    }
 
-		//+++++++++++++++Index+++++++++++++++//
+    //---------------Vehicles---------------//
+
+    //+++++++++++++++Index+++++++++++++++//
 
 
 
-		public async Task<ActionResult> Index()
+    public async Task<ActionResult> Index()
     {
       // Iterate through all users. This will still retrieve users in batches,
       // buffering no more than 1000 users in memory at a time.

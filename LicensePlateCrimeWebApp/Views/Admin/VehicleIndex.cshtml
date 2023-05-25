@@ -10,6 +10,11 @@
     var dateFormat = "dd/MM/yyyy";
     var dateTimeFormat = "dd/MM/yyyy - HH:mm";
 }
+<style>
+    .switch.switch-default .switch-label{
+        background-color:gray !important;
+    }
+</style>
 
 <div class="row">
     <div class="col-md-12">
@@ -34,7 +39,8 @@
                         <th>PLAKA</th>
                         <th>KAYIT TARİHİ</th>
                         <th>GÜNCELLEME TARİHİ</th>
-                        <th style="text-align:center">İŞLEMLER</th>
+                        <th>ARANMA DURUMU</th>
+                        <th>İŞLEMLER</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -43,12 +49,22 @@
                         var owner = await firebaseAppProvider.FirebaseAdminAuth.GetUserAsync(vehicle.OwnerId);
 
                         <tr class="tr-shadow">
-                            <td>@owner.Email</td>
-                            
+                            <td>@owner.Email</td>                           
                             <td>@vehicle.Model</td>
                             <td>@vehicle.LicensePlate</td>
                             <td>@vehicle.CreationDateLocalStr</td>
                             <td>@vehicle.LastUpdateDateLocalStr</td>
+                            <td style="text-align:center">
+                                <form method="post" asp-controller="Admin" asp-action="SwitchVehicleWanted">
+                                    @Html.AntiForgeryToken()
+                                    <input type="hidden" name="id" value="@vehicle.Id" />
+                                <label class="switch switch-default switch-pill switch-danger mr-2">
+                                    <input type="checkbox" class="switch-input" checked="@vehicle.IsWanted">
+                                    <span class="switch-label"></span>
+                                    <span class="switch-handle"></span>
+                                </label>
+                                </form>
+                            </td>
                             <td>
                                 <div class="table-data-feature">
 									<a asp-controller="Admin" asp-action="UpdateVehicle">
