@@ -51,7 +51,8 @@
                             <td>@violation.LastUpdateDateLocalStr</td>
                             <td>
                                 <div class="table-data-feature">
-                                    <a asp-controller="Admin" asp-action="UpdateViolation">
+                                    <a asp-controller="Admin" asp-action="UpdateViolation" asp-route-id="@violation.Id" asp-route-vehicleId="@vehicle.Id">
+                                        <input type="hidden" name="vehicleId" value="@vehicle.Id" />
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
                                         <i class="zmdi zmdi-edit"></i>
                                     </button></a>

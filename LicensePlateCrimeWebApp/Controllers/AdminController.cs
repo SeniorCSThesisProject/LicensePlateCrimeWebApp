@@ -204,27 +204,35 @@ namespace LicensePlateCrimeWebApp.Controllers
       return RedirectToAction("ViolationIndex", "Admin");
     }
     // GET: Violation/Update
-    public ActionResult UpdateViolation()
+    public async Task<ActionResult> UpdateViolation(string id,string vehicleId)
     {
-
-      return View();
+      var violation = await _violationRepository.GetByIdAsync(id);
+      var createViolationModel = new Violation()
+      {
+        Id = violation.Id,
+        VehicleId = vehicleId,
+        ViolationType = violation.ViolationType,
+        Description = violation.Description,
+      };
+      return View(createViolationModel);
     }
     // POST: Violation/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> UpdateViolation(Violation createviolationModel)
+    public async Task<ActionResult> UpdateViolation(Violation createViolationModel)
     {
       if (ModelState.IsValid)
       {
-        var violation = new Violation(createviolationModel.VehicleId, createviolationModel.ViolationType, createviolationModel.Message);
-        var id = await _violationRepository.AddAsync(violation);
-        violation.Id = id;
-        return RedirectToAction("ViolationIndex", "Admin");
+        var violation = new Violation(createViolationModel.VehicleId, createViolationModel.ViolationType, createViolationModel.Description);
+        violation.Id = createViolationModel.Id;
+        //await _vehicleRepository.AddAsync(vehicle);
+        await _violationRepository.UpdateAsync(violation);
+        return RedirectToAction("ViolationIndex","Admin");
       }
       else
       {
-        ModelState.AddModelError("", "Failed");
-        return View(createviolationModel);
+        ModelState.AddModelError("", "Photo Upload Failed");
+        return View(createViolationModel);
       }
     }
 
