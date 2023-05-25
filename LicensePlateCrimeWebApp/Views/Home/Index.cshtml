@@ -1,226 +1,222 @@
 ﻿@using static LicensePlateCrimeWebApp.Helpers.GlobalHelpers;
+@using LicensePlateCrimeWebApp.Data;
 @using Newtonsoft.Json;
 @using LicensePlateCrimeWebApp.Interfaces;
 @inject IVehicleRepository _vehicleRepository;
 @inject IViolationRepository _violationRepository;
+@inject FirebaseAppProvider firebaseAppProvider;
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
 @{
-	var title = @localizer["Ana Sayfa"];
-	ViewData["Title"] = title;
+    var title = @localizer["Ana Sayfa"];
+    ViewData["Title"] = title;
 }
 
 @{
-	var vehicles = await _vehicleRepository.GetAllAsync();
-	var violation = await _violationRepository.GetAllAsync();
+    var vehicles = await _vehicleRepository.GetAllAsync();
+    var violations = await _violationRepository.GetAllAsync();
+    // Iterate through all users. This will still retrieve users in batches,
+    // buffering no more than 1000 users in memory at a time.
+    var enumerator = firebaseAppProvider.FirebaseAdminAuth.ListUsersAsync(null).GetAsyncEnumerator();
+    var userCount = 0;
+    while (await enumerator.MoveNextAsync())
+    {
+        userCount++;
+    }
 }
 <!-- banner -->
 <div class="banner">
-	<div class="container">
-		<div class="w3ls_banner_info">
-			<h2 style="color:white;">@localizer["PLAKA CEZA SİSTEMİ"]</h2><br />
-		</div>
-	</div>
+    <div class="container">
+        <div class="w3ls_banner_info">
+            <h2 style="color:white;">@localizer["PLAKA CEZA SİSTEMİ"]</h2><br />
+        </div>
+    </div>
 </div>
 <!-- //banner -->
 <!-- banner-bottom -->
 <div class="banner-bottom">
-	<div class="container">
-		<div class="col-md-6 banner_bottom_left">
-			<h3>@localizer["Plaka Ceza Sistemi"]</h3><br />
-			<p>
-				@localizer["Plaka Ceza Sistemi Modülü ile Araçlarınızı ile ilgili bilgilere ulaşıp detayları görüntüleyebilir, Eğer ihlaleriniz mevcut ise ihlal bilgilerini görüntüleyip ilgili birimlere itirazlarda bulunabilirsiniz."]
-			</p>
-			<div class="wthree_more wthree_more1" style="width: 80%;">
-				@if (Authenticated(Context)){}
-				else
-				{
-					<a asp-area="" asp-controller="Login" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["ÜYE GİRİŞİ"]</a>
-					<br />
-					<a asp-area="" asp-controller="Signup" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["ÜYE OL"]</a>
-				}
-			</div>
-		</div>
+    <div class="container">
+        <div class="col-md-6 banner_bottom_left">
+            <h3>@localizer["Plaka Ceza Sistemi"]</h3><br />
+            <p>
+                @localizer["Plaka Ceza Sistemi Modülü ile Araçlarınızı ile ilgili bilgilere ulaşıp detayları görüntüleyebilir, Eğer ihlaleriniz mevcut ise ihlal bilgilerini görüntüleyip ilgili birimlere itirazlarda bulunabilirsiniz."]
+            </p>
+            <div class="wthree_more wthree_more1" style="width: 80%;">
+                @if (Authenticated(Context)) { }
+                else
+                {
+                    <a asp-area="" asp-controller="Login" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["ÜYE GİRİŞİ"]</a>
+                    <br />
+                    <a asp-area="" asp-controller="Signup" asp-action="Index" class="button--wayra button--border-thick button--text-upper button--size-s">@localizer["ÜYE OL"]</a>
+                }
+            </div>
+        </div>
 
-		<div class="col-md-6 banner_bottom_right">
-			@if (Authenticated(Context))
-			{
-			<div class="wthree_banner_bottom_right_grids">
-				<div class="col-md-6 banner_bottom_right_grid">
-					<a asp-area="" asp-controller="Vehicle" asp-action="Index">
-					<div class="view view-tenth">
-						<div class="agile_text_box">
-							<i class="fas fa-address-card"></i>
-							<h3>@localizer["Araçlarım"]</h3>
-							<p></p>
-						</div>
-					</div>
-					</a>
-				</div>
-				<div class="col-md-6 banner_bottom_right_grid">
-						<a asp-area="" asp-controller="Violation" asp-action="Index">
-					<div class="view view-tenth">
-						<div class="agile_text_box">
-							<i class="fas fa-clipboard"></i>
-							<h3>@localizer["İhlallerim"]</h3>
-							<p></p>
-						</div>
-					</div>
-					</a>
-				</div>						
-				<div class="clearfix"> </div>
-			</div>
-			<div class="wthree_banner_bottom_right_grids">
-				<div class="col-md-6 banner_bottom_right_grid">
-						<a asp-area="" asp-controller="Objection" asp-action="Index">
-					<div class="view view-tenth">
-						<div class="agile_text_box">
-							<i class="fas fa-comments"></i>
-							<h3>@localizer["İtirazlarım"]</h3>
-							<p></p>
-						</div>
-					</div>
-					</a>
-				</div>
-				<div class="col-md-6 banner_bottom_right_grid">
-					<a asp-area="" asp-controller="Contact" asp-action="Index">
-					<div class="view view-tenth">
-						<div class="agile_text_box">
-							<i class="fas fa-comment"></i>
-							<h3>@localizer["İletişim"]</h3>
-							<p></p>
-						</div>
-					</div>
-					</a>
-				</div>					
-				<div class="clearfix"> </div>
-			</div>
-			}
-			else
-			{
-				<div class="wthree_banner_bottom_right_grids">
-					<div class="col-md-6 banner_bottom_right_grid">
-						<a asp-area="" asp-controller="Home" asp-action="Index">
-						<div class="view view-tenth">
-							<div class="agile_text_box">
-									<i class="fa fa-align-left"></i>
-									<h3>@localizer["Ana Sayfa"]</h3>
-								<p></p>
-							</div>
-						</div>
-						</a>
-					</div>
-					<div class="col-md-6 banner_bottom_right_grid">
-						<a asp-area="" asp-controller="Home" asp-action="Privacy">
-						<div class="view view-tenth">
-							<div class="agile_text_box">
-									<i class="fas fa-user-shield"></i>
-									<h3>@localizer["Gizlilik Sözleşmesi"]</h3>
-								<p></p>
-							</div>
-						</div>
-						</a>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-				<div class="wthree_banner_bottom_right_grids">
-					<div class="col-md-6 banner_bottom_right_grid">
-						<a asp-area="" asp-controller="About" asp-action="Index">
-						<div class="view view-tenth">
-							<div class="agile_text_box">
-									<i class="fas fa-users"></i>
-									<h3>@localizer["Hakkımızda"]</h3>
-								<p></p>
-							</div>
-						</div>
-						</a>
-					</div>
-					<div class="col-md-6 banner_bottom_right_grid">
-						<a asp-area="" asp-controller="Contact" asp-action="Index">
-						<div class="view view-tenth">
-							<div class="agile_text_box">
-									<i class="fas fa-comment"></i>
-								<h3>@localizer["İletişim"]</h3>
-								<p></p>
-							</div>
-						</div>
-					</a>
-					</div>
-					<div class="clearfix"> </div>
-				</div>
-			}
+        <div class="col-md-6 banner_bottom_right">
+            @if (Authenticated(Context))
+            {
+                <div class="wthree_banner_bottom_right_grids">
+                    <div class="col-md-6 banner_bottom_right_grid">
+                        <a asp-area="" asp-controller="Vehicle" asp-action="Index">
+                            <div class="view view-tenth">
+                                <div class="agile_text_box">
+                                    <i class="fas fa-address-card"></i>
+                                    <h3>@localizer["Araçlarım"]</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 banner_bottom_right_grid">
+                        <a asp-area="" asp-controller="Violation" asp-action="Index">
+                            <div class="view view-tenth">
+                                <div class="agile_text_box">
+                                    <i class="fas fa-clipboard"></i>
+                                    <h3>@localizer["İhlallerim"]</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="wthree_banner_bottom_right_grids">
+                    <div class="col-md-6 banner_bottom_right_grid">
+                        <a asp-area="" asp-controller="Objection" asp-action="Index">
+                            <div class="view view-tenth">
+                                <div class="agile_text_box">
+                                    <i class="fas fa-comments"></i>
+                                    <h3>@localizer["İtirazlarım"]</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 banner_bottom_right_grid">
+                        <a asp-area="" asp-controller="Contact" asp-action="Index">
+                            <div class="view view-tenth">
+                                <div class="agile_text_box">
+                                    <i class="fas fa-comment"></i>
+                                    <h3>@localizer["İletişim"]</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            }
+            else
+            {
+                <div class="wthree_banner_bottom_right_grids">
+                    <div class="col-md-6 banner_bottom_right_grid">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
+                            <div class="view view-tenth">
+                                <div class="agile_text_box">
+                                    <i class="fa fa-align-left"></i>
+                                    <h3>@localizer["Ana Sayfa"]</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 banner_bottom_right_grid">
+                        <a asp-area="" asp-controller="Home" asp-action="Privacy">
+                            <div class="view view-tenth">
+                                <div class="agile_text_box">
+                                    <i class="fas fa-user-shield"></i>
+                                    <h3>@localizer["Gizlilik Sözleşmesi"]</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="wthree_banner_bottom_right_grids">
+                    <div class="col-md-6 banner_bottom_right_grid">
+                        <a asp-area="" asp-controller="About" asp-action="Index">
+                            <div class="view view-tenth">
+                                <div class="agile_text_box">
+                                    <i class="fas fa-users"></i>
+                                    <h3>@localizer["Hakkımızda"]</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 banner_bottom_right_grid">
+                        <a asp-area="" asp-controller="Contact" asp-action="Index">
+                            <div class="view view-tenth">
+                                <div class="agile_text_box">
+                                    <i class="fas fa-comment"></i>
+                                    <h3>@localizer["İletişim"]</h3>
+                                    <p></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="clearfix"> </div>
+                </div>
+            }
 
-		</div>
-		<div class="clearfix"> </div>
-	</div>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
 </div>
 <!-- banner-bottom -->
 <!-- //about -->
 <!-- about-counter -->
 <div class="about-counter">
-	<div class="container">
-		<div class="col-md-3 about_counter_left">
-			<i class="fas fa-users" aria-hidden="true"></i>
-			<p class="counter"></p>
-			<h3>@localizer["Üye"]</h3>
-		</div>
-		<div class="col-md-3 about_counter_left">
-			<i class="fas fa-car-side" aria-hidden="true"></i>
-			@if (@vehicles.Count() == 0)
-			{
-				<p class="counter">0</p>
-			}
-			else
-			{
-				<p class="counter">@vehicles.Count()</p>
-			}
-			<h3>@localizer["Araç"]</h3>
-		</div>
-		<div class="col-md-3 about_counter_left">
-			<i class="fas fa-balance-scale-right" aria-hidden="true"></i>
-			@if (@violation.Count() == 0)
-			{
-				<p class="counter">0</p>
-			}
-			else
-			{
-				<p class="counter">@violation.Count()</p>
-			}
-			<h3>@localizer["İhlal"]</h3>
-		</div>
-		<div class="col-md-3 about_counter_left">
-			<i class="far fa-file-alt" aria-hidden="true"></i>
-			<p class="counter"></p>
-			<h3>@localizer["İtiraz"]</h3>
-		</div>
-		<div class="clearfix"> </div>
-	</div>
+    <div class="container">
+        <div class="col-md-3 about_counter_left">
+            <i class="fas fa-users" aria-hidden="true"></i>
+            <p class="counter">@userCount</p>
+            <h3>@localizer["Üye"]</h3>
+        </div>
+        <div class="col-md-3 about_counter_left">
+            <i class="fas fa-car-side" aria-hidden="true"></i>
+            <p class="counter">@vehicles.Count()</p>
+            <h3>@localizer["Araç"]</h3>
+        </div>
+        <div class="col-md-3 about_counter_left">
+            <i class="fas fa-balance-scale-right" aria-hidden="true"></i>
+            <p class="counter">@violations.Count()</p>
+            <h3>@localizer["İhlal"]</h3>
+        </div>
+        <div class="col-md-3 about_counter_left">
+            <i class="far fa-file-alt" aria-hidden="true"></i>
+            <p class="counter"></p>
+            <h3>@localizer["İtiraz"]</h3>
+        </div>
+        <div class="clearfix"> </div>
+    </div>
 </div>
 <!-- //about-counter -->
 <!-- about-bottom -->
 <div class="about-bottom">
-	<div class="container">
-		<div class="w3l_about_bottom_grids">
-			<div class="col-md-6 w3l_about_bottom_grid_left">
-				<h3>@localizer["Plaka Ceza Sistemi"]</h3>
-				<p>
-					@localizer["Araç trafiğini izlemede geleneksel yöntemlerle karşılaştırıldığında Plaka Ceza Sistemi yöntemi daha kararlı ve düşük maliyetlidir. Ayrıca mevcut kamera izleme altyapısı üzerinde kurulum yada yeni bir altyapı gerektirmeden plaka tespiti kolaylıkla yapılabilmektedir. Otoyol ve karayollarında belirli sıklıkta bulunan kameralar kullanılarak plaka tespiti yapılabilir. Plakası tespit edilen araçların ceza, vergi borcu, geçmiş muayene zamanı gibi cezalı durumları varsa kolaylıkla tespit edilip gerekli adli, idari işlemlerin yapılmasını kolaylaştıracaktır. Güvenlik güçlerinin iş yükü en aza indirilerek yollardaki güven ve konfor artırılabilecektir."]<br />
-					@localizer["Sistemimiz, Avrupa ve Türkiye başta olmak üzere bir çok ülke de bulunan araçlar için plaka tespiti altyapısını sağlamaktadır. Bu ülkeler de otoyol, karayolu ve bölünmüş yollar gibi yerlerde kurulmuş olan kamera altyapısının yüksekliği ve açısıgibi etmenleriyle uyumludur."]
-				</p>
-			</div>
-			<div class="col-md-6 w3l_about_bottom_grid_right">
-				<br/>
-				<div class='bar_group'>
-					<div class='bar_group__bar thin elastic' label='@localizer["Sistem Kararlılığı Oranı"] : %90' value='262'></div>
-					<div class='bar_group__bar thin elastic' label='@localizer["Plaka Tespİt Algorİtması Doğruluğu"] : %86' value='250'></div>
-					<div class='bar_group__bar thin elastic' label='@localizer["Malİyettekİ Artış Oranı"] : %15' value='44'></div>
-					<div class='bar_group__bar thin elastic' label='@localizer["Sİstem Bakımı Artış Oranı"] : %45' value='130'></div>
-					<div class='bar_group__bar thin elastic' label='@localizer["Yollardakİ GÜven ve Konfordakİ Artış Oranı"] : %35' value='102'></div>
-				</div>
-				<script src="js/bars.js"></script>
-			</div>
-			<div class="clearfix"> </div>
-		</div>
-	</div>
+    <div class="container">
+        <div class="w3l_about_bottom_grids">
+            <div class="col-md-6 w3l_about_bottom_grid_left">
+                <h3>@localizer["Plaka Ceza Sistemi"]</h3>
+                <p>
+                    @localizer["Araç trafiğini izlemede geleneksel yöntemlerle karşılaştırıldığında Plaka Ceza Sistemi yöntemi daha kararlı ve düşük maliyetlidir. Ayrıca mevcut kamera izleme altyapısı üzerinde kurulum yada yeni bir altyapı gerektirmeden plaka tespiti kolaylıkla yapılabilmektedir. Otoyol ve karayollarında belirli sıklıkta bulunan kameralar kullanılarak plaka tespiti yapılabilir. Plakası tespit edilen araçların ceza, vergi borcu, geçmiş muayene zamanı gibi cezalı durumları varsa kolaylıkla tespit edilip gerekli adli, idari işlemlerin yapılmasını kolaylaştıracaktır. Güvenlik güçlerinin iş yükü en aza indirilerek yollardaki güven ve konfor artırılabilecektir."]<br />
+                    @localizer["Sistemimiz, Avrupa ve Türkiye başta olmak üzere bir çok ülke de bulunan araçlar için plaka tespiti altyapısını sağlamaktadır. Bu ülkeler de otoyol, karayolu ve bölünmüş yollar gibi yerlerde kurulmuş olan kamera altyapısının yüksekliği ve açısıgibi etmenleriyle uyumludur."]
+                </p>
+            </div>
+            <div class="col-md-6 w3l_about_bottom_grid_right">
+                <br />
+                <div class='bar_group'>
+                    <div class='bar_group__bar thin elastic' label='@localizer["Sistem Kararlılığı Oranı"] : %90' value='262'></div>
+                    <div class='bar_group__bar thin elastic' label='@localizer["Plaka Tespİt Algorİtması Doğruluğu"] : %86' value='250'></div>
+                    <div class='bar_group__bar thin elastic' label='@localizer["Malİyettekİ Artış Oranı"] : %15' value='44'></div>
+                    <div class='bar_group__bar thin elastic' label='@localizer["Sİstem Bakımı Artış Oranı"] : %45' value='130'></div>
+                    <div class='bar_group__bar thin elastic' label='@localizer["Yollardakİ GÜven ve Konfordakİ Artış Oranı"] : %35' value='102'></div>
+                </div>
+                <script src="js/bars.js"></script>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
 </div>
 <!-- //about-bottom -->
