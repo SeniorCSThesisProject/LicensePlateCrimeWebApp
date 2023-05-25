@@ -21,15 +21,11 @@
                                 <label for="select" class=" form-control-label">Araç</label>
                             </div>
                             <div class="col-12 col-md-9">
-                                <select asp-for="VehicleId" type="select" class="form-control">
-                                    <option value="">Lütfen araç seçiniz...</option>
+                                <select  type="select" class="form-control" disabled> 
                                     @{
-                                        var vehicles = await _vehicleRepostiory.GetAllAsync();
+                                        var vehicle = await _vehicleRepostiory.GetByIdAsync(Model.VehicleId);
                                     }
-                                    @foreach (var vehicle in vehicles)
-                                    {
-                                        <option value="@vehicle.Id">@vehicle.Model - @vehicle.LicensePlate</option>
-                                    }
+                                    <option>@vehicle.Model - @vehicle.LicensePlate</option>
                                 </select>
                             </div>
                         </div>

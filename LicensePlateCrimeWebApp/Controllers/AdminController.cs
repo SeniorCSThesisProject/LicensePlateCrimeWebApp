@@ -204,13 +204,12 @@ namespace LicensePlateCrimeWebApp.Controllers
       return RedirectToAction("ViolationIndex", "Admin");
     }
     // GET: Violation/Update
-    public async Task<ActionResult> UpdateViolation(string id, string vehicleId)
+    public async Task<ActionResult> UpdateViolation(string id)
     {
       var violation = await _violationRepository.GetByIdAsync(id);
       var createViolationModel = new Violation()
       {
         Id = violation.Id,
-        VehicleId = vehicleId,
         ViolationType = violation.ViolationType,
         Message = violation.Message,
       };
@@ -223,7 +222,7 @@ namespace LicensePlateCrimeWebApp.Controllers
     {
       if (ModelState.IsValid)
       {
-        var violation = new Violation(createViolationModel.VehicleId, createViolationModel.ViolationType, createViolationModel.Message);
+        var violation = new Violation(createViolationModel.ViolationType, createViolationModel.Message);
         violation.Id = createViolationModel.Id;
         //await _vehicleRepository.AddAsync(vehicle);
         await _violationRepository.UpdateAsync(violation);
