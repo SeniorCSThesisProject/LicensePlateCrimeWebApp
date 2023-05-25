@@ -11,8 +11,8 @@
     var dateTimeFormat = "dd/MM/yyyy - HH:mm";
 }
 <style>
-    .switch.switch-default .switch-label{
-        background-color:gray !important;
+    .switch.switch-default .switch-label {
+        background-color: gray !important;
     }
 </style>
 
@@ -22,7 +22,6 @@
         <h3 class="title-5 m-b-35">ARAÇLAR</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
-
             </div>
             <div class="table-data__tool-right">
                 <a asp-controller="Admin" asp-action="AddVehicle" class="au-btn au-btn-icon au-btn--green au-btn--small">
@@ -44,50 +43,58 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var vehicle in Model.OrderByDescending(v=> v.CreationDate))
+                    @foreach (var vehicle in Model.OrderByDescending(v => v.CreationDate))
                     {
                         var owner = await firebaseAppProvider.FirebaseAdminAuth.GetUserAsync(vehicle.OwnerId);
 
                         <tr class="tr-shadow">
-                            <td>@owner.Email</td>                           
+                            <td>@owner.Email</td>
                             <td>@vehicle.Model</td>
                             <td>@vehicle.LicensePlate</td>
                             <td>@vehicle.CreationDateLocalStr</td>
                             <td>@vehicle.LastUpdateDateLocalStr</td>
                             <td style="text-align:center">
-                                <form method="post" asp-controller="Admin" asp-action="SwitchVehicleWanted" asp-route-id="@vehicle.Id" asp-route-isWanted="@vehicle.IsWanted">
+                                <form method="post" asp-controller="Admin" asp-action="SwitchVehicleWanted">
                                     @Html.AntiForgeryToken()
                                     <input type="hidden" name="id" value="@vehicle.Id" />
-                                <label class="switch switch-default switch-pill switch-danger mr-2">
-                                        <input type="checkbox" name="isWanted" class="switch-input" checked="@vehicle.IsWanted">
-                                    <span class="switch-label"></span>
-                                    <span class="switch-handle"></span>
-                                </label>
+                                    <label class="switch switch-default switch-pill switch-danger mr-2">
+                                        <input onclick="clickFn(event)" type="checkbox" name="isWanted" class="switch-input" checked="@vehicle.IsWanted">
+                                        <span class="switch-label"></span>
+                                        <span class="switch-handle"></span>
+                                    </label>
                                 </form>
                             </td>
                             <td>
                                 <div class="table-data-feature">
-									<a asp-controller="Admin" asp-action="UpdateVehicle" asp-route-id="@vehicle.Id">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </button>
+                                    <a asp-controller="Admin" asp-action="UpdateVehicle" asp-route-id="@vehicle.Id">
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Güncelle">
+                                            <i class="zmdi zmdi-edit"></i>
+                                        </button>
                                     </a>
                                     <form method="post" asp-controller="Admin" asp-action="DeleteVehicle">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@vehicle.Id" />
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@vehicle.Id" />
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
                                     </form>
                                 </div>
                             </td>
                         </tr>
                     }
-                    
-                    
+
+
                 </tbody>
             </table>
         </div>
         <!-- END DATA TABLE -->
     </div>
 </div>
+
+<script>
+    function clickFn(event) {
+        const checkbox = event.currentTarget;
+        checkbox.value = checkbox.checked ? true : false;
+        event.currentTarget.closest('form').submit()
+    }
+</script>
