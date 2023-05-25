@@ -12,7 +12,7 @@ namespace LicensePlateCrimeWebApp.Interfaces
     Task<Violation> GetByLicensePlateAsync(string id);
 
     Task<string> AddAsync(Violation violation);
-    Task<bool> UpdateAsync(Violation violation);
+    Task<string> UpdateAsync(Violation violation);
     Task<bool> DeleteAsync(string id);
     Task<bool> SaveAsync();
   }

@@ -68,9 +68,9 @@ namespace LicensePlateCrimeWebApp.Repository
       throw new NotImplementedException();
     }
 
-    public Task<bool> UpdateAsync(Violation Violation)
+    public async Task<string> UpdateAsync(Violation violation)
     {
-      throw new NotImplementedException();
+      return await _firestoreProvider.Update(violation);
     }
 
   }

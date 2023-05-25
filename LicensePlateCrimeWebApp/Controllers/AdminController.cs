@@ -114,10 +114,10 @@ namespace LicensePlateCrimeWebApp.Controllers
     // POST: Vehicle/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> SwitchVehicleWanted(string id,bool isWanted)
+    public async Task<ActionResult> SwitchVehicleWanted(string id, bool isWanted)
     {
 
-      var vehicle= await _vehicleRepository.GetByIdAsync(id);
+      var vehicle = await _vehicleRepository.GetByIdAsync(id);
       vehicle.IsWanted = isWanted;
       await _vehicleRepository.UpdateAsync(vehicle);
       return RedirectToAction("VehicleIndex", "Admin");
@@ -204,7 +204,7 @@ namespace LicensePlateCrimeWebApp.Controllers
       return RedirectToAction("ViolationIndex", "Admin");
     }
     // GET: Violation/Update
-    public async Task<ActionResult> UpdateViolation(string id,string vehicleId)
+    public async Task<ActionResult> UpdateViolation(string id, string vehicleId)
     {
       var violation = await _violationRepository.GetByIdAsync(id);
       var createViolationModel = new Violation()
@@ -212,7 +212,7 @@ namespace LicensePlateCrimeWebApp.Controllers
         Id = violation.Id,
         VehicleId = vehicleId,
         ViolationType = violation.ViolationType,
-        Description = violation.Description,
+        Message = violation.Message,
       };
       return View(createViolationModel);
     }
@@ -223,11 +223,11 @@ namespace LicensePlateCrimeWebApp.Controllers
     {
       if (ModelState.IsValid)
       {
-        var violation = new Violation(createViolationModel.VehicleId, createViolationModel.ViolationType, createViolationModel.Description);
+        var violation = new Violation(createViolationModel.VehicleId, createViolationModel.ViolationType, createViolationModel.Message);
         violation.Id = createViolationModel.Id;
         //await _vehicleRepository.AddAsync(vehicle);
         await _violationRepository.UpdateAsync(violation);
-        return RedirectToAction("ViolationIndex","Admin");
+        return RedirectToAction("ViolationIndex", "Admin");
       }
       else
       {
