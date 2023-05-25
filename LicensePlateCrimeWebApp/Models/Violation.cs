@@ -59,5 +59,9 @@ namespace LicensePlateCrimeWebApp.Models
     {
 
     }
+    public void RefreshDescription()
+    {
+      Description = ViolationTypeDescriptions[ViolationType];
+    }
   }
 }
