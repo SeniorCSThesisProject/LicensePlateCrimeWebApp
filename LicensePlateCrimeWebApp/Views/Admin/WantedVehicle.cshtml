@@ -1,10 +1,26 @@
 ﻿@using LicensePlateCrimeWebApp.Data;
 @using LicensePlateCrimeWebApp.Interfaces;
-
+@inject FirebaseAppProvider firebaseAppProvider;
+@inject IVehicleRepository _vehicleRepository;
 
 @{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+
+    AlertInfo? currentAlertInfo = null;
+
+    void RefreshView(AlertInfo alertInfo)
+    {
+        currentAlertInfo = alertInfo;
+    }
+
+    var asdf = firebaseAppProvider.RealtimeClient.Child("AlertInfo");
+
+    var observable = firebaseAppProvider.RealtimeClient
+        .Child("AlertInfo")
+        .AsObservable<AlertInfo>()
+        .Subscribe(alert => RefreshView(alert.Object));
+
 }
 
 <style>
@@ -98,13 +114,21 @@
                     <h2 style="color:red;">Aranan Araç Yok !</h2>
                     -->
                     
-                    
-                    <img class="" src="~/images/indir.jfif" style="width:200px; height:200px;" alt="Card image cap">
-                    <p>Seat Ibiza - 06 CSJ 391</p>
-                    <p>Tarih : 25.05.2023 16.00</p>
-                    <div class="w3ls_map">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6045.777731807772!2d30.33154572673654!3d40.7424708673143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ccadf2977958d7%3A0xc7996fa884f94c03!2sSakarya%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1683992880171!5m2!1str!2str" width="500" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
+                    @if (currentAlertInfo != null)
+                    {
+                        var vehicle = await _vehicleRepository.GetByLicensePlateAsync(currentAlertInfo.LicensePlate);
+
+                        <img class="" src="@currentAlertInfo.ImageUrl" style="width:200px; height:200px;" alt="Card image cap">
+                        <p>@vehicle.Model - @currentAlertInfo.LicensePlate</p>
+                        <p>@currentAlertInfo.Date.ToString("dd/MM/yyyy - HH:mm")</p>
+                        // change the google maps widget to reflect the Location property of the AlertInfo class
+
+
+                        <div class="w3ls_map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6045.777731807772!2d30.33154572673654!3d40.7424708673143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ccadf2977958d7%3A0xc7996fa884f94c03!2sSakarya%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1683992880171!5m2!1str!2str" width="500" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    }
+
                     
                 </div>
             </div>

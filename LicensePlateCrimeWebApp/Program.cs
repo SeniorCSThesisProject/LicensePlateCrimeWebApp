@@ -1,3 +1,4 @@
+using Firebase.Database;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
@@ -7,11 +8,10 @@ using LicensePlateCrimeWebApp.Data;
 using LicensePlateCrimeWebApp.Interfaces;
 using LicensePlateCrimeWebApp.Repository;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using System.Globalization;
-using System.Reflection;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.Extensions.Options;
+using System.Globalization;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -32,7 +32,13 @@ builder.Services.AddSingleton(_ => new FirebaseAppProvider(
    FirebaseApp.Create(new AppOptions
    {
      Credential = GoogleCredential.FromJson(firebaseSettings.ServiceAccountJson),
-   }), firebaseSettings));
+   }), firebaseSettings, new FirebaseClient(firebaseSettings.DatabaseUrl, new FirebaseOptions
+   {
+     AuthTokenAsyncFactory = () => Task.FromResult(firebaseSettings.AppSecret)
+   })
+));
+
+
 
 // Register FirestoreProvider
 builder.Services.AddSingleton(_ => new FirestoreProvider(
