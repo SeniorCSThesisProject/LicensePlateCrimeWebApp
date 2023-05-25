@@ -271,5 +271,14 @@ namespace LicensePlateCrimeWebApp.Controllers
 
     //---------------Objection---------------//
 
+
+
+    public IActionResult WantedVehicle()
+    {
+      return View();
+    }
+
+
+
   }
 }

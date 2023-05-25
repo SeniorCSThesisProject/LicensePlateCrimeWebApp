@@ -1,0 +1,113 @@
+﻿@using LicensePlateCrimeWebApp.Data;
+@using LicensePlateCrimeWebApp.Interfaces;
+
+
+@{
+    ViewData["Title"] = "Admin Paneli";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    /* Css Is Cool */
+.police {
+  background: url(http://pluspng.com/img-png/police-hd-png-best-police-car-clip-art-image-file-free-4160.png)
+    top center no-repeat;
+  background-size: 100% 100%;
+  height: 400px;
+  width: 400px;
+  padding-left: 120px;
+  padding-top: 7.5px;
+}
+.cap-1 {
+  float: left;
+  background: red;
+  box-shadow: inset 0 0 10px red;
+  width: 104px;
+  height: 25px;
+  border-radius: 0px 15px 15px 0px;
+  animation: capone 2ms infinite;
+}
+@@keyframes capone {
+  1% {
+    background: transparent;
+    box-shadow: 0 0 50px red;
+  }
+  50% {
+    background: red;
+    box-shadow: 0 0 50px transparent;
+  }
+  100% {
+    background: transparent;
+    box-shadow: 0 0 50px red;
+  }
+}
+.cap-2 {
+  float: left;
+  background: grey;
+  /* 			opacity: 0.9; */
+  width: 70px;
+  height: 25px;
+  border-radius: 0px 0px 0px 0px;
+}
+.cap-3 {
+  float: left;
+  background: blue;
+  width: 104px;
+  box-shadow: inset 0 0 10px blue;
+  height: 25px;
+  border-radius: 15px 0px 0px 15px;
+  animation: capthree 2ms infinite;
+}
+@@keyframes capthree {
+  1% {
+    background: transparent;
+    box-shadow: 0 0 50px blue;
+  }
+  50% {
+    background: blue;
+    box-shadow: 0 0 50px transparent;
+  }
+  100% {
+    background: transparent;
+    box-shadow: 0 0 50px blue;
+  }
+}
+
+</style>
+
+
+<div class="row">
+    <div class="police" style="width:520px;">
+        <div class="tab">
+            <div class="cap-3"></div>
+            <div class="cap-2"></div>
+            <div class="cap-1"></div>
+        </div>
+     </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header" style="color:red;">
+                <i class="fa fa-balance-scale"></i>
+                <strong class="card-title pl-2">Aranan Araç Bilgileri</strong>
+            </div>
+            <div class="card-body">
+                <div class="mx-auto d-block" style="text-align:center;">
+                    <!--Aranan araç tablosu boş ise-->
+                    <!--
+                    <img class="" src="~/images/carsilhouette.webp"  alt="Card image cap">
+                    <h2 style="color:red;">Aranan Araç Yok !</h2>
+                    -->
+                    
+                    
+                    <img class="" src="~/images/indir.jfif" style="width:200px; height:200px;" alt="Card image cap">
+                    <p>Seat Ibiza - 06 CSJ 391</p>
+                    <p>Tarih : 25.05.2023 16.00</p>
+                    <div class="w3ls_map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6045.777731807772!2d30.33154572673654!3d40.7424708673143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ccadf2977958d7%3A0xc7996fa884f94c03!2sSakarya%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1683992880171!5m2!1str!2str" width="500" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
