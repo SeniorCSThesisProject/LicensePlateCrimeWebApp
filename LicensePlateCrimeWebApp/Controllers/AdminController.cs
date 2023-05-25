@@ -207,31 +207,24 @@ namespace LicensePlateCrimeWebApp.Controllers
     public async Task<ActionResult> UpdateViolation(string id)
     {
       var violation = await _violationRepository.GetByIdAsync(id);
-      var createViolationModel = new Violation()
-      {
-        Id = violation.Id,
-        ViolationType = violation.ViolationType,
-        Message = violation.Message,
-      };
-      return View(createViolationModel);
+      return View(violation);
     }
     // POST: Violation/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> UpdateViolation(Violation createViolationModel)
+    public async Task<ActionResult> UpdateViolation(Violation violation)
     {
       if (ModelState.IsValid)
       {
-        var violation = new Violation(createViolationModel.ViolationType, createViolationModel.Message);
-        violation.Id = createViolationModel.Id;
         //await _vehicleRepository.AddAsync(vehicle);
+        violation.RefreshDescription();
         await _violationRepository.UpdateAsync(violation);
         return RedirectToAction("ViolationIndex", "Admin");
       }
       else
       {
         ModelState.AddModelError("", "Photo Upload Failed");
-        return View(createViolationModel);
+        return View(violation);
       }
     }
 

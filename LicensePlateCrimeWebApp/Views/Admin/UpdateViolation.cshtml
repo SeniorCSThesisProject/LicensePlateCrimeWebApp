@@ -16,6 +16,8 @@
                 <div class="card-header">İhlal Güncelle</div>
                 <div class="card-body card-block">
                     <form method="POST" asp-controller="Admin" asp-action="UpdateViolation" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="VehicleId" />
                         <div class="row form-group">
                             <div class="col col-md-3">
                                 <label for="select" class=" form-control-label">Araç</label>
