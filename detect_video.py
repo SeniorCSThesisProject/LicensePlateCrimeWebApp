@@ -1,4 +1,6 @@
+import argparse
 import os
+import sys
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import time
 import tensorflow as tf
@@ -14,6 +16,7 @@ from tensorflow.python.saved_model import tag_constants
 from PIL import Image
 import cv2
 import numpy as np
+import asyncio
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
 from core.utils import *
@@ -31,8 +34,10 @@ flags.DEFINE_float('score', 0.50, 'score threshold')
 flags.DEFINE_boolean('dont_show', False, 'dont show video output')
 flags.DEFINE_boolean('info', False, 'print info on detections')
 flags.DEFINE_boolean('plate', False, 'perform license plate recognition')
+FLAGS = flags.FLAGS
+FLAGS(sys.argv)   # need to explicitly to tell flags library to parse argv before you can access FLAGS.xxx
 
-def main(_argv):
+async def main(_argv):
     config = ConfigProto()
     config.gpu_options.allow_growth = True
     session = InteractiveSession(config=config)
@@ -110,9 +115,9 @@ def main(_argv):
             # count objects found
             counted_classes = count_objects(pred_bbox, by_class = True, allowed_classes=allowed_classes)
             # loop through dict and print
-            image = utils.draw_bbox(frame, pred_bbox, counted_classes, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
+            image = await utils.draw_bbox(frame, pred_bbox, counted_classes, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
         else:
-            image = utils.draw_bbox(frame, pred_bbox, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
+            image = await utils.draw_bbox(frame, pred_bbox, allowed_classes=allowed_classes, read_plate=FLAGS.plate)
         
         fps = 1.0 / (time.time() - start_time)
         
@@ -133,6 +138,6 @@ def main(_argv):
 
 if __name__ == '__main__':
     try:
-        app.run(main)
+        asyncio.run(main(FLAGS))
     except SystemExit:
         pass
