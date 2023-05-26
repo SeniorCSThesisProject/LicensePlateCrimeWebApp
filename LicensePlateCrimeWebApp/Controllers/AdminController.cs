@@ -258,18 +258,6 @@ namespace LicensePlateCrimeWebApp.Controllers
 
     //---------------Contact---------------//
 
-    //+++++++++++++++Objection+++++++++++++++//
-
-
-
-    public IActionResult ObjectionIndex()
-    {
-      return View();
-    }
-
-
-
-    //---------------Objection---------------//
 
 
 
