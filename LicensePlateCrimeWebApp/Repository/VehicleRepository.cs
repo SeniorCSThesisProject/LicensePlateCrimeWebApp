@@ -43,9 +43,10 @@ namespace LicensePlateCrimeWebApp.Repository
       throw new NotImplementedException();
     }
 
-    public Task<Vehicle> GetByLicensePlateAsync(string id)
+    public async Task<Vehicle?> GetByLicensePlateAsync(string licensePlate)
     {
-      throw new NotImplementedException();
+      var vehicles = await _firestoreProvider.WhereEqualTo<Vehicle>(nameof(Vehicle.LicensePlate), licensePlate);
+      return vehicles.FirstOrDefault();
     }
 
     public Task<bool> SaveAsync()

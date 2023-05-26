@@ -66,6 +66,14 @@ namespace LicensePlateCrimeWebApp.Controllers
       }
     }
 
+    [AllowAnonymous]
+    public ActionResult GetVehicleInfoFromLicensePlate(string licensePlate)
+    {
+      var vehicle = _vehicleRepository.GetByLicensePlateAsync(licensePlate).Result;
+      // return a new json that contains vehicle.Id and vehicle.Model
+      return Json(new { id = vehicle?.Id, model = vehicle?.Model });
+    }
+
     // GET: Vehicles/Edit/5
     public ActionResult Edit(int id)
     {
