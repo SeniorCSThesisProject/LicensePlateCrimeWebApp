@@ -7,8 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
-
-  [Authorize]
+  [Authorize(Roles = "User")]
   public class VehicleController : Controller
   {
     private readonly FirebaseAppProvider _firebaseAppProvider;

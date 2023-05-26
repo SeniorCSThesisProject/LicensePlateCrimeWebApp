@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
-  [Authorize]
+  [Authorize(Roles = "User")]
   public class ViolationController : Controller
   {
     private readonly IViolationRepository _violationRepository;
