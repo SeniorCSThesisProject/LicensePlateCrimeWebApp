@@ -1,4 +1,5 @@
 ﻿using Firebase.Auth;
+using FirebaseAdmin.Auth;
 using Newtonsoft.Json;
 
 namespace LicensePlateCrimeWebApp.Helpers
@@ -32,6 +33,23 @@ namespace LicensePlateCrimeWebApp.Helpers
       {
         throw;
       }
+    }
+
+    public static async Task<bool> GetAdminStatusAsync(string id)
+    {
+      // Check if user is admin
+      // Lookup the user associated with the specified uid.
+      UserRecord userRecord = await FirebaseAuth.DefaultInstance.GetUserAsync(id);
+      object isAdminObj;
+      bool isAdmin = false;
+      if (userRecord.CustomClaims.TryGetValue("admin", out isAdminObj))
+      {
+        if ((bool)isAdminObj)
+        {
+          isAdmin = true;
+        }
+      }
+      return isAdmin;
     }
   }
 }

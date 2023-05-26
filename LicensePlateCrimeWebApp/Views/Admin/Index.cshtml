@@ -1,10 +1,18 @@
 ﻿@using FirebaseAdmin.Auth;
+@using static LicensePlateCrimeWebApp.Helpers.GlobalHelpers;
 @model IAsyncEnumerator<ExportedUserRecord>
 @{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
     var dateFormat = "dd/MM/yyyy";
     var dateTimeFormat = "dd/MM/yyyy - HH:mm";
+}
+
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>Hata</strong> @ViewBag.Message
+    </div>
 }
 
 <!-- USER DATA-->
@@ -28,6 +36,7 @@
                 @while (await Model.MoveNextAsync())
                 {
                     ExportedUserRecord user = Model.Current;
+                    var isAdmin = await GetAdminStatusAsync(user.Uid);
                     <tr>
                         <td>
                             <div class="table-data__info">
@@ -35,7 +44,8 @@
                             </div>
                         </td>
                         <td>
-                            @if (@user.Email == "admin@gmail.com") {
+                            @if (isAdmin)
+                            {
                                 <span class="role admin">admin</span>
                             }
                             else
@@ -46,15 +56,18 @@
                         <td>@user.UserMetaData.CreationTimestamp?.ToLocalTime().ToString(dateTimeFormat) </td>
                         <td>@user.UserMetaData.LastSignInTimestamp?.ToLocalTime().ToString(dateTimeFormat)</td>
                         <td>
-                            <div class="table-data-feature">
-                                <form method="post" asp-controller="Admin" asp-action="DeleteUser">
-                                    @Html.AntiForgeryToken()
-                                    <input type="hidden" name="id" value="@user.Uid" />
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
-                                        <i class="zmdi zmdi-delete"></i>
-                                    </button>
-                                </form>
-                            </div>
+                            @if (GetCurrentUserInfo(Context)?.Uid != user.Uid)
+                            {
+                                <div class="table-data-feature">
+                                    <form method="post" asp-controller="Admin" asp-action="DeleteUser">
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="id" value="@user.Uid" />
+                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Sil">
+                                            <i class="zmdi zmdi-delete"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            }
                         </td>
                     </tr>
                 }
@@ -63,4 +76,3 @@
     </div>
 </div>
 <!-- END USER DATA-->
-

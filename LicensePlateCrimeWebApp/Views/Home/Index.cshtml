@@ -26,6 +26,15 @@
         userCount++;
     }
 }
+
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+    <div class="alert alert-danger" role="alert">
+        <strong>@localizer["Hata"]</strong> @ViewBag.Message
+    </div>
+}
+
+
 <!-- banner -->
 <div class="banner">
     <div class="container">

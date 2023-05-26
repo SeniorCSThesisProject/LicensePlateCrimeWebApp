@@ -2,10 +2,12 @@
 using LicensePlateCrimeWebApp.Interfaces;
 using LicensePlateCrimeWebApp.Models;
 using LicensePlateCrimeWebApp.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LicensePlateCrimeWebApp.Controllers
 {
+  [Authorize(Roles = "Administrator")]
   public class AdminController : Controller
   {
     private readonly FirebaseAppProvider _firebaseAppProvider;
@@ -129,11 +131,12 @@ namespace LicensePlateCrimeWebApp.Controllers
 
 
 
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
+      ViewBag.Message = TempData["accessDeniedMsg"]?.ToString();
       // Iterate through all users. This will still retrieve users in batches,
       // buffering no more than 1000 users in memory at a time.
-      var enumerator = _firebaseAppProvider.FirebaseAdminAuth.ListUsersAsync(null).GetAsyncEnumerator();
+      var enumerator = _firebaseAppProvider.FirebaseAdminAuth.ListUsersAsync(null).OrderByDescending(user => user.CustomClaims.TryGetValue("admin", out var isAdmin) && bool.Parse(isAdmin.ToString())).GetAsyncEnumerator();
       return View(enumerator);
     }
     // GET: Contact/Delete/5

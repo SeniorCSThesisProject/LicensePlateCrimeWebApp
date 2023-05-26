@@ -18,6 +18,7 @@ namespace LicensePlateCrimeWebApp.Controllers
 
     public IActionResult Index()
     {
+      ViewBag.Message = TempData["accessDeniedMsg"]?.ToString();
       return View();
     }
 

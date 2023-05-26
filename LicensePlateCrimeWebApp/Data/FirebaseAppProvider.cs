@@ -36,5 +36,24 @@ namespace LicensePlateCrimeWebApp.Data
       // ...and create your FirebaseAuthClient
       FirebaseAuthClient = new FirebaseAuthClient(config);
     }
+
+    // Set User Claims
+    private async Task SetUserClaims()
+    {
+      var admins = new List<UserRecord>()
+      {
+        await FirebaseAdminAuth.GetUserByEmailAsync("admin@gmail.com"),
+        await FirebaseAdminAuth.GetUserByEmailAsync("manager@gmail.com")
+      };
+      // Confirm user is verified.
+      var claims = new Dictionary<string, object>()
+      {
+        { "admin", true },
+      };
+      foreach (var admin in admins)
+      {
+        await FirebaseAuth.DefaultInstance.SetCustomUserClaimsAsync(admin.Uid, claims);
+      }
+    }
   }
 }
