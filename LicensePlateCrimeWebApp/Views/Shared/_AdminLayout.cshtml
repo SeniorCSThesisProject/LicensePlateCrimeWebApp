@@ -30,7 +30,21 @@
 
     <!-- FullCalendar -->
     <link href='~/CoolAdmin-master/vendor/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
+    <!-- Jquery JS-->
+    <script src="~/CoolAdmin-master/vendor/jquery-3.2.1.min.js" asp-append-version="true"></script>
 
+
+    <script>
+        $(document).ready(function () {
+            var url = window.location;
+            $('.navbar-sidebar .navbar__list').find('.active').removeClass('active');
+            $('.navbar-sidebar .navbar__list li a').each(function () {
+                if (this.href == url) {
+                    $(this).parent().addClass('active');
+                }
+            });
+        });
+    </script>
 </head>
 
 <body class="animsition">
@@ -200,8 +214,6 @@
 
     </div>
 
-    <!-- Jquery JS-->
-    <script src="~/CoolAdmin-master/vendor/jquery-3.2.1.min.js"></script>
     <!-- Bootstrap JS-->
     <script src="~/CoolAdmin-master/vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="~/CoolAdmin-master/vendor/bootstrap-4.1/bootstrap.min.js"></script>
