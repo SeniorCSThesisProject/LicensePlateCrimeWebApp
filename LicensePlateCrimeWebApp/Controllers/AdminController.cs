@@ -147,17 +147,19 @@ namespace LicensePlateCrimeWebApp.Controllers
     public async Task<ActionResult> DeleteUser(string id)
     {
       // Delete all vehicles and violations from user
-      var userVehicles = await _vehicleRepository.GetAllFromUserIdAsync(id);
-      foreach (var vehicle in userVehicles)
-      {
-        await _vehicleRepository.DeleteAsync(vehicle.Id);
-      }
       var userViolations = await _violationRepository.GetAllFromUserIdAsync(id);
 
       foreach (var violation in userViolations)
       {
         await _violationRepository.DeleteAsync(violation.Id);
       }
+      var userVehicles = await _vehicleRepository.GetAllFromUserIdAsync(id);
+
+      foreach (var vehicle in userVehicles)
+      {
+        await _vehicleRepository.DeleteAsync(vehicle.Id);
+      }
+
 
       await _firebaseAppProvider.FirebaseAdminAuth.DeleteUserAsync(id);
       return RedirectToAction("Index", "Admin");
