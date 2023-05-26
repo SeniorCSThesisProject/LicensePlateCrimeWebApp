@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using static LicensePlateCrimeWebApp.Helpers.GlobalHelpers;
+
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -26,8 +29,6 @@
 
     <!-- Main CSS-->
     <link href="~/CoolAdmin-master/css/theme.css" rel="stylesheet" media="all">
-
-
     <!-- FullCalendar -->
     <link href='~/CoolAdmin-master/vendor/fullcalendar-3.10.0/fullcalendar.css' rel='stylesheet' media="all" />
     <!-- Jquery JS-->
@@ -156,20 +157,20 @@
                                             <img src="~/CoolAdmin-master/images/icon/operator.png" alt="John Doe" />
                                         </div>
                                         <div class="content">
-                                            <a class="js-acc-btn" href="#">Admin</a>
+                                            <a class="js-acc-btn" >Admin</a>
                                         </div>
                                         <div class="account-dropdown js-dropdown">
                                             <div class="info clearfix">
                                                 <div class="image">
-                                                    <a href="#">
+                                                    <a >
                                                         <img src="~/CoolAdmin-master/images/icon/operator.png" alt="John Doe" />
                                                     </a>
                                                 </div>
                                                 <div class="content">
                                                     <h5 class="name">
-                                                        <a href="#">Admin</a>
+                                                        <a >Admin</a>
                                                     </h5>
-                                                    <span class="email">admin@gmail.com</span>
+                                                    <span class="email">@GetCurrentUserInfo(Context)?.Email</span>
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
@@ -213,7 +214,7 @@
         </div>
 
     </div>
-
+    
     <!-- Bootstrap JS-->
     <script src="~/CoolAdmin-master/vendor/bootstrap-4.1/popper.min.js"></script>
     <script src="~/CoolAdmin-master/vendor/bootstrap-4.1/bootstrap.min.js"></script>
