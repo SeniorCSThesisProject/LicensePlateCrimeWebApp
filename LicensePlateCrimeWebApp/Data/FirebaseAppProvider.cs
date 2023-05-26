@@ -1,6 +1,5 @@
 ﻿using Firebase.Auth;
 using Firebase.Auth.Providers;
-using Firebase.Database;
 using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 
@@ -15,15 +14,12 @@ namespace LicensePlateCrimeWebApp.Data
     public FirebaseAuth FirebaseAdminAuth { get; private set; } = null!;
     public FirebaseAuthClient FirebaseAuthClient { get; private set; } = null!;
 
-    public FirebaseClient RealtimeClient { get; private set; } = null!;
-
     public FirebaseSettings Settings { get; private set; } = null!;
-    public FirebaseAppProvider(FirebaseApp firebaseApp, FirebaseSettings firebaseSettings, FirebaseClient realtimeClient)
+    public FirebaseAppProvider(FirebaseApp firebaseApp, FirebaseSettings firebaseSettings)
     {
       DefaultFirebaseApp = firebaseApp;
       FirebaseAdminAuth = FirebaseAuth.GetAuth(firebaseApp);
       Settings = firebaseSettings;
-      RealtimeClient = realtimeClient;
 
       // Configure...
       var config = new FirebaseAuthConfig

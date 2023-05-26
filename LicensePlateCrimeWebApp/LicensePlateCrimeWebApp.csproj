@@ -102,7 +102,6 @@
   <ItemGroup>
     <PackageReference Include="FirebaseAdmin" Version="2.3.0" />
     <PackageReference Include="FirebaseAuthentication.net" Version="4.0.2" />
-    <PackageReference Include="FirebaseDatabase.net" Version="4.2.0" />
     <PackageReference Include="Google.Cloud.Firestore" Version="3.3.0" />
     <PackageReference Include="Google.Cloud.Firestore.V1" Version="3.3.0" />
     <PackageReference Include="Google.Cloud.Storage.V1" Version="4.5.0" />

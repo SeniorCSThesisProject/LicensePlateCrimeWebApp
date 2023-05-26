@@ -1,4 +1,3 @@
-using Firebase.Database;
 using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
@@ -32,11 +31,7 @@ builder.Services.AddSingleton(_ => new FirebaseAppProvider(
    FirebaseApp.Create(new AppOptions
    {
      Credential = GoogleCredential.FromJson(firebaseSettings.ServiceAccountJson),
-   }), firebaseSettings, new FirebaseClient(firebaseSettings.DatabaseUrl, new FirebaseOptions
-   {
-     AuthTokenAsyncFactory = () => Task.FromResult(firebaseSettings.AppSecret)
-   })
-));
+   }), firebaseSettings));
 
 
 

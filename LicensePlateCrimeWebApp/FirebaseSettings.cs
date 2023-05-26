@@ -18,8 +18,5 @@
 
     public string StorageBucketName { get; set; } = "";
     public string AuthDomain { get; set; } = "";
-
-    public string DatabaseUrl { get; set; } = "";
-    public string AppSecret { get; set; } = "";
   }
 }

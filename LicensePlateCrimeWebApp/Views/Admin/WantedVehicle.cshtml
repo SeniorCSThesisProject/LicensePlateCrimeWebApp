@@ -6,88 +6,81 @@
 @{
     ViewData["Title"] = "Admin Paneli";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-
-    AlertInfo? currentAlertInfo = null;
-
-    void RefreshView(AlertInfo alertInfo)
-    {
-        currentAlertInfo = alertInfo;
-    }
-
-    var asdf = firebaseAppProvider.RealtimeClient.Child("AlertInfo");
-
-    var observable = firebaseAppProvider.RealtimeClient
-        .Child("AlertInfo")
-        .AsObservable<AlertInfo>()
-        .Subscribe(alert => RefreshView(alert.Object));
-
 }
 
 <style>
     /* Css Is Cool */
-.police {
-  background: url(http://pluspng.com/img-png/police-hd-png-best-police-car-clip-art-image-file-free-4160.png)
-    top center no-repeat;
-  background-size: 100% 100%;
-  height: 400px;
-  width: 400px;
-  padding-left: 120px;
-  padding-top: 7.5px;
-}
-.cap-1 {
-  float: left;
-  background: red;
-  box-shadow: inset 0 0 10px red;
-  width: 104px;
-  height: 25px;
-  border-radius: 0px 15px 15px 0px;
-  animation: capone 2ms infinite;
-}
-@@keyframes capone {
-  1% {
-    background: transparent;
-    box-shadow: 0 0 50px red;
-  }
-  50% {
-    background: red;
-    box-shadow: 0 0 50px transparent;
-  }
-  100% {
-    background: transparent;
-    box-shadow: 0 0 50px red;
-  }
-}
-.cap-2 {
-  float: left;
-  background: grey;
-  /* 			opacity: 0.9; */
-  width: 70px;
-  height: 25px;
-  border-radius: 0px 0px 0px 0px;
-}
-.cap-3 {
-  float: left;
-  background: blue;
-  width: 104px;
-  box-shadow: inset 0 0 10px blue;
-  height: 25px;
-  border-radius: 15px 0px 0px 15px;
-  animation: capthree 2ms infinite;
-}
-@@keyframes capthree {
-  1% {
-    background: transparent;
-    box-shadow: 0 0 50px blue;
-  }
-  50% {
-    background: blue;
-    box-shadow: 0 0 50px transparent;
-  }
-  100% {
-    background: transparent;
-    box-shadow: 0 0 50px blue;
-  }
-}
+    .police {
+        background: url(http://pluspng.com/img-png/police-hd-png-best-police-car-clip-art-image-file-free-4160.png) top center no-repeat;
+        background-size: 100% 100%;
+        height: 400px;
+        width: 400px;
+        padding-left: 120px;
+        padding-top: 7.5px;
+    }
+
+    .cap-1 {
+        float: left;
+        background: red;
+        box-shadow: inset 0 0 10px red;
+        width: 104px;
+        height: 25px;
+        border-radius: 0px 15px 15px 0px;
+        animation: capone 2ms infinite;
+    }
+
+    @@keyframes capone {
+        1% {
+            background: transparent;
+            box-shadow: 0 0 50px red;
+        }
+
+        50% {
+            background: red;
+            box-shadow: 0 0 50px transparent;
+        }
+
+        100% {
+            background: transparent;
+            box-shadow: 0 0 50px red;
+        }
+    }
+
+    .cap-2 {
+        float: left;
+        background: grey;
+        /* 			opacity: 0.9; */
+        width: 70px;
+        height: 25px;
+        border-radius: 0px 0px 0px 0px;
+    }
+
+    .cap-3 {
+        float: left;
+        background: blue;
+        width: 104px;
+        box-shadow: inset 0 0 10px blue;
+        height: 25px;
+        border-radius: 15px 0px 0px 15px;
+        animation: capthree 2ms infinite;
+    }
+
+    @@keyframes capthree {
+        1% {
+            background: transparent;
+            box-shadow: 0 0 50px blue;
+        }
+
+        50% {
+            background: blue;
+            box-shadow: 0 0 50px transparent;
+        }
+
+        100% {
+            background: transparent;
+            box-shadow: 0 0 50px blue;
+        }
+    }
 
 </style>
 
@@ -99,7 +92,7 @@
             <div class="cap-2"></div>
             <div class="cap-1"></div>
         </div>
-     </div>
+    </div>
     <div class="col-md-6">
         <div class="card">
             <div class="card-header" style="color:red;">
@@ -113,25 +106,64 @@
                     <img class="" src="~/images/carsilhouette.webp"  alt="Card image cap">
                     <h2 style="color:red;">Aranan Araç Yok !</h2>
                     -->
-                    
-                    @if (currentAlertInfo != null)
-                    {
-                        var vehicle = await _vehicleRepository.GetByLicensePlateAsync(currentAlertInfo.LicensePlate);
 
-                        <img class="" src="@currentAlertInfo.ImageUrl" style="width:200px; height:200px;" alt="Card image cap">
-                        <p>@vehicle.Model - @currentAlertInfo.LicensePlate</p>
-                        <p>@currentAlertInfo.Date.ToString("dd/MM/yyyy - HH:mm")</p>
-                        // change the google maps widget to reflect the Location property of the AlertInfo class
-
-
-                        <div class="w3ls_map">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6045.777731807772!2d30.33154572673654!3d40.7424708673143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ccadf2977958d7%3A0xc7996fa884f94c03!2sSakarya%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1683992880171!5m2!1str!2str" width="500" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    }
-
-                    
+                    <img id="alert-info-img" class="" src="" style="width:200px; height:200px;" alt="Card image cap">
+                    <p id="alert-info-vehicle-info">MODEL - PLAKA</p>
+                    <p id="alert-info-date">TARIH</p>
+                    <div class="w3ls_map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6045.777731807772!2d30.33154572673654!3d40.7424708673143!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ccadf2977958d7%3A0xc7996fa884f94c03!2sSakarya%20%C3%9Cniversitesi!5e0!3m2!1str!2str!4v1683992880171!5m2!1str!2str"
+                                width="500"
+                                height="200"
+                                style="border:0;"
+                                allowfullscreen=""
+                                loading="lazy"
+                                referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-database.js";
+
+    // TODO: Replace the following with your app's Firebase project configuration
+    // See: https://firebase.google.com/docs/web/learn-more#config-object
+    const firebaseConfig = {
+        // ...
+        // The value of `databaseURL` depends on the location of the database
+        databaseURL: "https://bitirme-8af0e-default-rtdb.firebaseio.com/",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+
+    // Initialize Realtime Database and get a reference to the service
+    const database = getDatabase(app);
+
+    const alertInfoRef = ref(database, 'AlertInfo')
+    onValue(alertInfoRef, (snapshot) => {
+        const data = snapshot.val();
+        // change the html element contents that you get from id's (alert-info-img, alert-info-vehicle-info, alert-info-date)
+        $('#alert-info-img').attr('src', data.ImageUrl)
+        $.get('@Url.Action("GetVehicleInfoFromLicensePlate", "Vehicle")', { licensePlate: data.LicensePlate }, function (jsonData, textStatus, jqXHR) {
+            $('#alert-info-vehicle-info').html(jsonData.model + ' - ' + data.LicensePlate);
+            console.log(jsonData)
+        });
+        //$('#alert-info-vehicle-info').html(data.Model + ' - ' + data.LicensePlate);
+        // format iso datetime string to dd/MM/yyyy - HH:mm
+        var date_str = data.Date,
+            options = { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' },
+            formatted = (new Date(date_str)).toLocaleDateString('tr-TR', options),
+            date_parts = formatted.substring(0, formatted.indexOf(",")).split(" ").reverse().join(" ");
+
+        var formatted_date = date_parts + formatted.substr(formatted.indexOf(",") + 1);
+
+        $('#alert-info-date').html(formatted_date)
+        console.log(data)
+    });
+</script>
