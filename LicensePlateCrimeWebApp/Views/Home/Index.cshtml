@@ -4,6 +4,7 @@
 @using LicensePlateCrimeWebApp.Interfaces;
 @inject IVehicleRepository _vehicleRepository;
 @inject IViolationRepository _violationRepository;
+@inject IContactRepository _contactRepository;
 @inject FirebaseAppProvider firebaseAppProvider;
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject Microsoft.AspNetCore.Mvc.Localization.IViewLocalizer localizer
@@ -15,6 +16,7 @@
 @{
     var vehicles = await _vehicleRepository.GetAllAsync();
     var violations = await _violationRepository.GetAllAsync();
+    var contacts = await _contactRepository.GetAllAsync();
     // Iterate through all users. This will still retrieve users in batches,
     // buffering no more than 1000 users in memory at a time.
     var enumerator = firebaseAppProvider.FirebaseAdminAuth.ListUsersAsync(null).GetAsyncEnumerator();
@@ -186,8 +188,8 @@
         </div>
         <div class="col-md-3 about_counter_left">
             <i class="far fa-file-alt" aria-hidden="true"></i>
-            <p class="counter"></p>
-            <h3>@localizer["İtiraz"]</h3>
+            <p class="counter">@contacts.Count()</p>
+            <h3>@localizer["İletişim"]</h3>
         </div>
         <div class="clearfix"> </div>
     </div>
