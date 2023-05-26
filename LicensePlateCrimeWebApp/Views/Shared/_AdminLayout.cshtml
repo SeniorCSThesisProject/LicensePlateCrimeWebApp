@@ -55,6 +55,11 @@
                 <div class="container-fluid">
                     <ul class="navbar-mobile__list list-unstyled">
                         <li class="has-sub">
+                            <a asp-area="" asp-controller="Admin" asp-action="Index">
+                                <i class="fas fa-user"></i>Kullanıcılar
+                            </a>
+                        </li>
+                        <li class="has-sub">
                             <a asp-area="" asp-controller="Admin" asp-action="VehicleIndex">
                                 <i class="fas fa-address-card"></i>Araçlar
                             </a>
@@ -89,6 +94,11 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
+                        <li class="has-sub">
+                            <a asp-area="" asp-controller="Admin" asp-action="Index">
+                                <i class="fas fa-user"></i>Kullanıcılar
+                            </a>
+                        </li>
                         <li class="has-sub">
                             <a asp-area="" asp-controller="Admin" asp-action="VehicleIndex">
                                 <i class="fas fa-address-card"></i>Araçlar
@@ -149,8 +159,13 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
+                                                <a asp-area="" asp-controller="Home" asp-action="Index">
+                                                    <i class="zmdi zmdi-home"></i>Ana Sayfa
+                                                </a>
+                                            </div>
+                                            <div class="account-dropdown__footer">
                                                 <a href="#">
-                                                    <i class="zmdi zmdi-power"></i>Logout
+                                                    <i class="zmdi zmdi-power"></i>Çıkış Yap
                                                 </a>
                                             </div>
                                         </div>
