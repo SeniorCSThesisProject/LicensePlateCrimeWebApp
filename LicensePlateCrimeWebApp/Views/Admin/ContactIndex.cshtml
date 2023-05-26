@@ -18,7 +18,7 @@
                     <section class="card">
                         <div class="card-header user-header alt bg-dark">
                             <div class="media">
-                                <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="~/CoolAdmin-master/images/icon/avatar-06.jpg">
+                                <img class="align-self-center rounded-circle mr-3" style="width:85px; height:85px;" alt="" src="https://icons.iconarchive.com/icons/icons8/windows-8/96/Users-Administrator-2-icon.png">
                                 <div class="media-body">
                                     <h6 style="max-width:200px;" class="text-light display-6">@contact.Email</h6>
                                     <p style="max-width:200px;"> @contact.Name</p>
@@ -39,10 +39,8 @@
                             </li>
                             <li class="list-group-item">
                                 <div class="table-data-feature">
-                                    <a href="mailto:@contact.Email">
-                                        <button class="item" data-toggle="tooltip" data-placement="top" title="Yanıtla">
-                                            <i class="zmdi zmdi-mail-send"></i>
-                                        </button>
+                                    <a href="mailto:@contact.Email" class="item" title="Yanıtla">
+                                        <i class="zmdi zmdi-mail-send"></i>
                                     </a>
                                     <form method="post" asp-controller="Admin" asp-action="DeleteContact">
                                         @Html.AntiForgeryToken()
