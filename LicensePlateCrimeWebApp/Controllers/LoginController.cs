@@ -101,9 +101,6 @@ namespace LicensePlateCrimeWebApp.Controllers
             return LocalRedirect(returnUrl);
           else
             return RedirectToAction("Index", "Home");
-
-
-          //return RedirectToAction("Index", "Home", null);
         }
         //login failed
         else

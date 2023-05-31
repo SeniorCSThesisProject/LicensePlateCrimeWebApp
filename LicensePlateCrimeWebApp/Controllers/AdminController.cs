@@ -23,20 +23,15 @@ namespace LicensePlateCrimeWebApp.Controllers
       _firebaseAppProvider = firebaseAppProvider;
     }
 
-
-
     //+++++++++++++++Vehicles+++++++++++++++//
-
-
-
-    // GET: Vehicles
+    // GET: Vehicle
     public async Task<ActionResult> VehicleIndex()
     {
       var vehicles = await _vehicleRepository.GetAllAsync();
       //var vehicles = await _vehicleRepository.GetAllFromUserIdAsync(_firebaseAppProvider.FirebaseAuthClient.User.Uid);
       return View(vehicles);
     }
-    // GET: Vehicles/Create
+    // GET: Vehicle/Create
     public ActionResult AddVehicle()
     {
       var currentUser = _firebaseAppProvider.FirebaseAuthClient.User;
@@ -47,7 +42,7 @@ namespace LicensePlateCrimeWebApp.Controllers
       };
       return View(createVehicleViewModel);
     }
-    // POST: Vehicles/Create
+    // POST: Vehicle/Create
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> AddVehicle(CreateVehicleViewModel createVehicleViewModel)
@@ -112,7 +107,6 @@ namespace LicensePlateCrimeWebApp.Controllers
         return View(createVehicleViewModel);
       }
     }
-
     // POST: Vehicle/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -124,13 +118,9 @@ namespace LicensePlateCrimeWebApp.Controllers
       await _vehicleRepository.UpdateAsync(vehicle);
       return RedirectToAction("VehicleIndex", "Admin");
     }
-
     //---------------Vehicles---------------//
 
     //+++++++++++++++Index+++++++++++++++//
-
-
-
     public ActionResult Index()
     {
       ViewBag.Message = TempData["accessDeniedMsg"]?.ToString();
@@ -162,20 +152,14 @@ namespace LicensePlateCrimeWebApp.Controllers
       {
         await _vehicleRepository.DeleteAsync(vehicle.Id);
       }
-
-
       await _firebaseAppProvider.FirebaseAdminAuth.DeleteUserAsync(id);
       return RedirectToAction("Index", "Admin");
       //return View();
     }
 
-
     //---------------Index---------------//
 
     //+++++++++++++++Violation+++++++++++++++//
-
-
-
 
     public async Task<ActionResult> ViolationIndex()
     {
@@ -208,11 +192,7 @@ namespace LicensePlateCrimeWebApp.Controllers
         return View(createviolationModel);
       }
     }
-    // GET: Violation/Delete/5
-    public ActionResult DeleteViolation(int id)
-    {
-      return View();
-    }
+
     // POST: Violation/Delete/5
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -245,24 +225,14 @@ namespace LicensePlateCrimeWebApp.Controllers
         return View(violation);
       }
     }
-
-
     //---------------Violation---------------//
 
     //+++++++++++++++Contact+++++++++++++++//
-
-
-
     public async Task<ActionResult> ContactIndex()
     {
       var contact = await _contactRepository.GetAllAsync();
       return View(contact);
 
-    }
-    // GET: Contact/Delete/5
-    public ActionResult DeleteContact(int id)
-    {
-      return View();
     }
     // POST: Contact/Delete/5
     [HttpPost]
@@ -273,18 +243,10 @@ namespace LicensePlateCrimeWebApp.Controllers
       return RedirectToAction("ContactIndex", "Admin");
     }
 
-
     //---------------Contact---------------//
-
-
-
-
     public IActionResult WantedVehicle()
     {
       return View();
     }
-
-
-
   }
 }
