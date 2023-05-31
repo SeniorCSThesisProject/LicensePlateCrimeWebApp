@@ -8,8 +8,6 @@ namespace LicensePlateCrimeWebApp.Models
     [FirestoreProperty]
     public string OwnerId { get; set; }
 
-    //public Firebase.Auth.User? Owner { get; set; }
-
     [FirestoreProperty]
     public bool IsWanted { get; set; }
 
