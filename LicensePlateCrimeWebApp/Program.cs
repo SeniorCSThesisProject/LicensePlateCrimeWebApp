@@ -57,13 +57,13 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     options.SlidingExpiration = true;
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
-    options.ExpireTimeSpan = TimeSpan.FromSeconds(60);// here 2
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);// here 2
   });
 
 // Add sessions
 builder.Services.AddSession(options =>
 {
-  options.IdleTimeout = TimeSpan.FromSeconds(60);
+  options.IdleTimeout = TimeSpan.FromMinutes(5);
   options.Cookie.HttpOnly = true;
   options.Cookie.IsEssential = true;
 });
