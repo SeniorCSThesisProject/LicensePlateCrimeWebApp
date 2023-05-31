@@ -27,32 +27,5 @@ namespace LicensePlateCrimeWebApp.Repository
     {
       return await _firestoreProvider.GetAll<Contact>();
     }
-
-    public Task<Vehicle> GetByIdAsync(string id)
-    {
-      throw new NotImplementedException();
-    }
-
-    public Task<Vehicle> GetByIdNoTrackingAsync(string id)
-    {
-      throw new NotImplementedException();
-    }
-
-
-
-    public Task<bool> SaveAsync()
-    {
-      throw new NotImplementedException();
-    }
-
-    Task<Contact> IContactRepository.GetByIdAsync(string id)
-    {
-      throw new NotImplementedException();
-    }
-
-    Task<Contact> IContactRepository.GetByIdNoTrackingAsync(string id)
-    {
-      throw new NotImplementedException();
-    }
   }
 }

@@ -48,24 +48,9 @@ namespace LicensePlateCrimeWebApp.Repository
       return await _firestoreProvider.Get<Violation>(id);
     }
 
-    public Task<Violation> GetByIdNoTrackingAsync(string id)
-    {
-      throw new NotImplementedException();
-    }
-
-    public Task<Violation> GetByLicensePlateAsync(string id)
-    {
-      throw new NotImplementedException();
-    }
-
     public async Task<Vehicle> GetVehicleByIdAsync(string id)
     {
       return await _vehicleRepository.GetByIdAsync(id);
-    }
-
-    public Task<bool> SaveAsync()
-    {
-      throw new NotImplementedException();
     }
 
     public async Task<string> UpdateAsync(Violation violation)
