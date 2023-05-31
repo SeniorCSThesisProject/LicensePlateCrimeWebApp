@@ -15,22 +15,9 @@ namespace LicensePlateCrimeWebApp.Controllers
       _httpContextAccessor = httpContextAccessor;
     }
     // GET: Contact
-    public async Task<ActionResult> Index()
+    public ActionResult Index()
     {
       return View();
-    }
-
-    // GET: Contact/Details/5
-    public ActionResult Details(int id)
-    {
-      return View();
-    }
-
-    // GET: Contact/Create
-    public ActionResult Create()
-    {
-      var createcontactModel = new Contact();
-      return View(createcontactModel);
     }
 
     // POST: Contact/Create
@@ -52,48 +39,5 @@ namespace LicensePlateCrimeWebApp.Controllers
         return View("Index", createcontactModel);
       }
     }
-
-    // GET: Contact/Edit/5
-    public ActionResult Edit(int id)
-    {
-      return View();
-    }
-
-    // POST: Contact/Edit/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Edit(int id, IFormCollection collection)
-    {
-      try
-      {
-        return RedirectToAction(nameof(Index));
-      }
-      catch
-      {
-        return View();
-      }
-    }
-
-    // GET: Contact/Delete/5
-    public ActionResult Delete(int id)
-    {
-      return View();
-    }
-
-    // POST: Contact/Delete/5
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public ActionResult Delete(int id, IFormCollection collection)
-    {
-      try
-      {
-        return RedirectToAction(nameof(Index));
-      }
-      catch
-      {
-        return View();
-      }
-    }
-
   }
 }
