@@ -3,9 +3,6 @@ using Firebase.Auth.Providers;
 using FirebaseAdmin;
 using FirebaseAdmin.Auth;
 
-
-
-
 namespace LicensePlateCrimeWebApp.Data
 {
   public class FirebaseAppProvider
@@ -13,8 +10,8 @@ namespace LicensePlateCrimeWebApp.Data
     public FirebaseApp DefaultFirebaseApp { get; private set; } = null!;
     public FirebaseAuth FirebaseAdminAuth { get; private set; } = null!;
     public FirebaseAuthClient FirebaseAuthClient { get; private set; } = null!;
-
     public FirebaseSettings Settings { get; private set; } = null!;
+
     public FirebaseAppProvider(FirebaseApp firebaseApp, FirebaseSettings firebaseSettings)
     {
       DefaultFirebaseApp = firebaseApp;

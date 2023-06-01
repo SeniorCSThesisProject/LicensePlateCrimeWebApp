@@ -1,4 +1,4 @@
-﻿namespace LicensePlateCrimeWebApp
+﻿namespace LicensePlateCrimeWebApp.Data
 {
   public class FirebaseSettings
   {
@@ -15,7 +15,6 @@
     {
       get => File.ReadAllText(ServiceAccountJsonPath);
     }
-
     public string StorageBucketName { get; set; } = "";
     public string AuthDomain { get; set; } = "";
   }

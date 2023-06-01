@@ -29,6 +29,7 @@ namespace LicensePlateCrimeWebApp.Models
     [MinLength(5, ErrorMessage = "En az 5 karakterden oluşan mesaj gönderiniz.")]
     public string Message { get; set; }
 
+
     public Contact(string name, string email, string telephone, string subject, string message)
     {
       Name = name;

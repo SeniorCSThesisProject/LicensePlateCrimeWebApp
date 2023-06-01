@@ -2,7 +2,6 @@ using FirebaseAdmin;
 using Google.Apis.Auth.OAuth2;
 using Google.Cloud.Firestore;
 using Google.Cloud.Storage.V1;
-using LicensePlateCrimeWebApp;
 using LicensePlateCrimeWebApp.Data;
 using LicensePlateCrimeWebApp.Interfaces;
 using LicensePlateCrimeWebApp.Repository;

@@ -34,7 +34,6 @@ namespace LicensePlateCrimeWebApp.Helpers
         throw;
       }
     }
-
     public static async Task<bool> GetAdminStatusAsync(string id)
     {
       // Check if user is admin
@@ -52,4 +51,5 @@ namespace LicensePlateCrimeWebApp.Helpers
       return isAdmin;
     }
   }
+
 }
