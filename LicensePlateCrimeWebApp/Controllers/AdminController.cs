@@ -71,6 +71,14 @@ namespace LicensePlateCrimeWebApp.Controllers
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> DeleteVehicle(string id)
     {
+      // Delete all violations from vehicle
+      var vehicleViolations = await _vehicleRepository.GetAllViolationsByVehicleIdAsync(id);
+
+      foreach (var violation in vehicleViolations)
+      {
+        await _violationRepository.DeleteAsync(violation.Id);
+      }
+
       var isDeleted = await _vehicleRepository.DeleteAsync(id);
       return RedirectToAction("VehicleIndex", "Admin");
     }
