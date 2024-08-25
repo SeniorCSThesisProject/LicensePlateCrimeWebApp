@@ -15,9 +15,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://solemates.mvartuc.dev/">
     <img src="./images/logo.svg" alt="Logo" width="320" height="90">
-  </a>
 
   <h3 align="center">License Plate Crime Detector</h3>
 
